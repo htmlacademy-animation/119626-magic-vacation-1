@@ -29,6 +29,16 @@
   }
 }
 
+@keyframes field-fade-in {
+  0% {
+    transform: scaleX(0);
+  }
+  
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .form__field {
   flex: none;
   margin-right: 3rem;
@@ -43,6 +53,8 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  animation: field-fade-in 1s;
+  transform-origin: 100% 50%;
 
   &:focus {
     border: 1px solid $c-purple;
