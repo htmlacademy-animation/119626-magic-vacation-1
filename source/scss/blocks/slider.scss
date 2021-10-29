@@ -90,12 +90,32 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .slider__item-text {
   margin-top: 3.6rem;
   margin-bottom: 0;
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+
+  .slider__item.swiper-slide-active & {
+    animation: fade-in 500ms ease-out;
+  }
+
+  .slider__item.swiper-slide-next & {
+    animation: fade-in 500ms ease-out 150ms;
+  }
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
