@@ -7,6 +7,13 @@
       pointer-events: auto;
     }
   }
+
+  &--active {
+    .social-block__link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .social-block__toggler {
@@ -168,6 +175,9 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 300ms;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -219,6 +229,8 @@
   }
 
   &--insta {
+    transition-delay: 100ms;
+
     svg {
       width: 1.5rem;
       height: 1.5rem;
@@ -231,6 +243,8 @@
   }
 
   &--vk {
+    transition-delay: 200ms;
+
     svg {
       width: 1.7rem;
       height: 1rem;
