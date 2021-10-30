@@ -50,7 +50,7 @@
       height: 100%;
       transition-duration: 400ms;
       transition-delay: 400ms;
-      transition-timing-function: ease-in;
+      transition-timing-function: cubic-bezier(0, 1, 0.3, 1);
     }
   }
 
