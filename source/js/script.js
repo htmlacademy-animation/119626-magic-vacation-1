@@ -23,11 +23,3 @@ pageLoaded();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
-
-// TODO: RM
-const timeout = 3000;
-
-window.setTimeout(() => {
-  const bg = document.querySelector(`.transition-bg`);
-  bg.classList.add(`active`);
-}, timeout);

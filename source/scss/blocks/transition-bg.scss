@@ -1,16 +1,15 @@
 .transition-bg {
   position: absolute;
+  height: 0;
   left: 0;
-  top: 100vh;
   right: 0;
   bottom: 0;
   background-color: $c-dark;
-  transition-duration: 400ms;
-  transition-property: top;
-  transition-timing-function: ease-in;
+  transition-duration: 300ms;
+  transition-property: height;
 
   &.active {
-    top: 0;
-    z-index: 6;
+    height: 100%;
+    z-index: 2;
   }
 }
