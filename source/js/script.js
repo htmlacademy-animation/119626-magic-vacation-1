@@ -9,6 +9,7 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import pageLoaded from './modules/page-loaded';
+import AnimateAccentTypography from './modules/animate-accent-typography';
 
 // init modules
 mobileHeight();
@@ -23,3 +24,7 @@ pageLoaded();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
+
+const mainTitle = document.querySelector(`.intro__title`);
+const animateMainTitle = new AnimateAccentTypography(mainTitle);
+animateMainTitle.init();
