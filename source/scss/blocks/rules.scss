@@ -159,6 +159,7 @@
     border-radius: 50%;
     line-height: 5rem;
     text-align: center;
+    transform: scale(0);
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -177,11 +178,52 @@
     }
   }
 
+  .page-loaded & {
+    &::before {
+      transform: scale(1);
+      transition-duration: 300ms;
+      transition-timing-function: cubic-bezier(0.3, 0.5, 0.8, 1.5);
+    }
+  }
+
   p {
     margin: 0;
+    opacity: 0;
+    transform: translateX(50px);
+
+    .page-loaded & {
+      transform: translateY(0);
+      opacity: 1;
+      transition-duration: 300ms;
+      transition-timing-function: ease-in-out;
+    }
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
+    }
+  }
+
+  &:nth-child(1) {
+    &::before, p {
+      transition-delay: 100ms;
+    }
+  }
+
+  &:nth-child(2) {
+    &::before, p {
+      transition-delay: 200ms;
+    }
+  }
+
+  &:nth-child(3) {
+    &::before, p {
+      transition-delay: 300ms;
+    }
+  }
+
+  &:nth-child(4) {
+    &::before, p {
+      transition-delay: 400ms;
     }
   }
 }
