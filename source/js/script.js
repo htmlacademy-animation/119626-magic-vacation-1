@@ -25,22 +25,24 @@ pageLoaded();
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
+const config = {duration: 300, delay: 200};
+
 const mainTitle = document.querySelector(`.intro__title`);
-const animateMainTitle = new AnimateTypography({node: mainTitle, duration: 300, delay: 200});
+const animateMainTitle = new AnimateTypography({node: mainTitle, ...config});
 animateMainTitle.init();
 
 const historyTitle = document.querySelector(`.slider__item-title`);
-const animateHistoryTitle = new AnimateTypography({node: historyTitle, duration: 300, delay: 200});
+const animateHistoryTitle = new AnimateTypography({node: historyTitle, ...config});
 animateHistoryTitle.init();
 
 const prizesTitle = document.querySelector(`.prizes__title`);
-const animatePrizesTitle = new AnimateTypography({node: prizesTitle, duration: 300, delay: 200});
+const animatePrizesTitle = new AnimateTypography({node: prizesTitle, ...config});
 animatePrizesTitle.init();
 
 const rulesTitle = document.querySelector(`.rules__title`);
-const animateRulesTitle = new AnimateTypography({node: rulesTitle, duration: 300, delay: 200});
+const animateRulesTitle = new AnimateTypography({node: rulesTitle, ...config});
 animateRulesTitle.init();
 
 const gameTitle = document.querySelector(`.game__title`);
-const animateGameTitle = new AnimateTypography({node: gameTitle, duration: 300, delay: 200});
+const animateGameTitle = new AnimateTypography({node: gameTitle, ...config});
 animateGameTitle.init();
