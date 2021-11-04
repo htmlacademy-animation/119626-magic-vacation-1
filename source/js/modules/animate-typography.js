@@ -1,7 +1,6 @@
 const CN = `animated-typography`;
 const CN_WORD = `${CN}__word`;
 const CN_CHAR = `${CN}__char`;
-const CN_ACTIVE = `active`;
 const SPAN = `span`;
 
 export default class AnimateTypography {
@@ -11,13 +10,7 @@ export default class AnimateTypography {
     this._delay = delay;
   }
 
-  _animate() {
-    setTimeout(() => {
-      this._node.classList.add(CN_ACTIVE);
-    }, this._delay);
-  }
-
-  _replaceNode() {
+  init() {
     this._node.classList.add(CN);
     const fragment = document.createDocumentFragment();
     const words = this._node.textContent.split(` `).map((word) => word.split(``));
@@ -43,10 +36,5 @@ export default class AnimateTypography {
 
     this._node.innerHTML = null;
     this._node.appendChild(fragment);
-  }
-
-  init() {
-    this._replaceNode();
-    this._animate();
   }
 }

@@ -15,7 +15,7 @@
     display: inline-block;
     transform: translate3d(0, 1em, 0);
 
-    .active & {
+    .page-loaded & {
       animation-name: animated-typography-fade-in;
       animation-fill-mode: forwards;
     }
