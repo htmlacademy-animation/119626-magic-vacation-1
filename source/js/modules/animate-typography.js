@@ -1,7 +1,13 @@
-export default class AnimateAccentTypography {
+const CLASS_NAME = `animated-typography`;
+
+export default class AnimateTypography {
   constructor(node, animation) {
     this.node = node;
     this.animation = animation;
+  }
+
+  addAnimationClass() {
+    this.node.classList.add(CLASS_NAME);
   }
 
   wrapInSpan() {
@@ -10,9 +16,11 @@ export default class AnimateAccentTypography {
 
     words.forEach((word, i) => {
       const wordFragment = document.createElement(`span`);
+      wordFragment.classList.add(`${CLASS_NAME}__word`);
 
       word.forEach((char) => {
         const charInSpan = document.createElement(`span`);
+        charInSpan.classList.add(`${CLASS_NAME}__char`);
         charInSpan.textContent = char;
         wordFragment.appendChild(charInSpan);
       });
@@ -30,6 +38,7 @@ export default class AnimateAccentTypography {
   }
 
   init() {
+    this.addAnimationClass();
     this.wrapInSpan();
   }
 }

@@ -9,7 +9,7 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import pageLoaded from './modules/page-loaded';
-import AnimateAccentTypography from './modules/animate-accent-typography';
+import AnimateTypography from './modules/animate-typography';
 
 // init modules
 mobileHeight();
@@ -26,5 +26,13 @@ const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
 const mainTitle = document.querySelector(`.intro__title`);
-const animateMainTitle = new AnimateAccentTypography(mainTitle);
+const animateMainTitle = new AnimateTypography(mainTitle);
 animateMainTitle.init();
+
+const historyTitle = document.querySelector(`.slider__item-title`);
+const animateHistoryTitle = new AnimateTypography(historyTitle);
+animateHistoryTitle.init();
+
+const prizesTitle = document.querySelector(`.prizes__title`);
+const animatePrizesTitle = new AnimateTypography(prizesTitle);
+animatePrizesTitle.init();
