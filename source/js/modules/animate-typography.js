@@ -1,4 +1,8 @@
-const CLASS_NAME = `animated-typography`;
+const CN = `animated-typography`;
+const CN_ACTIVE = `active`;
+const CN_WORD = `${CN}__word`;
+const CN_CHAR = `${CN}__char`;
+const SPAN = `span`;
 
 export default class AnimateTypography {
   constructor({node, duration, delay}) {
@@ -9,22 +13,22 @@ export default class AnimateTypography {
 
   _animate() {
     setTimeout(() => {
-      this._node.classList.add(`${CLASS_NAME}--active`);
+      this._node.classList.add(CN_ACTIVE);
     }, this._delay);
   }
 
   _replaceNode() {
-    this._node.classList.add(CLASS_NAME);
+    this._node.classList.add(CN);
     const fragment = document.createDocumentFragment();
     const words = this._node.textContent.split(` `).map((word) => word.split(``));
 
     words.forEach((word) => {
-      const spanWord = document.createElement(`span`);
-      spanWord.classList.add(`${CLASS_NAME}__word`);
+      const spanWord = document.createElement(SPAN);
+      spanWord.classList.add(CN_WORD);
 
       word.forEach((char) => {
-        const spanChar = document.createElement(`span`);
-        spanChar.classList.add(`${CLASS_NAME}__char`);
+        const spanChar = document.createElement(SPAN);
+        spanChar.classList.add(CN_CHAR);
 
         spanChar.textContent = char;
         spanChar.style.animationDuration = `${this._duration}ms`;
