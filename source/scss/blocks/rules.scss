@@ -159,6 +159,7 @@
     border-radius: 50%;
     line-height: 5rem;
     text-align: center;
+    transform: scale(0);
 
     @media (max-width: $tablet) and (orientation: portrait) {
       top: 1rem;
@@ -177,11 +178,68 @@
     }
   }
 
+  @keyframes rule-counter-fade-in {
+    to {
+      transform: scale(1);
+    }
+  }
+
+  .page-loaded & {
+    &::before {
+      animation-name: rule-counter-fade-in;
+      animation-duration: 300ms;
+      animation-timing-function: cubic-bezier(0.3, 0.5, 0.8, 1.5);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  @keyframes rule-text-fade-in {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
   p {
     margin: 0;
+    transform: translateX(50px);
+    opacity: 0;
+
+    .page-loaded & {
+      animation-name: rule-text-fade-in;
+      animation-duration: 300ms;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+    }
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(1.4rem * 2.2);
+    }
+  }
+
+  .page-loaded .screen.active & {
+    &:nth-child(1) {
+      &::before, p {
+        animation-delay: 100ms;
+      }
+    }
+  
+    &:nth-child(2) {
+      &::before, p {
+        animation-delay: 200ms;
+      }
+    }
+  
+    &:nth-child(3) {
+      &::before, p {
+        animation-delay: 300ms;
+      }
+    }
+  
+    &:nth-child(4) {
+      &::before, p {
+        animation-delay: 400ms;
+      }
     }
   }
 }
