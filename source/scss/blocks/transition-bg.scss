@@ -1,0 +1,15 @@
+.transition-bg {
+  position: absolute;
+  height: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $c-dark;
+  transition-duration: 300ms;
+  transition-property: height;
+
+  &.active {
+    height: 100%;
+    z-index: 2;
+  }
+}
