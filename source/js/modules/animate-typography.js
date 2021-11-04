@@ -1,7 +1,7 @@
 const CN = `animated-typography`;
-const CN_ACTIVE = `active`;
 const CN_WORD = `${CN}__word`;
 const CN_CHAR = `${CN}__char`;
+const CN_ACTIVE = `active`;
 const SPAN = `span`;
 
 export default class AnimateTypography {
