@@ -217,7 +217,7 @@
     }
   }
 
-  .page-loaded .screen.active & {
+  .page-loaded & {
     &:nth-child(1) {
       &::before, p {
         animation-delay: 100ms;
