@@ -28,7 +28,6 @@ class AnimateTypography {
 
         spanChar.innerHTML = char;
         spanChar.style.animationDuration = `${this._duration}ms`;
-        spanChar.style.animationTimingFunction = `ease-in`;
         spanChar.style.animationDelay = `${this._delay * Math.random()}ms`;
       }
 
@@ -40,30 +39,47 @@ class AnimateTypography {
   }
 }
 
-const config = {duration: 300, delay: 200};
+const DURATION = 300;
+const DELAY = 200;
 
 const targets = [{
+  duration: DURATION,
+  delay: DELAY,
   selector: `.intro__title-row-1`
 }, {
+  duration: DURATION,
+  delay: DELAY * 1.5,
   selector: `.intro__title-row-2`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.intro__date`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.slider__item-title`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.prizes__title`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.rules__title`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.game__title`
 }, {
+  duration: DURATION,
+  delay: DELAY,
   selector: `.game__counter`
 }];
 
 export default () => {
-  targets.forEach((target) => {
-    const node = document.querySelector(target.selector);
-    const animate = new AnimateTypography({node, ...config});
+  targets.forEach(({selector, duration, delay}) => {
+    const node = document.querySelector(selector);
+    const animate = new AnimateTypography({node, duration, delay});
     animate.init();
   });
 };
