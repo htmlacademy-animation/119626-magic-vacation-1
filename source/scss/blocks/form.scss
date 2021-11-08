@@ -33,7 +33,7 @@
   0% {
     transform: scaleX(0);
   }
-  
+
   100% {
     transform: scaleX(1);
   }
@@ -53,7 +53,8 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: field-fade-in 1s;
+  animation-name: field-fade-in;
+  animation-duration: 1000ms;
   transform-origin: 100% 50%;
 
   &:focus {
@@ -90,8 +91,22 @@
   }
 }
 
+@keyframes form-btn-fade-in {
+  to {
+    color: $c-purple;
+  }
+}
+
 .form__button {
   flex-grow: 1;
+  color: transparent;
+
+  .page-loaded & {
+    animation-name: form-btn-fade-in;
+    animation-delay: 400ms;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+  }
 
   @media (orientation: portrait) {
     position: relative;
