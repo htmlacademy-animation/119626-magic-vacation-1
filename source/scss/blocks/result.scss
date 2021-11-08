@@ -74,7 +74,6 @@
   }
 }
 
-
 @keyframes leaf-green-fade-in {
   0% {
     transform: translate3d(15%, 20%, 0) rotate(-40deg);
@@ -90,25 +89,71 @@
   }
 }
 
+@keyframes suitcase-fade-in {
+  0% {
+    transform: translate3d(-50%, 30%, 0) scale(0);
+  }
+  
+  100% {
+    transform: translate3d(-50%, -20%, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flamingo-fade-in {
+  0% {
+    transform: translate3d(-80%, 100%, 0);
+  }
+  
+  100% {
+    transform: translate3d(-80%, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flamingo-bounce {
+  0% {
+    transform: translate3d(-80%, 0, 0) rotate(0);
+  }
+
+  50% {
+    transform: translate3d(-80%, 5%, 0) rotate(5deg);
+  }
+  
+  100% {
+    transform: translate3d(-80%, 0, 0) rotate(0);
+  }
+}
+
 .result__image-part {
   position: absolute;
   display: block;
   width: 250px;
   left: 50%;
   top: 50%;
+  opacity: 0;
 
   &--flamingo {
-    transform: translate3d(-80%, 0, 0);
+    .page-loaded & {
+      animation:
+        flamingo-fade-in 750ms ease-in-out 150ms forwards,
+        flamingo-bounce 4000ms ease-in-out 1000ms infinite;
+    }
   }
 
   &--suitcase {
     width: 300px;
-    transform: translate3d(-50%, -20%, 0);
+    
+    .page-loaded & {
+      animation-name: suitcase-fade-in;
+      animation-duration: 750ms;
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.75, 0.75, 0.75, 1.15);
+    }
   }
 
   &--leaf-green {
     width: 300px;
-    opacity: 0;
 
     .page-loaded & {
       animation-name: leaf-green-fade-in;
@@ -119,8 +164,6 @@
   }
 
   &--leaf-blue-1 {
-    opacity: 0;
-
     .page-loaded & {
       animation-name: leaf-blue-1-fade-in;
       animation-duration: 2200ms;
@@ -131,8 +174,6 @@
   }
 
   &--leaf-blue-2 {
-    opacity: 0;
-
     .page-loaded & {
       animation-name: leaf-blue-2-fade-in;
       animation-duration: 2000ms;
