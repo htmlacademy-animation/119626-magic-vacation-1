@@ -38,6 +38,16 @@
   z-index: 1;
 }
 
+@keyframes screen-footer-fade-in {
+  from {
+    bottom: -30px;
+  }
+
+  to {
+    bottom: 0;
+  }
+}
+
 .screen__footer {
   position: absolute;
   bottom: -30px;
@@ -46,14 +56,12 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
-  opacity: 0;
-  transition: 400ms;
 
   .page-loaded & {
-    opacity: 1;
-    bottom: 0;
-    transition-duration: 400ms;
-    transition-timing-function: cubic-bezier(0, 1, 0.3, 1);
+    animation-name: screen-footer-fade-in;
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0, 1, 0.3, 1);
+    animation-fill-mode: forwards;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -362,4 +370,5 @@
 
 .screen--rules {
   background-color: $c-dark;
+  z-index: 3;
 }

@@ -1,6 +1,23 @@
+@keyframes disclaimer-text-fade-in {
+  from {
+    color: transparent;
+  }
+
+  to {
+    color: $c-dark;
+  }
+}
+
 .disclaimer {
-  color: $c-dark;
+  color: transparent;
   background-color: $c-light;
+
+  .page-loaded & {
+    animation-name: disclaimer-text-fade-in;
+    animation-duration: 400ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     font-weight: 400;
