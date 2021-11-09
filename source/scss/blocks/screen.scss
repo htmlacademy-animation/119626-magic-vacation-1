@@ -65,13 +65,18 @@
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
-    position: relative;
+    position: absolute;
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 0 3.6rem 0 0;
+    bottom: 0;
     background-color: transparent;
     color: transparent;
-    transition: width 300ms, height 300ms, color 400ms 200ms;
+
+    .page-loaded & {
+      transition: width 300ms, height 300ms, color 400ms 200ms;
+      animation: none;
+    }
 
     &::before {
       position: absolute;
