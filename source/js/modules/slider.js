@@ -1,4 +1,5 @@
 import Swiper from "swiper";
+import removeThemeClasses, {CN_BLUE, CN_LIGHT_BLUE} from "./body-theme-controller";
 
 export default () => {
   let storySlider;
@@ -51,12 +52,16 @@ export default () => {
         },
         on: {
           slideChange: () => {
+            removeThemeClasses();
+
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
             } else if (storySlider.activeIndex === 2) {
               sliderContainer.style.backgroundImage = `url("img/slide2.jpg")`;
+              document.body.classList.add(CN_BLUE);
             } else if (storySlider.activeIndex === 4) {
               sliderContainer.style.backgroundImage = `url("img/slide3.jpg")`;
+              document.body.classList.add(CN_LIGHT_BLUE);
             } else if (storySlider.activeIndex === 6) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
             }
