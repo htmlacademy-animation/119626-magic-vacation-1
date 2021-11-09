@@ -31,20 +31,22 @@
 
 @keyframes field-fade-in {
   0% {
-    transform: scaleX(0);
+    margin-left: calc(100% - 31rem - 6rem);
+    padding: 0;
+    width: 6rem;
   }
-  
+
   100% {
-    transform: scaleX(1);
+    margin-left: 0;
+    padding: 0 5.6rem;
+    width: calc(100% - 31rem);
   }
 }
 
 .form__field {
   flex: none;
   margin-right: 3rem;
-  padding: 0 5.6rem;
   height: 6rem;
-  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -53,8 +55,10 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: field-fade-in 1s;
-  transform-origin: 100% 50%;
+  animation-name: field-fade-in;
+  animation-duration: 400ms;
+  animation-delay: 400ms;
+  animation-fill-mode: forwards;
 
   &:focus {
     border: 1px solid $c-purple;
@@ -90,8 +94,22 @@
   }
 }
 
+@keyframes form-btn-fade-in {
+  to {
+    color: $c-purple;
+  }
+}
+
 .form__button {
   flex-grow: 1;
+  color: transparent;
+
+  .page-loaded & {
+    animation-name: form-btn-fade-in;
+    animation-delay: 400ms;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+  }
 
   @media (orientation: portrait) {
     position: relative;

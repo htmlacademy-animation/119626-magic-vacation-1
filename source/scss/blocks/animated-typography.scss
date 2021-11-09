@@ -1,0 +1,23 @@
+@keyframes animated-typography-fade-in {
+  to {
+    transform: translate3d(0, 0.1em, 0);
+  }
+}
+
+.animated-typography {
+  &__word {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  &__char {
+    display: inline-block;
+    transform: translate3d(0, 1em, 0);
+
+    .page-loaded & {
+      animation-name: animated-typography-fade-in;
+      animation-fill-mode: forwards;
+    }
+  }
+}
