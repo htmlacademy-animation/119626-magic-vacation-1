@@ -22,8 +22,23 @@
   display: block;
   width: 4rem;
   height: 4rem;
-  color: $c-dark;
   border-radius: 50%;
+
+  .body-theme-blue & {
+    color: $c-blue;
+  }
+  
+  .body-theme-light-blue & {
+    color: $c-blue-light;
+  }
+
+  .body-theme-purple & {
+    color: $c-dark;
+  }
+
+  .body-theme-light-purple & {
+    color: $c-purple;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -63,7 +78,21 @@
 
   &:hover,
   .social-block--active & {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+    
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-purple & {
+      color: $c-purple;
+    }
+
+    .body-theme-light-purple & {
+      color: $c-dark;
+    }
 
     &::before {
       width: 112.5%;
@@ -72,12 +101,35 @@
   }
 
   &:focus {
-    color: $c-purple;
-    outline: none;
-
-    &::before {
-      border-color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+      &::before {
+        border-color: $c-blue-light;
+      }
     }
+    
+    .body-theme-light-blue & {
+      color: $c-blue;
+      &::before {
+        border-color: $c-blue;
+      }
+    }
+
+    .body-theme-purple & {
+      color: $c-purple;
+      &::before {
+        border-color: $c-purple;
+      }
+    }
+
+    .body-theme-light-purple & {
+      color: $c-dark;
+      &::before {
+        border-color: $c-dark;
+      }
+    }
+
+    outline: none;
 
     & + .social-block__list {
       opacity: 1;
