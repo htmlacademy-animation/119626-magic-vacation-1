@@ -302,12 +302,42 @@
 
     &:hover,
     &:focus {
-      color: $c-purple;
+      .body-theme-blue & {
+        color: $c-blue-light;
+
+        &::after {
+          background-color: $c-blue-light;
+        }
+      }
+      
+      .body-theme-light-blue & {
+        color: $c-blue;
+
+        &::after {
+          background-color: $c-blue;
+        }
+      }
+
+      .body-theme-purple & {
+        color: $c-purple;
+
+        &::after {
+          background-color: $c-purple;
+        }
+      }
+
+      .body-theme-light-purple & {
+        color: $c-dark;
+
+        &::after {
+          background-color: $c-dark;
+        }
+      }
+
       outline: none;
 
       &::after {
         opacity: 1;
-        background-color: $c-purple;
         transform: scaleX(1);
         transform-origin: 0% 50%;
       }

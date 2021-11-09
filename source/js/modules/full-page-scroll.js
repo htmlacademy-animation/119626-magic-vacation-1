@@ -1,5 +1,4 @@
 import throttle from 'lodash/throttle';
-import removeThemeClasses from "./body-theme-controller";
 
 export default class FullPageScroll {
   constructor() {
@@ -57,8 +56,6 @@ export default class FullPageScroll {
     this.transitionBg.classList.add(`active`);
 
     setTimeout(() => {
-      removeThemeClasses();
-
       this.screenElements.forEach((screen) => {
         screen.classList.add(`screen--hidden`);
         screen.classList.remove(`active`);

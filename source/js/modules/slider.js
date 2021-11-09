@@ -1,5 +1,5 @@
 import Swiper from "swiper";
-import removeThemeClasses, {CN_BLUE, CN_LIGHT_BLUE} from "./body-theme-controller";
+import removeThemeClasses, {CN_BLUE, CN_LIGHT_BLUE, CN_PURPLE, CN_LIGHT_PURPLE} from "./body-theme-controller";
 
 export default () => {
   let storySlider;
@@ -7,6 +7,8 @@ export default () => {
   sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
 
   const setSlider = function () {
+    document.body.classList.add(CN_LIGHT_PURPLE);
+
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
       storySlider = new Swiper(`.js-slider`, {
         pagination: {
@@ -56,6 +58,7 @@ export default () => {
 
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
+              document.body.classList.add(CN_LIGHT_PURPLE);
             } else if (storySlider.activeIndex === 2) {
               sliderContainer.style.backgroundImage = `url("img/slide2.jpg")`;
               document.body.classList.add(CN_BLUE);
@@ -64,6 +67,7 @@ export default () => {
               document.body.classList.add(CN_LIGHT_BLUE);
             } else if (storySlider.activeIndex === 6) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
+              document.body.classList.add(CN_PURPLE);
             }
           },
           resize: () => {
