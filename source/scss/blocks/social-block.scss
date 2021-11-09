@@ -257,21 +257,69 @@
   }
 
   &:hover {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-purple & {
+      color: $c-purple;
+    }
+
+    .body-theme-light-purple & {
+      color: $c-dark;
+    }
   }
 
   &:focus {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+      border-color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+      border-color: $c-blue;
+    }
+
+    .body-theme-purple & {
+      color: $c-purple;
+      border-color: $c-purple;
+    }
+
+    .body-theme-light-purple & {
+      color: $c-dark;
+      border-color: $c-dark;
+    }
+
     background-color: $c-light;
-    border-color: $c-purple;
     outline: none;
   }
 
   &:active,
   &:active:focus {
-    color: $c-purple;
-    background-color: $c-light;
+
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-purple & {
+      color: $c-purple;
+    }
+
+    .body-theme-light-purple & {
+      color: $c-dark;
+    }
+
     border-color: $c-light;
+    background-color: $c-light;
   }
 
   svg {

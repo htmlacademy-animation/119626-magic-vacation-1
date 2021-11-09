@@ -6,6 +6,7 @@ export const CN_LIGHT_PURPLE = `body-theme-light-purple`;
 const bodyThemeClasses = [
   CN_BLUE,
   CN_LIGHT_BLUE,
+  CN_PURPLE,
   CN_LIGHT_PURPLE,
 ];
 
