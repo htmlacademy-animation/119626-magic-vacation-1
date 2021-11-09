@@ -215,7 +215,7 @@
   height: 4rem;
   color: $c-dark;
   animation-duration: 400ms;
-  animation-timing-function: ease-out;
+  animation-timing-function: cubic-bezier(.5, .85, .5, 1.25);
   animation-fill-mode: forwards;
 
   &:first-child {
