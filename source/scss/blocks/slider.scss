@@ -90,7 +90,7 @@
   }
 }
 
-@keyframes fade-in {
+@keyframes slider-item-text-fade-in {
   0% {
     opacity: 0;
     transform: translateX(50px);
@@ -110,11 +110,26 @@
   line-height: 2rem;
 
   .slider__item.swiper-slide-active & {
-    animation: fade-in 500ms ease-out;
+    opacity: 0;
+
+    .page-loaded & {
+      animation-name: slider-item-text-fade-in;
+      animation-duration: 400ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+    }
   }
 
   .slider__item.swiper-slide-next & {
-    animation: fade-in 500ms ease-out 150ms;
+    opacity: 0;
+
+    .page-loaded & {
+      animation-name: slider-item-text-fade-in;
+      animation-duration: 400ms;
+      animation-timing-function: ease-out;
+      animation-delay: 150ms;
+      animation-fill-mode: forwards;
+    }
   }
 
   @media (min-width: $stop-scaling) {
@@ -169,12 +184,51 @@
   }
 }
 
+@keyframes slider-control-left-fade-in {
+  from {
+    transform: translate3d(-300%, 0, 0) rotate(-360deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slider-control-right-fade-in {
+  from {
+    transform: translate3d(300%, 0, 0) rotate(360deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) rotate(0);
+    opacity: 1;
+  }
+}
+
 .slider__control {
   @include btn-reset;
   position: relative;
   width: 4rem;
   height: 4rem;
   color: $c-dark;
+  animation-duration: 400ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+
+  &:first-child {
+    .page-loaded & {
+      animation-name: slider-control-left-fade-in;
+    }
+  }
+
+  &:last-child {
+    .page-loaded & {
+      animation-name: slider-control-right-fade-in;
+    }
+  }
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -241,6 +295,16 @@
   }
 }
 
+@keyframes slider-pagination-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .slider__pagination.swiper-pagination {
   position: absolute;
   bottom: 2.8rem;
@@ -253,6 +317,14 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+  opacity: 0;
+
+  .page-loaded & {
+    animation-name: slider-pagination-fade-in;
+    animation-duration: 400ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+  }
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
