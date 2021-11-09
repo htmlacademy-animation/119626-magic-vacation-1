@@ -3,13 +3,13 @@ import Swiper from "swiper";
 const CN_BLUE = `body-theme-blue`;
 const CN_LIGHT_BLUE = `body-theme-light-blue`;
 const CN_PURPLE = `body-theme-purple`;
-const CN_LIGHT_PURPLE = `body-theme-light-purple`;
+const CN_DARK = `body-theme-dark`;
 
 const bodyThemeClasses = [
   CN_BLUE,
   CN_LIGHT_BLUE,
   CN_PURPLE,
-  CN_LIGHT_PURPLE,
+  CN_DARK,
 ];
 
 const removeTheme = () => {
@@ -24,7 +24,7 @@ export default () => {
   sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
 
   const setSlider = function () {
-    document.body.classList.add(CN_LIGHT_PURPLE);
+    document.body.classList.add(CN_DARK);
 
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
       storySlider = new Swiper(`.js-slider`, {
@@ -75,7 +75,7 @@ export default () => {
 
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
-              document.body.classList.add(CN_LIGHT_PURPLE);
+              document.body.classList.add(CN_PURPLE);
             } else if (storySlider.activeIndex === 2) {
               sliderContainer.style.backgroundImage = `url("img/slide2.jpg")`;
               document.body.classList.add(CN_BLUE);
@@ -84,7 +84,7 @@ export default () => {
               document.body.classList.add(CN_LIGHT_BLUE);
             } else if (storySlider.activeIndex === 6) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
-              document.body.classList.add(CN_PURPLE);
+              document.body.classList.add(CN_DARK);
             }
           },
           resize: () => {

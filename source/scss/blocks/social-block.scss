@@ -32,11 +32,11 @@
     color: $c-blue-light;
   }
 
-  .body-theme-purple & {
+  .body-theme-dark & {
     color: $c-dark;
   }
 
-  .body-theme-light-purple & {
+  .body-theme-purple & {
     color: $c-purple;
   }
 
@@ -86,11 +86,11 @@
       color: $c-blue;
     }
 
-    .body-theme-purple & {
+    .body-theme-dark & {
       color: $c-purple;
     }
 
-    .body-theme-light-purple & {
+    .body-theme-purple & {
       color: $c-dark;
     }
 
@@ -115,14 +115,14 @@
       }
     }
 
-    .body-theme-purple & {
+    .body-theme-dark & {
       color: $c-purple;
       &::before {
         border-color: $c-purple;
       }
     }
 
-    .body-theme-light-purple & {
+    .body-theme-purple & {
       color: $c-dark;
       &::before {
         border-color: $c-dark;
@@ -265,11 +265,11 @@
       color: $c-blue;
     }
 
-    .body-theme-purple & {
+    .body-theme-dark & {
       color: $c-purple;
     }
 
-    .body-theme-light-purple & {
+    .body-theme-purple & {
       color: $c-dark;
     }
   }
@@ -285,12 +285,12 @@
       border-color: $c-blue;
     }
 
-    .body-theme-purple & {
+    .body-theme-dark & {
       color: $c-purple;
       border-color: $c-purple;
     }
 
-    .body-theme-light-purple & {
+    .body-theme-purple & {
       color: $c-dark;
       border-color: $c-dark;
     }
@@ -310,11 +310,11 @@
       color: $c-blue;
     }
 
-    .body-theme-purple & {
+    .body-theme-dark & {
       color: $c-purple;
     }
 
-    .body-theme-light-purple & {
+    .body-theme-purple & {
       color: $c-dark;
     }
 

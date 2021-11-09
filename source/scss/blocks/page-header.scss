@@ -318,7 +318,7 @@
         }
       }
 
-      .body-theme-purple & {
+      .body-theme-dark & {
         color: $c-purple;
 
         &::after {
@@ -326,7 +326,7 @@
         }
       }
 
-      .body-theme-light-purple & {
+      .body-theme-purple & {
         color: $c-dark;
 
         &::after {
