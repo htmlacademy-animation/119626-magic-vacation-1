@@ -1,5 +1,22 @@
 import Swiper from "swiper";
-import removeThemeClasses, {CN_BLUE, CN_LIGHT_BLUE, CN_PURPLE, CN_LIGHT_PURPLE} from "./body-theme-controller";
+
+const CN_BLUE = `body-theme-blue`;
+const CN_LIGHT_BLUE = `body-theme-light-blue`;
+const CN_PURPLE = `body-theme-purple`;
+const CN_LIGHT_PURPLE = `body-theme-light-purple`;
+
+const bodyThemeClasses = [
+  CN_BLUE,
+  CN_LIGHT_BLUE,
+  CN_PURPLE,
+  CN_LIGHT_PURPLE,
+];
+
+const removeTheme = () => {
+  bodyThemeClasses.forEach((cn) => {
+    document.body.classList.remove(cn);
+  });
+};
 
 export default () => {
   let storySlider;
@@ -54,7 +71,7 @@ export default () => {
         },
         on: {
           slideChange: () => {
-            removeThemeClasses();
+            removeTheme();
 
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
