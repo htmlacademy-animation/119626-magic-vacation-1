@@ -22,8 +22,23 @@
   display: block;
   width: 4rem;
   height: 4rem;
-  color: $c-dark;
   border-radius: 50%;
+
+  .body-theme-blue & {
+    color: $c-blue;
+  }
+  
+  .body-theme-light-blue & {
+    color: $c-blue-light;
+  }
+
+  .body-theme-dark & {
+    color: $c-dark;
+  }
+
+  .body-theme-purple & {
+    color: $c-purple;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -63,7 +78,21 @@
 
   &:hover,
   .social-block--active & {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+    
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-dark & {
+      color: $c-purple;
+    }
+
+    .body-theme-purple & {
+      color: $c-dark;
+    }
 
     &::before {
       width: 112.5%;
@@ -72,12 +101,35 @@
   }
 
   &:focus {
-    color: $c-purple;
-    outline: none;
-
-    &::before {
-      border-color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+      &::before {
+        border-color: $c-blue-light;
+      }
     }
+    
+    .body-theme-light-blue & {
+      color: $c-blue;
+      &::before {
+        border-color: $c-blue;
+      }
+    }
+
+    .body-theme-dark & {
+      color: $c-purple;
+      &::before {
+        border-color: $c-purple;
+      }
+    }
+
+    .body-theme-purple & {
+      color: $c-dark;
+      &::before {
+        border-color: $c-dark;
+      }
+    }
+
+    outline: none;
 
     & + .social-block__list {
       opacity: 1;
@@ -205,21 +257,69 @@
   }
 
   &:hover {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-dark & {
+      color: $c-purple;
+    }
+
+    .body-theme-purple & {
+      color: $c-dark;
+    }
   }
 
   &:focus {
-    color: $c-purple;
+    .body-theme-blue & {
+      color: $c-blue-light;
+      border-color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+      border-color: $c-blue;
+    }
+
+    .body-theme-dark & {
+      color: $c-purple;
+      border-color: $c-purple;
+    }
+
+    .body-theme-purple & {
+      color: $c-dark;
+      border-color: $c-dark;
+    }
+
     background-color: $c-light;
-    border-color: $c-purple;
     outline: none;
   }
 
   &:active,
   &:active:focus {
-    color: $c-purple;
-    background-color: $c-light;
+
+    .body-theme-blue & {
+      color: $c-blue-light;
+    }
+
+    .body-theme-light-blue & {
+      color: $c-blue;
+    }
+
+    .body-theme-dark & {
+      color: $c-purple;
+    }
+
+    .body-theme-purple & {
+      color: $c-dark;
+    }
+
     border-color: $c-light;
+    background-color: $c-light;
   }
 
   svg {

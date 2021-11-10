@@ -96,6 +96,10 @@
 
 @keyframes form-btn-fade-in {
   to {
+    color: transparent;
+  }
+
+  to {
     color: $c-purple;
   }
 }

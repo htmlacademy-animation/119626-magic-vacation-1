@@ -232,6 +232,28 @@
   }
 }
 
+@keyframes result-button-icon-fade-in {
+  from {
+    transform: translate3d(50%, 0, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes result-button-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .result__button {
   @include btn-reset;
   display: flex;
@@ -244,6 +266,12 @@
   font-size: 2.4rem;
   line-height: 1.2;
   color: $c-light;
+
+  .page-loaded & {
+    animation-name: result-button-fade-in;
+    animation-duration: 400ms;
+    animation-timing-function: ease-out;
+  }
 
   @media (min-width: $stop-scaling) {
     margin: auto auto 10px;
@@ -276,6 +304,15 @@
     width: 4rem;
     height: 4rem;
     color: $c-dark;
+    opacity: 0;
+
+    .page-loaded & {
+      animation-name: result-button-icon-fade-in;
+      animation-duration: 400ms;
+      animation-delay: 300ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+    }
 
     @media (min-width: $stop-scaling) {
       margin-left: 15px;
