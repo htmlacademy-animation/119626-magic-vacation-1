@@ -225,7 +225,7 @@
         from="0"
         to="1"
         dur="0.2s"
-        begin="chair-fade-in.begin + 0.1s"
+        begin="chairFadeInAnimation.begin + 0.1s"
         fill="freeze"
       />
 
@@ -235,7 +235,7 @@
         from="-30, 0"
         to="0, 0"
         dur="0.2s"
-        begin="chair-fade-in.begin + 0.1s"
+        begin="chairFadeInAnimation.begin + 0.1s"
         additive="sum"
       />
 
@@ -243,9 +243,9 @@
         id="skisRotateAnimation"
         attributeName="transform"
         type="rotate"
-        values="0 105 350; 1.5 105 350; 0 105 350"
-        dur="2s"
-        begin="5s; skisRotateAnimation.end + 5s"
+        values="0 105 350; 0.5 105 350; 0 105 350"
+        dur="1s"
+        begin="4s; skisRotateAnimation.end + 4s"
         additive="sum"
       />
 
@@ -278,25 +278,60 @@
     </g>
 
     <!-- clouds -->
-    <!-- <g clip-path="url(#window)">
-      <g transform="translate(220 160)">
-        <line x1="28.18" y1="38.34" x2="91.09" y2="38.34" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-        <path d="M41.77,97.54H77.06a12.4,12.4,0,1,1,24.8,0h17.93" transform="translate(-40.77 -69.46)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-        <line x1="218.19" y1="23.72" x2="257.97" y2="23.72" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-        <path d="M278.75,82.91H251.39a12.4,12.4,0,1,0-24.8,0H208.65" transform="translate(-40.77 -69.46)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
-        <line x1="246.24" y1="13.45" x2="268.43" y2="13.45" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+    <g clip-path="url(#window)">
+      <g transform="translate(220 160)" opacity="0">
+        <animate
+          attributeName="opacity"
+          from="0"
+          to="1"
+          dur="0.2s"
+          begin="chairFadeInAnimation.end"
+          fill="freeze"
+        />
+
+        <g>
+          <animateTransform
+            id="windowCloudTransformAnimation"
+            attributeName="transform"
+            type="translate"
+            from="100 0"
+            to="-100 0"
+            dur="2s"
+            begin="chairFadeInAnimation.end; windowCloudTransformAnimation.end + 3s"
+            fill="freeze"
+          />
+
+          <line x1="28.18" y1="38.34" x2="91.09" y2="38.34" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+          <path d="M41.77,97.54H77.06a12.4,12.4,0,1,1,24.8,0h17.93" transform="translate(-40.77 -69.46)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+
+        <g>
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="-100 0"
+            to="-300 0"
+            dur="2s"
+            begin="windowCloudTransformAnimation.end"
+            fill="freeze"
+          />
+
+          <line x1="218.19" y1="23.72" x2="257.97" y2="23.72" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+          <path d="M278.75,82.91H251.39a12.4,12.4,0,1,0-24.8,0H208.65" transform="translate(-40.77 -69.46)" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+          <line x1="246.24" y1="13.45" x2="268.43" y2="13.45" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>        
+        </g>
       </g>
-    </g> -->
+    </g>
 
     <!-- chair -->
     <g opacity="0">
       <animate
-        id="chair-fade-in"
+        id="chairFadeInAnimation"
         attributeName="opacity"
         from="0"
         to="1"
         dur="0.2s"
-        begin="2.3s"
+        begin="airshipSceneFadeOutAnimation.end + 0.3s"
         fill="freeze"
       />
 
@@ -332,7 +367,7 @@
         from="0"
         to="1"
         dur="0.2s"
-        begin="chair-fade-in.begin + 0.2s"
+        begin="chairFadeInAnimation.begin + 0.2s"
         fill="freeze"
       />
 
@@ -342,7 +377,7 @@
         from="-30, 0"
         to="0, 0"
         dur="0.2s"
-        begin="chair-fade-in.begin + 0.2s"
+        begin="chairFadeInAnimation.begin + 0.2s"
         additive="sum"
       />
 
@@ -351,8 +386,8 @@
         attributeName="transform"
         type="rotate"
         values="0 105 350; -2 105 350; 0 105 350"
-        dur="5s"
-        begin="5s; leafRotateAnimation.end + 5s"
+        dur="4s"
+        begin="4s; leafRotateAnimation.end + 4s"
         additive="sum"
       />
 
