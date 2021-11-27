@@ -81,14 +81,14 @@
           attributeName="opacity"
           values="0; 1; 1; 0"
           keyTimes="0; 0.3; 0.7; 1"
-          dur="2s"
+          dur="1s"
         />
         <animateTransform
           attributeName="transform"
           type="translate"
           from="180, 0"
           to="0, 0"
-          dur="2s"
+          dur="1s"
           additive="sum"
         />
 
@@ -100,14 +100,14 @@
           attributeName="opacity"
           values="0; 1; 1; 0"
           keyTimes="0; 0.3; 0.7; 1"
-          dur="2s"
+          dur="1s"
         />
         <animateTransform
           attributeName="transform"
           type="translate"
           from="190, 0"
           to="0, 0"
-          dur="2s"
+          dur="1s"
           additive="sum"
         />
 
@@ -122,16 +122,16 @@
           attributeName="opacity"
           values="0; 1; 1; 0"
           keyTimes="0; 0.3; 0.7; 1"
-          dur="2s"
-          begin="2s"
+          dur="1s"
+          begin="1s"
         />
         <animateTransform
           attributeName="transform"
           type="translate"
           from="0, 0"
           to="-150, 0"
-          dur="2s"
-          begin="2s"
+          dur="1s"
+          begin="1s"
           additive="sum"
         />
 
@@ -144,16 +144,16 @@
           attributeName="opacity"
           values="0; 1; 1; 0"
           keyTimes="0; 0.3; 0.7; 1"
-          dur="2s"
-          begin="2s"
+          dur="1s"
+          begin="1s"
         />
         <animateTransform
           attributeName="transform"
           type="translate"
           from="0, 0"
           to="-140, 0"
-          dur="2s"
-          begin="2s"
+          dur="1s"
+          begin="1s"
           additive="sum"
         />
 
@@ -256,7 +256,19 @@
     </g>
   </g> -->
 
-  <g id="floor">
-    <path d="M289.94,327.88H244.88L212.8,296.58a1.89,1.89,0,0,0-2.44,0l-10.2,10.23a1.72,1.72,0,0,1-2.25,0l-19-20.17a2.4,2.4,0,0,0-3.1,0l-26.42,25.64a1.71,1.71,0,0,1-2.25,0l-2.63-2.92a1.71,1.71,0,0,0-2.31,0L124.63,329H80.78" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
+  <!-- floor -->
+  <g>
+    <path d="M289.94,327.88H244.88L212.8,296.58a1.89,1.89,0,0,0-2.44,0l-10.2,10.23a1.72,1.72,0,0,1-2.25,0l-19-20.17a2.4,2.4,0,0,0-3.1,0l-26.42,25.64a1.71,1.71,0,0,1-2.25,0l-2.63-2.92a1.71,1.71,0,0,0-2.31,0L124.63,329H80.78" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
+      <animate
+        attributeName="d"
+        values="
+          M 289.94 327.88 L 244.88 327.88 L 212.8 296.58 C 212.459 296.292 212.027 296.134 211.58 296.134 C 211.133 296.134 210.701 296.292 210.36 296.58 L 200.16 306.81 C 199.848 307.08 199.448 307.229 199.035 307.229 C 198.622 307.229 198.222 307.08 197.91 306.81 L 178.91 286.64 C 178.477 286.274 177.927 286.072 177.36 286.072 C 176.793 286.072 176.243 286.274 175.81 286.64 L 149.39 312.28 C 149.079 312.552 148.679 312.702 148.265 312.702 C 147.851 312.702 147.451 312.552 147.14 312.28 L 144.51 309.36 C 144.195 309.071 143.782 308.911 143.355 308.911 C 142.928 308.911 142.515 309.071 142.2 309.36 L 124.63 329 L 80.78 329;
+          M 290.94 329 L 274.857 329 L 258.774 329 C 253.413 329 248.052 329 242.691 329 C 237.33 329 231.97 329 226.609 329 L 210.526 329 C 205.165 329 199.804 329 194.443 329 C 189.082 329 183.721 329 178.36 329 L 169.58 329 C 166.653 329 163.727 329 160.8 329 C 157.873 329 154.947 329 152.02 329 L 143.24 329 C 140.313 329 137.387 329 134.46 329 C 131.533 329 128.607 329 125.68 329 L 116.9 329 C 113.973 329 111.047 329 108.12 329 C 105.193 329 102.267 329 99.34 329 L 90.56 329 L 81.78 329
+        "
+        dur="0.2s"
+        begin="2s"
+        fill="freeze"
+      />
+    </path>
   </g>
 </svg>
