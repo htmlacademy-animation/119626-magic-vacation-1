@@ -243,9 +243,9 @@
         id="skisRotateAnimation"
         attributeName="transform"
         type="rotate"
-        values="0 105 350; 3 105 350; 0 105 350"
+        values="0 105 350; 1.5 105 350; 0 105 350"
         dur="2s"
-        begin="3s; skisRotateAnimation.end + 3s"
+        begin="5s; skisRotateAnimation.end + 5s"
         additive="sum"
       />
 
@@ -346,15 +346,15 @@
         additive="sum"
       />
 
-      <!-- <animateTransform
-        id="leafSkewAnimation"
+      <animateTransform
+        id="leafRotateAnimation"
         attributeName="transform"
-        type="skewY"
-        values="0; 1; 0"
-        dur="2s"
-        begin="3s; leafSkewAnimation.end + 3s"
+        type="rotate"
+        values="0 105 350; -2 105 350; 0 105 350"
+        dur="5s"
+        begin="5s; leafRotateAnimation.end + 5s"
         additive="sum"
-      /> -->
+      />
 
       <path d="M79.18,194A131,131,0,0,1,94.77,220.9a255,255,0,0,1-20.08-23.55,259,259,0,0,1-17.07-25.88A131.72,131.72,0,0,1,79.18,194" fill="#36e69a"/>
       <path d="M80.94,214.39a127.19,127.19,0,0,1,22.8,20.49A242.09,242.09,0,0,1,77.9,219.17a235.86,235.86,0,0,1-23.42-18.7,119.82,119.82,0,0,1,26.46,13.92" fill="#36e69a"/>
