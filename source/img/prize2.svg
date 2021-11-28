@@ -30,7 +30,7 @@
       from="1"
       to="0"
       dur="0.3s"
-      begin="firstCloudFadeIn.end + 2s"
+      begin="firstCloudFadeIn.end + 1.5s"
       fill="freeze"
     />
 
@@ -119,14 +119,13 @@
   </g>
 
   <!-- parachute -->
-  <path d="M179 111C203.19 101.76 208.8 95.16 208.42 90.56C207.18 75.43 138.73 51.78 96 84C93.07 86.21 64.34 108.52 67 138C70.54 177.18 126.83 199.15 142.7 205.35C196.35 226.29 237.13 214.14 244.48 232.53C247.37 239.78 245.26 252.22 223 275" stroke-width="3" stroke="red" />
   <g opacity="0">
     <animateMotion
       id="parachuteMove"
       dur="2s"
       fill="freeze"
       path="M179 111C203.19 101.76 208.8 95.16 208.42 90.56C207.18 75.43 138.73 51.78 96 84C93.07 86.21 64.34 108.52 67 138C70.54 177.18 126.83 199.15 142.7 205.35C196.35 226.29 237.13 214.14 244.48 232.53C247.37 239.78 245.26 252.22 223 275"
-      begin="cloudsFadeOut.end - 1s"
+      begin="cloudsFadeOut.end - 1.5s"
     />
     
     <animate
