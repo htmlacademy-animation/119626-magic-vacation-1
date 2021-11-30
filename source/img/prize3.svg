@@ -92,7 +92,7 @@
     </path>
   </g>
 
-  <g id="baloon" opacity="0">
+  <g id="baloon" opacity="0" transform="rotate(60 110 290) translate(-5 120)">
     <animate
       id="baloonFadeIn"
       attributeName="opacity"
