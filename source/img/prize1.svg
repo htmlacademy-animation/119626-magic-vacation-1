@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 350 330">
-  <!-- airship scene -->
-  <g>
+  <g id="airship scene">
     <animate
       id="airshipSceneFadeOutAnimation"
       attributeName="opacity"
@@ -11,8 +10,7 @@
       fill="freeze"
     />
 
-    <!-- airship cabine -->
-    <g>
+    <g id="cabine">
       <animateTransform
         attributeName="transform"
         type="translate"
@@ -27,8 +25,7 @@
       <path d="M185.64,231.88h-2.05a3.45,3.45,0,0,0-3.43,3.45v2.92a3.45,3.45,0,0,0,3.43,3.45h2.05a3.45,3.45,0,0,0,3.43-3.45v-2.92A3.45,3.45,0,0,0,185.64,231.88Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     </g>
 
-    <!-- airship tail back -->
-    <g>
+    <g id="tail-back">
       <animateTransform
         attributeName="transform"
         type="translate"
@@ -44,8 +41,7 @@
       <path d="M123.23,207.39h9.16a3.29,3.29,0,0,0,3.29-3.3v-5.71a3.29,3.29,0,0,0-3.29-3.3H115.57a1.32,1.32,0,0,0-1.32,1.32v2A9,9,0,0,0,123.23,207.39Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     </g>
 
-    <!-- airship body -->
-    <g>
+    <g id="body">
       <path d="M205,227.08c43.38,0,74.86-15.55,74.86-37s-31.48-37-74.86-37c-27.94,0-55.36,13.53-73.46,24.87a14.3,14.3,0,0,0,0,24.21c18.09,11.33,45.52,24.87,73.46,24.87" fill="#068e4d"/>
       <path d="M205,227.08c43.38,0,74.86-15.55,74.86-37s-31.48-37-74.86-37c-27.94,0-55.36,13.53-73.46,24.87a14.3,14.3,0,0,0,0,24.21C149.63,213.54,177.06,227.08,205,227.08Z" fill="none" stroke="#fff" stroke-width="2"/>
 
@@ -67,8 +63,7 @@
       </path>
     </g>
 
-    <!-- airship tail front -->
-    <g>
+    <g id="tail-front">
       <animateTransform
         attributeName="transform"
         type="translate"
@@ -84,9 +79,7 @@
       <path d="M123.23,207.39h9.16a3.29,3.29,0,0,0,3.29-3.3v-5.71a3.29,3.29,0,0,0-3.29-3.3H115.57a1.32,1.32,0,0,0-1.32,1.32v2A9,9,0,0,0,123.23,207.39Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
     </g>
 
-
-    <!-- cloud left -->
-    <g>
+    <g id="cloud-left">
       <g opacity="0">
         <animate
           id="cloudLeftAnimation"
@@ -127,8 +120,7 @@
       </g>
     </g>
 
-    <!-- cloud right -->
-    <g>
+    <g id="cloud-right">
       <g opacity="0">
         <animate
           attributeName="opacity"
@@ -173,8 +165,7 @@
       </g>
     </g>
 
-    <!-- airship track -->
-    <g>
+    <g id="track">
       <line x1="106.25" y1="179.49" x2="84.05" y2="179.49" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
         <animate
           attributeName="x2"
@@ -210,16 +201,14 @@
     </g>
   </g>
 
-  <!-- chair scene -->
-  <g>
+  <g id="chair scene">
     <defs>
       <clipPath id="window">
         <path d="M275,225.43H257.87a17.6,17.6,0,0,1-17.52-17.58V170a17.6,17.6,0,0,1,17.52-17.58H275A17.6,17.6,0,0,1,292.51,170v37.83A17.61,17.61,0,0,1,275,225.43Z"/>
       </clipPath>
     </defs>
 
-    <!-- skis -->
-    <g opacity="0">
+    <g id="skis" opacity="0">
       <animate
         attributeName="opacity"
         from="0"
@@ -253,8 +242,7 @@
       <path d="M124.5,328.17a2.2,2.2,0,0,1-2.17-2.23l2.24-193.63c0.19-15.53-6.07-21.61-10.16-23.91a1.35,1.35,0,0,1,.39-2.47c8.36-1.9,27.49-3,27.15,27.28l-2.25,192.93a2.2,2.2,0,0,1-2.22,2.18Z" fill="#fff"/>
     </g>
 
-    <!-- window -->
-    <g>
+    <g id="window">
       <path opacity="0" d="M275,225.43H257.87a17.6,17.6,0,0,1-17.52-17.58V170a17.6,17.6,0,0,1,17.52-17.58H275A17.6,17.6,0,0,1,292.51,170v37.83A17.61,17.61,0,0,1,275,225.43Z" fill="none" stroke="#fff" stroke-width="2">
         <animate
           attributeName="d"
@@ -277,8 +265,7 @@
       </path>
     </g>
 
-    <!-- clouds -->
-    <g clip-path="url(#window)">
+    <g id="clouds" clip-path="url(#window)">
       <g transform="translate(220 160)" opacity="0">
         <animate
           attributeName="opacity"
@@ -323,8 +310,7 @@
       </g>
     </g>
 
-    <!-- chair -->
-    <g opacity="0">
+    <g id="chair" opacity="0">
       <animate
         id="chairFadeInAnimation"
         attributeName="opacity"
@@ -360,8 +346,7 @@
       <line x1="151.57" y1="195.44" x2="209.05" y2="195.44" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/>
     </g>
 
-    <!-- leaf -->
-    <g opacity="0">
+    <g id="leaf" opacity="0">
       <animate
         attributeName="opacity"
         from="0"
@@ -406,14 +391,13 @@
     </g>
   </g>
 
-  <!-- floor -->
-  <g>
+  <g id="floor">
     <path d="M289.94,327.88H244.88L212.8,296.58a1.89,1.89,0,0,0-2.44,0l-10.2,10.23a1.72,1.72,0,0,1-2.25,0l-19-20.17a2.4,2.4,0,0,0-3.1,0l-26.42,25.64a1.71,1.71,0,0,1-2.25,0l-2.63-2.92a1.71,1.71,0,0,0-2.31,0L124.63,329H80.78" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
       <animate
         attributeName="d"
         values="
           M 289.94 327.88 L 244.88 327.88 L 212.8 296.58 C 212.459 296.292 212.027 296.134 211.58 296.134 C 211.133 296.134 210.701 296.292 210.36 296.58 L 200.16 306.81 C 199.848 307.08 199.448 307.229 199.035 307.229 C 198.622 307.229 198.222 307.08 197.91 306.81 L 178.91 286.64 C 178.477 286.274 177.927 286.072 177.36 286.072 C 176.793 286.072 176.243 286.274 175.81 286.64 L 149.39 312.28 C 149.079 312.552 148.679 312.702 148.265 312.702 C 147.851 312.702 147.451 312.552 147.14 312.28 L 144.51 309.36 C 144.195 309.071 143.782 308.911 143.355 308.911 C 142.928 308.911 142.515 309.071 142.2 309.36 L 124.63 329 L 80.78 329;
-          M 290.94 329 L 274.857 329 L 258.774 329 C 253.413 329 248.052 329 242.691 329 C 237.33 329 231.97 329 226.609 329 L 210.526 329 C 205.165 329 199.804 329 194.443 329 C 189.082 329 183.721 329 178.36 329 L 169.58 329 C 166.653 329 163.727 329 160.8 329 C 157.873 329 154.947 329 152.02 329 L 143.24 329 C 140.313 329 137.387 329 134.46 329 C 131.533 329 128.607 329 125.68 329 L 116.9 329 C 113.973 329 111.047 329 108.12 329 C 105.193 329 102.267 329 99.34 329 L 90.56 329 L 81.78 329
+          M 289.94 327.88 L 244.88 327.88 L 212.8 327.88 C 212.459 327.592 212.027 327.88 211.58 327.88 C 211.133 327.88 210.701 327.592 210.36 327.88 L 200.16 327.88 C 199.848 328.15 199.448 327.88 199.035 327.88 C 198.622 327.88 198.223 328.15 197.91 327.88 L 178.91 327.88 C 178.477 327.513 177.928 327.88 177.36 327.88 C 176.792 327.88 176.243 327.513 175.81 327.88 L 149.39 327.88 C 149.078 328.152 148.679 327.88 148.265 327.88 C 147.851 327.88 147.452 328.152 147.14 327.88 L 144.51 327.88 C 144.195 327.591 143.783 327.88 143.355 327.88 C 142.927 327.88 142.515 327.591 142.2 327.88 L 124.63 327.88 L 80.78 327.88
         "
         dur="0.2s"
         begin="airshipSceneFadeOutAnimation.end - 0.2s"
