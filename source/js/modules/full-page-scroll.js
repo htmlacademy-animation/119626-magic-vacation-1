@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import relaunchImgAnimate from './relaunch-img-animate';
 
 export default class FullPageScroll {
   constructor() {
@@ -50,6 +51,7 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+    relaunchImgAnimate();
   }
 
   changeVisibilityDisplay() {
