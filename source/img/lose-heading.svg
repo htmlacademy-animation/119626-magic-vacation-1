@@ -1,25 +1,132 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660.77 109.24">
-  <path d="M2.66,92V8H16.1V42.2H53.3V8H66.74V92H53.3V58.64H16.1V92H2.66Z" transform="translate(-2.16 -1.5)"
-        fill="none" stroke="currentColor"/>
-  <path d="M147.62,8V24.44H97V41.6h33.6V58H97V75.56h50.64V92H83.54V8h64.08Z" transform="translate(-2.16 -1.5)"
-        fill="none" stroke="currentColor"/>
-  <path d="M199.22,8l20.52,42.36L235.34,8h16.44l-31,84H204.38l9.48-25.92L185.78,8h13.44Z"
-        transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
-  <path d="M273.74,24.44V92H260.3V8h50.16V24.44H273.74Z" transform="translate(-2.16 -1.5)" fill="none"
-        stroke="currentColor"/>
-  <path
-    d="M307.1,92l28-84h27.12l28.08,84H376.82L369,68.48h-37.8L323.42,92H307.1Zm56.64-40L350.3,11.84,336.86,52h26.88Z"
-    transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
-  <path
-    d="M396.38,110.24V75.56h7.44c4.56-4.68,7.8-18.36,8.76-56L412.94,8h48.6V75.56h10v34.68H456.86V92H411v18.24H396.38ZM448.1,75.56V24.44H425.54v3.12c-0.48,22.44-3.24,37.68-7.2,48H448.1Z"
-    transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
-  <path
-    d="M477.74,92l28-84h27.12L560.9,92H547.46l-7.8-23.52h-37.8L494.06,92H477.74Zm56.64-40-13.44-40.2L507.5,52h26.88Z"
-    transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
-  <path
-    d="M568.7,76.88a13.77,13.77,0,0,0,5,1c6.6,0,10.44-6.24,12-58.32L586.22,8h46.2V92H619V24.44H598.82l-0.12,3.12C597.14,81,589,94.4,573.74,94.4a28.55,28.55,0,0,1-6.72-.84Z"
-    transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
-  <path
-    d="M646.1,70.4L647.54,2H661l1.44,68.4H646.1Zm8.28,6.36c4.8,0,8,3.24,8,8.16a8,8,0,0,1-16.08,0C646.34,80,649.58,76.76,654.38,76.76Z"
-    transform="translate(-2.16 -1.5)" fill="none" stroke="currentColor"/>
+<svg viewBox="0 0 661 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .lose-path {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation-name: dash;
+        animation-duration: 0.8s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+      }
+
+      .lose-path--delay {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation-name: dash;
+        animation-duration: 1s;
+        animation-delay: 0.2s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: both;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </defs>
+
+  <g>
+    <path class="lose-path" d="M0.5 90.5V6.5H13.94V40.7H51.14V6.5H64.58V90.5H51.14V57.14H13.94V90.5H0.5Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.4s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path--delay" d="M145.46 6.5V22.94H94.8399V40.1H128.44V56.5H94.8399V74.06H145.48V90.5H81.3799V6.5H145.46Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.5s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path" d="M197.06 6.5L217.58 48.86L233.18 6.5H249.62L218.62 90.5H202.22L211.7 64.58L183.62 6.5H197.06Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.6s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path--delay" d="M271.58 22.94V90.5H258.14V6.5H308.3V22.94H271.58Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.7s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path" d="M304.94 90.5L332.94 6.5H360.06L388.14 90.5H374.66L366.84 66.98H329.04L321.26 90.5H304.94ZM361.58 50.5L348.14 10.34L334.7 50.5H361.58Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.8s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path--delay" d="M394.22 108.74V74.06H401.66C406.22 69.38 409.46 55.7 410.42 18.06L410.78 6.5H459.38V74.06H469.38V108.74H454.7V90.5H408.84V108.74H394.22ZM445.94 74.06V22.94H423.38V26.06C422.9 48.5 420.14 63.74 416.18 74.06H445.94Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="0.9s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path" d="M475.58 90.5L503.58 6.5H530.7L558.74 90.5H545.3L537.5 66.98H499.7L491.9 90.5H475.58ZM532.22 50.5L518.78 10.3L505.34 50.5H532.22Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="1s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path--delay" d="M566.54 75.38C568.13 76.0217 569.825 76.3608 571.54 76.38C578.14 76.38 581.98 70.14 583.54 18.06L584.06 6.5H630.26V90.5H616.84V22.94H596.66L596.54 26.06C594.98 79.5 586.84 92.9 571.58 92.9C569.314 92.8876 567.059 92.6056 564.86 92.06L566.54 75.38Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="1.1s"
+        fill="freeze"
+      />
+    </path>
+    <path class="lose-path" d="M643.94 68.9L645.38 0.5H658.84L660.28 68.9H643.94ZM652.22 75.26C657.02 75.26 660.22 78.5 660.22 83.42C660.22 85.5523 659.373 87.5973 657.865 89.1051C656.357 90.6129 654.312 91.46 652.18 91.46C650.048 91.46 648.003 90.6129 646.495 89.1051C644.987 87.5973 644.14 85.5523 644.14 83.42C644.18 78.5 647.42 75.26 652.22 75.26Z" stroke="white" fill="none">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0 0; 0 50; 0 40;"
+        keyTimes="0; 0.8; 1"
+        dur="0.4s"
+        begin="1.2s"
+        fill="freeze"
+      />
+    </path>
+  </g>
 </svg>
