@@ -1,5 +1,6 @@
 import throttle from 'lodash/throttle';
 import relaunchImgAnimate from './relaunch-img-animate';
+import startPrizesCounter from './prizes-counter';
 
 export default class FullPageScroll {
   constructor() {
@@ -56,6 +57,10 @@ export default class FullPageScroll {
 
   changeVisibilityDisplay() {
     this.transitionBg.classList.add(`active`);
+
+    if (this.screenElements[this.activeScreen].id === `prizes`) {
+      startPrizesCounter();
+    }
 
     setTimeout(() => {
       this.screenElements.forEach((screen) => {

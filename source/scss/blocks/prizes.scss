@@ -229,6 +229,28 @@
   }
 }
 
+@keyframes fade-in-desc-b {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-desc-span {
+  from {
+    opacity: 0;
+    transform: translate(5rem, 0);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
 .prizes__desc {
   display: flex;
   align-items: flex-end;
@@ -265,6 +287,10 @@
     font-weight: 400;
     font-size: 12rem;
     line-height: 0.55;
+    opacity: 0;
+    animation-name: fade-in-desc-b;
+    animation-duration: 0;
+    animation-fill-mode: forwards;
 
     @media (min-width: $stop-scaling) {
       font-size: 120px;
@@ -289,6 +315,11 @@
     align-items: flex-end;
     margin-left: 1.4rem;
     max-width: 14rem;
+    opacity: 0;
+    transform: translate(5rem, 0);
+    animation-name: fade-in-desc-span;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
 
     @media (min-width: $stop-scaling) {
       margin-left: 14px;
@@ -328,5 +359,39 @@
       width: 0.5rem;
       height: 0.5rem;
     }
+  }
+}
+
+.prizes__desc--1 {
+  b,
+  span {
+    animation-delay: 2000ms;
+  }
+
+  b {
+    width: 6.5rem;
+  }
+}
+
+.prizes__desc--2 {
+  b,
+  span {
+    animation-delay: 3800ms;
+  }
+
+  b {
+    width: 5.4rem;
+  }
+}
+
+.prizes__desc--3 {
+  b,
+  span {
+    animation-delay: 6000ms;
+  }
+
+
+  b {
+    width: 19rem;
   }
 }
