@@ -1,6 +1,7 @@
 import throttle from 'lodash/throttle';
 import relaunchImgAnimate from './relaunch-img-animate';
 import startPrizesCounter from './prizes-counter';
+import startGameCounter from './game-counter';
 
 export default class FullPageScroll {
   constructor() {
@@ -49,18 +50,25 @@ export default class FullPageScroll {
   }
 
   changePageDisplay() {
+    this.relaunchAnimate();
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
     relaunchImgAnimate();
   }
 
-  changeVisibilityDisplay() {
-    this.transitionBg.classList.add(`active`);
-
+  relaunchAnimate() {
     if (this.screenElements[this.activeScreen].id === `prizes`) {
       startPrizesCounter();
     }
+
+    if (this.screenElements[this.activeScreen].id === `game`) {
+      startGameCounter();
+    }
+  }
+
+  changeVisibilityDisplay() {
+    this.transitionBg.classList.add(`active`);
 
     setTimeout(() => {
       this.screenElements.forEach((screen) => {

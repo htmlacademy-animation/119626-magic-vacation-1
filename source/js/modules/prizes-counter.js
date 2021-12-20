@@ -3,19 +3,19 @@ import {relaunchImgAnimate} from './relaunch-img-animate';
 const prizes = [
   {
     el: document.querySelector(`.prizes__item--journeys`),
-    delay: 0,
+    counterDelay: 0,
     imgAnimationDelay: 0,
     value: 3,
   },
   {
     el: document.querySelector(`.prizes__item--cases`),
-    delay: 3600,
+    counterDelay: 3600,
     imgAnimationDelay: 1800,
     value: 7,
   },
   {
     el: document.querySelector(`.prizes__item--codes`),
-    delay: 4200,
+    counterDelay: 4200,
     imgAnimationDelay: 3200,
     value: 900,
   }
@@ -55,10 +55,10 @@ export default () => {
   prizes.forEach((prize) => {
     setTimeout(() => {
       tick(prize);
-    }, prize.delay);
+    }, prize.counterDelay);
 
     setTimeout(() => {
-      const img = prize.el.querySelector(`.relaunch-img-animate`);
+      const img = prize.el.querySelector(`.js-prize-svg`);
       relaunchImgAnimate(img);
     }, prize.imgAnimationDelay);
   });
