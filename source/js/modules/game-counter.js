@@ -40,8 +40,14 @@ const tick = () => {
   }
 };
 
-const startGameCounter = () => {
+const resetCounter = () => {
   time = INITIAL_TIME;
+  counter.innerHTML = `05:00`;
+  cancelAnimationFrame(tick);
+};
+
+const startGameCounter = () => {
+  resetCounter();
   tick();
 };
 
