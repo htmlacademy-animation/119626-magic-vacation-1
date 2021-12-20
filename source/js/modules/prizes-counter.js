@@ -31,7 +31,7 @@ let then = Date.now();
 let elapsed;
 
 const tick = (prize) => {
-  const currentValue = +prize.el.querySelector(`.prizes__desc b`).innerHTML;
+  const currentValue = Number(prize.el.querySelector(`.prizes__desc b`).innerHTML);
 
   now = Date.now();
   elapsed = now - then;
