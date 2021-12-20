@@ -1,6 +1,8 @@
-const prize1 = document.querySelector(`.prizes__desc--1 b`);
-const prize2 = document.querySelector(`.prizes__desc--2 b`);
-const prize3 = document.querySelector(`.prizes__desc--3 b`);
+import {relaunchImgAnimate} from './relaunch-img-animate';
+
+const prize1 = document.querySelector(`.prizes__item--1`);
+const prize2 = document.querySelector(`.prizes__item--2`);
+const prize3 = document.querySelector(`.prizes__item--3`);
 
 const prizes = [
   {
@@ -30,13 +32,14 @@ let then = Date.now();
 let elapsed;
 
 const tick = (prize) => {
-  const currentValue = +prize.el.innerHTML;
+  const number = prize.el.querySelector(`.prizes__desc b`);
+  const currentValue = +number.innerHTML;
 
   now = Date.now();
   elapsed = now - then;
 
   if (currentValue > prize.value) {
-    prize.el.innerHTML = prize.value;
+    number.innerHTML = prize.value;
     return;
   }
 
@@ -46,13 +49,15 @@ const tick = (prize) => {
     const inc = prize.value === 900 ? Math.ceil(prize.value / iterationCount) : 1;
 
     then = now - (elapsed % SECOND);
-    prize.el.innerHTML = currentValue + inc;
+    number.innerHTML = currentValue + inc;
   }
 };
 
 export default () => {
   prizes.forEach((prize) => {
     setTimeout(() => {
+      const img = prize.el.querySelector(`.relaunch-img-animate`);
+      relaunchImgAnimate(img);
       tick(prize);
     }, prize.delay);
   });
