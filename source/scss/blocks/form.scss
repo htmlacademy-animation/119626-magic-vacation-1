@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .form__label {
@@ -31,21 +32,18 @@
 
 @keyframes field-fade-in {
   0% {
-    margin-left: calc(100% - 31rem - 6rem);
-    padding: 0;
-    width: 6rem;
+    flex-grow: 0;
   }
 
   100% {
-    margin-left: 0;
-    padding: 0 5.6rem;
-    width: calc(100% - 31rem);
+    flex-grow: 1;
   }
 }
 
 .form__field {
   flex: none;
   margin-right: 3rem;
+  width: 6rem;
   height: 6rem;
   text-transform: uppercase;
   font: inherit;
@@ -55,10 +53,13 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation-name: field-fade-in;
-  animation-duration: 400ms;
-  animation-delay: 400ms;
-  animation-fill-mode: forwards;
+
+  .page-loaded & {
+    animation-name: field-fade-in;
+    animation-duration: 400ms;
+    animation-delay: 400ms;
+    animation-fill-mode: forwards;
+  }
 
   &:focus {
     border: 1px solid $c-purple;
@@ -105,7 +106,6 @@
 }
 
 .form__button {
-  flex-grow: 1;
   color: transparent;
 
   .page-loaded & {

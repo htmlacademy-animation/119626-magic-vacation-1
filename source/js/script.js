@@ -10,6 +10,7 @@ import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import pageLoaded from './modules/page-loaded';
 import animateTypography from './modules/animate-typography';
+import initGameCounter from './modules/game-counter';
 
 // init modules
 mobileHeight();
@@ -22,6 +23,8 @@ form();
 social();
 pageLoaded();
 animateTypography();
+initGameCounter();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
+
