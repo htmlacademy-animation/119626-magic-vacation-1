@@ -9,13 +9,13 @@ const prizes = [
   },
   {
     el: document.querySelector(`.prizes__item--cases`),
-    delay: 3400,
+    delay: 3600,
     imgAnimationDelay: 1800,
     value: 7,
   },
   {
     el: document.querySelector(`.prizes__item--codes`),
-    delay: 4000,
+    delay: 4200,
     imgAnimationDelay: 3200,
     value: 900,
   }
