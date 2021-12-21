@@ -104,8 +104,43 @@
   }
 }
 
+@keyframes prizes-item-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes first-prize-fade-in {
+  0% {
+    opacity: 0;
+    transform: translate(30rem, 0);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(30rem, 0);
+  }
+  
+  80% {
+    opacity: 1;
+    transform: translate(30rem, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
 .prizes__item {
   margin-left: 7.5rem;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 100ms;
 
   @media (min-width: $stop-scaling) {
     margin-left: 75px;
@@ -127,6 +162,10 @@
   }
 
   &--journeys {
+    transform: translate(30rem, 0);
+    animation-name: first-prize-fade-in;
+    animation-duration: 2500ms;
+  
     .prizes__icon {
       position: relative;
       left: -5.9rem;
@@ -157,6 +196,8 @@
   }
 
   &--cases {
+    animation-delay: 2000ms;
+    animation-name: prizes-item-fade-in;
     margin-left: 7rem;
 
     @media (min-width: $stop-scaling) {
@@ -191,6 +232,9 @@
   }
 
   &--codes {
+    animation-delay: 3800ms;
+    animation-name: prizes-item-fade-in;
+
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }
@@ -226,6 +270,28 @@
     display: block;
     width: 100%;
     height: auto;
+  }
+}
+
+@keyframes fade-in-desc-b {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-desc-span {
+  from {
+    opacity: 0;
+    transform: translate(5rem, 0);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }
 
@@ -265,6 +331,10 @@
     font-weight: 400;
     font-size: 12rem;
     line-height: 0.55;
+    opacity: 0;
+    animation-name: fade-in-desc-b;
+    animation-duration: 0;
+    animation-fill-mode: forwards;
 
     @media (min-width: $stop-scaling) {
       font-size: 120px;
@@ -289,6 +359,11 @@
     align-items: flex-end;
     margin-left: 1.4rem;
     max-width: 14rem;
+    opacity: 0;
+    transform: translate(5rem, 0);
+    animation-name: fade-in-desc-span;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
 
     @media (min-width: $stop-scaling) {
       margin-left: 14px;
@@ -328,5 +403,39 @@
       width: 0.5rem;
       height: 0.5rem;
     }
+  }
+}
+
+.prizes__item--journeys .prizes__desc {
+  b,
+  span {
+    animation-delay: 1800ms;
+  }
+
+  b {
+    width: 6.5rem;
+  }
+}
+
+.prizes__item--cases .prizes__desc {
+  b,
+  span {
+    animation-delay: 3400ms;
+  }
+
+  b {
+    width: 5.4rem;
+  }
+}
+
+.prizes__item--codes .prizes__desc {
+  b,
+  span {
+    animation-delay: 4000ms;
+  }
+
+
+  b {
+    width: 19rem;
   }
 }

@@ -1,19 +1,18 @@
 const SECOND = 1000;
-const TIME_LIMIT = 5 * 60 * SECOND;
+const INITIAL_TIME = 5 * 60 * SECOND;
 const FPS_INTERVAL = SECOND;
-let timePassed = 0;
+const counter = document.querySelector(`.game__counter`);
+let time = INITIAL_TIME;
 let now;
 let then = Date.now();
 let elapsed;
-const trigget = document.querySelector(`.rules__link`);
-const counter = document.querySelector(`.game__counter`);
 
 const formatTime = (t) => {
   return t.toString().length < 2 ? `0${t}` : t;
 };
 
 const draw = () => {
-  const currentTime = new Date(timePassed);
+  const currentTime = new Date(time);
   const m = currentTime.getMinutes();
   const s = currentTime.getSeconds();
 
@@ -21,7 +20,7 @@ const draw = () => {
 };
 
 const tick = () => {
-  if (timePassed >= TIME_LIMIT) {
+  if (time <= 0) {
     cancelAnimationFrame(tick);
 
     return;
@@ -35,17 +34,23 @@ const tick = () => {
 
   if (elapsed > FPS_INTERVAL) {
     then = now - (elapsed % 1000);
-    timePassed += SECOND;
+    time -= SECOND;
 
     draw();
   }
 };
 
+const resetCounter = () => {
+  time = INITIAL_TIME;
+  counter.innerHTML = `05:00`;
+  cancelAnimationFrame(tick);
+};
+
 const startGameCounter = () => {
-  timePassed = 0;
+  resetCounter();
   tick();
 };
 
 export default () => {
-  trigget.addEventListener(`click`, startGameCounter);
+  startGameCounter();
 };
