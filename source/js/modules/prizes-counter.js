@@ -9,7 +9,7 @@ const prizes = [
   },
   {
     el: document.querySelector(`.prizes__item--cases`),
-    counterDelay: 3600,
+    counterDelay: 3800,
     imgAnimationDelay: 1800,
     value: 7,
   },
@@ -30,31 +30,33 @@ let now;
 let then = Date.now();
 let elapsed;
 
-const tick = (prize) => {
-  const currentValue = Number(prize.el.querySelector(`.prizes__desc b`).innerHTML);
+const tick = (counter, value) => {
+  const currentValue = Number(counter.innerHTML);
 
   now = Date.now();
   elapsed = now - then;
 
-  if (currentValue > prize.value) {
-    prize.el.querySelector(`.prizes__desc b`).innerHTML = prize.value;
+  if (currentValue > value) {
+    counter.innerHTML = value;
     return;
   }
 
-  requestAnimationFrame(() => tick(prize));
+  requestAnimationFrame(() => tick(counter, value));
 
   if (elapsed > fpsInterval) {
-    const inc = prize.value > 100 ? Math.ceil(prize.value / iterationCount) : 1;
+    const inc = value > 100 ? Math.ceil(value / iterationCount) : 1;
 
     then = now - (elapsed % SECOND);
-    prize.el.querySelector(`.prizes__desc b`).innerHTML = currentValue + inc;
+    counter.innerHTML = currentValue + inc;
   }
 };
 
 export default () => {
   prizes.forEach((prize) => {
+    const counter = prize.el.querySelector(`.prizes__desc b`);
+
     setTimeout(() => {
-      tick(prize);
+      tick(counter, prize.value);
     }, prize.counterDelay);
 
     setTimeout(() => {
