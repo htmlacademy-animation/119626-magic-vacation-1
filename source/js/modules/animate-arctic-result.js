@@ -1,3 +1,5 @@
+import Animation from './animation';
+
 export default () => {
   const ww = window.innerWidth;
   const wh = window.innerHeight;
@@ -113,4 +115,31 @@ export default () => {
   };
 
   seaCalfImgDom.src = `/img/module-4/win-primary-images/sea-calf-2.png`;
+
+
+  // tick
+  let top = 100;
+  let dy = 1;
+
+  const updateTop = () => {
+    top += dy;
+
+    if (top > 200 || top < 100) {
+      dy *= -1;
+    }
+  };
+
+  const draw = () => {
+    ctx.fillRect(top, 250, 100, 100);
+    ctx.fillStyle = `tomato`;
+
+    updateTop();
+  };
+
+  const animation = new Animation({
+    canvasDomId: `result-1`,
+    draw,
+  });
+
+  animation.start();
 };
