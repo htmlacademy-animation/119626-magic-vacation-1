@@ -1,5 +1,5 @@
 import relaunchImgAnimate from './relaunch-img-animate';
-import animateArcticResult from './animate-arctic-result';
+import ArcticResultScene from './animate-arctic-scene';
 
 export default () => {
   let showResultEls = document.querySelectorAll(`.js-show-result`);
@@ -19,7 +19,10 @@ export default () => {
         targetEl[0].classList.remove(`screen--hidden`);
 
         if (target === `result`) {
-          animateArcticResult();
+          // eslint-disable-next-line no-unused-vars
+          const scene = new ArcticResultScene({
+            canvas: `#result-arctic-scene`,
+          });
         }
 
         relaunchImgAnimate();
