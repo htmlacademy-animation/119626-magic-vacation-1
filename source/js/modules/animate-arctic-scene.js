@@ -1,8 +1,8 @@
-
 // import {bezierEasing} from '../helpers/cubic-bezier';
 // import {animateDuration, animateEasing} from '../helpers/animate';
 // import {runSerial, runSerialLoop} from '../helpers/promise';
-
+import {animateDuration} from '../helpers/animate';
+import {runSerial} from '../helpers/promise';
 
 let winW;
 let winH;
@@ -17,9 +17,9 @@ export default class ArcticResultScene {
     this.loadingCounter = 0;
 
     // this.isMobile = false;
-    // this.isAnimated = false;
+    this.isAnimated = false;
 
-    // this.startAnimations = [];
+    this.startAnimations = [];
 
     // airplane
     this.airplaneImg = new Image();
@@ -35,19 +35,19 @@ export default class ArcticResultScene {
     this.cloudHeight = 324;
     this.cloudWidth = 586;
 
-    // tree 1
-    this.tree1Img = new Image();
-    this.tree1T = 370;
-    this.tree1L = 740;
-    this.tree1Height = 111;
-    this.tree1Width = 38;
+    // tree left
+    this.treeLeftImg = new Image();
+    this.treeLeftT = 300;
+    this.treeLeftL = 690;
+    this.treeLeftHeight = 159;
+    this.treeLeftWidth = 50;
 
-    // tree 2
-    this.tree2Img = new Image();
-    this.tree2T = 300;
-    this.tree2L = 690;
-    this.tree2Height = 159;
-    this.tree2Width = 50;
+    // tree right
+    this.treeRightImg = new Image();
+    this.treeRightT = 370;
+    this.treeRightL = 740;
+    this.treeRightHeight = 111;
+    this.treeRightWidth = 38;
 
     // ice
     this.iceImg = new Image();
@@ -63,19 +63,21 @@ export default class ArcticResultScene {
     this.seaCalfHeight = 450;
     this.seaCalfWidth = 450;
 
-    // snowflake1
-    this.snowflake1Img = new Image();
-    this.snowflake1T = 340;
-    this.snowflake1L = 310;
-    this.snowflake1Height = 200;
-    this.snowflake1Width = 200;
+    // snowflake left
+    this.snowflakeLeftImg = new Image();
+    this.snowflakeLeftT = 340;
+    this.snowflakeLeftL = 310;
+    this.snowflakeLeftHeight = 200;
+    this.snowflakeLeftWidth = 200;
+    this.snowflakeLeftTranslateY = 0;
 
-    // snowflake2
-    this.snowflake2Img = new Image();
-    this.snowflake2T = 400;
-    this.snowflake2L = 760;
-    this.snowflake2Height = 130;
-    this.snowflake2Width = 130;
+    // snowflake right
+    this.snowflakeRightImg = new Image();
+    this.snowflakeRightT = 400;
+    this.snowflakeRightL = 760;
+    this.snowflakeRightHeight = 130;
+    this.snowflakeRightWidth = 130;
+    this.snowflakeRightTranslateY = 0;
 
     this.initEventListeners = this.initEventListeners.bind(this);
     this.updateSceneSizing = this.updateSceneSizing.bind(this);
@@ -120,23 +122,23 @@ export default class ArcticResultScene {
     );
   }
 
-  drawTree1() {
+  drawTreeLeft() {
     this.ctx.drawImage(
-        this.tree1Img,
-        this.tree1L,
-        this.tree1T,
-        this.tree1Width,
-        this.tree1Height
+        this.treeLeftImg,
+        this.treeLeftL,
+        this.treeLeftT,
+        this.treeLeftWidth,
+        this.treeLeftHeight
     );
   }
 
-  drawTree2() {
+  drawTreeRight() {
     this.ctx.drawImage(
-        this.tree2Img,
-        this.tree2L,
-        this.tree2T,
-        this.tree2Width,
-        this.tree2Height
+        this.treeRightImg,
+        this.treeRightL,
+        this.treeRightT,
+        this.treeRightWidth,
+        this.treeRightHeight
     );
   }
 
@@ -160,23 +162,23 @@ export default class ArcticResultScene {
     );
   }
 
-  drawSnowflake1() {
+  drawSnowflakeLeft() {
     this.ctx.drawImage(
-        this.snowflake1Img,
-        this.snowflake1L,
-        this.snowflake1T,
-        this.snowflake1Width,
-        this.snowflake1Height
+        this.snowflakeLeftImg,
+        this.snowflakeLeftL,
+        this.snowflakeLeftT,
+        this.snowflakeLeftWidth,
+        this.snowflakeLeftHeight
     );
   }
 
-  drawSnowflake2() {
+  drawSnowflakeRight() {
     this.ctx.drawImage(
-        this.snowflake2Img,
-        this.snowflake2L,
-        this.snowflake2T,
-        this.snowflake2Width,
-        this.snowflake2Height
+        this.snowflakeRightImg,
+        this.snowflakeRightL,
+        this.snowflakeRightT,
+        this.snowflakeRightWidth,
+        this.snowflakeRightHeight
     );
   }
 
@@ -186,16 +188,16 @@ export default class ArcticResultScene {
 
     this.ctx.clearRect(0, 0, winW, winH);
 
-    // if (this.isAnimated) {
-    this.drawAirplane();
-    this.drawCloud();
-    this.drawTree1();
-    this.drawTree2();
-    this.drawIce();
-    this.drawSeaCalf();
-    this.drawSnowflake1();
-    this.drawSnowflake2();
-    // }
+    if (this.isAnimated) {
+      this.drawAirplane();
+      this.drawCloud();
+      this.drawTreeLeft();
+      this.drawTreeRight();
+      this.drawIce();
+      this.drawSeaCalf();
+      this.drawSnowflakeLeft();
+      this.drawSnowflakeRight();
+    }
   }
 
   increaseLoadingCounter() {
@@ -207,11 +209,11 @@ export default class ArcticResultScene {
   }
 
   initEventListeners() {
-    this.snowflake1Img.onload = () => {
+    this.snowflakeLeftImg.onload = () => {
       this.increaseLoadingCounter();
     };
 
-    this.snowflake2Img.onload = () => {
+    this.snowflakeRightImg.onload = () => {
       this.increaseLoadingCounter();
     };
 
@@ -223,11 +225,11 @@ export default class ArcticResultScene {
       this.increaseLoadingCounter();
     };
 
-    this.tree1Img.onload = () => {
+    this.treeLeftImg.onload = () => {
       this.increaseLoadingCounter();
     };
 
-    this.tree2Img.onload = () => {
+    this.treeRightImg.onload = () => {
       this.increaseLoadingCounter();
     };
 
@@ -241,13 +243,87 @@ export default class ArcticResultScene {
   }
 
   loadImages() {
-    this.snowflake1Img.src = `/img/module-4/win-primary-images/snowflake-1.png`;
-    this.snowflake2Img.src = `/img/module-4/win-primary-images/snowflake-2.png`;
+    this.snowflakeLeftImg.src = `/img/module-4/win-primary-images/snowflake-left.png`;
+    this.snowflakeRightImg.src = `/img/module-4/win-primary-images/snowflake-right.png`;
     this.airplaneImg.src = `/img/module-4/win-primary-images/airplane.png`;
     this.cloudImg.src = `/img/module-4/win-primary-images/cloud.png`;
-    this.tree1Img.src = `/img/module-4/win-primary-images/tree-1.png`;
-    this.tree2Img.src = `/img/module-4/win-primary-images/tree-2.png`;
+    this.treeLeftImg.src = `/img/module-4/win-primary-images/tree-left.png`;
+    this.treeRightImg.src = `/img/module-4/win-primary-images/tree-right.png`;
     this.iceImg.src = `/img/module-4/win-primary-images/ice.png`;
-    this.seaCalfImg.src = `/img/module-4/win-primary-images/sea-calf-2.png`;
+    this.seaCalfImg.src = `/img/module-4/win-primary-images/sea-calf.png`;
+  }
+
+  getSnowflakeLeftAnimationTick() {
+    return (from, to) => (progress) => {
+      this.snowflakeLeftTranslateY = from + progress * (to - from);
+    };
+  }
+
+  getSnowflakeRightAnimationTick() {
+    return (from, to) => (progress) => {
+      this.snowflakeRightTranslateY = from + progress * (to - from);
+    };
+  }
+
+  animateSnowflakesInfinite() {
+    const snowflake1Animations = [
+      // left
+      () => animateDuration(this.getSnowflakeLeftAnimationTick(0, 300), 1000),
+      () => animateDuration(this.getSnowflakeLeftAnimationTick(300, 0), 1000),
+      // right
+      () => animateDuration(this.getSnowflakeRightAnimationTick(0, 350), 1000),
+      () => animateDuration(this.getSnowflakeRightAnimationTick(350, 0), 1000),
+    ];
+
+    runSerial(snowflake1Animations);
+  }
+
+  startSnowflakesAnimationInfinite() {
+    const globalAnimationTick = (globalProgress) => {
+      if (globalProgress === 0) {
+        this.animateSnowflakesInfinite();
+      }
+    };
+
+    const animations = [
+      () => animateDuration(globalAnimationTick, 1000)
+    ];
+
+    runSerial(animations).then(this.startSnowflakesAnimationInfinite);
+  }
+
+  startAnimation() {
+    // this.posterT = options.posterT;
+    // this.posterL = options.posterL;
+    // this.posterHeight = options.posterHeight;
+    // this.posterWidth = options.posterWidth;
+
+    // this.moonRadius = (this.posterHeight / 8.7);
+    // this.moonDx = (this.posterWidth / 20);
+    // this.moonEndX = (this.posterL + this.posterWidth + 1.2 * this.moonRadius) / wFactor;
+    // this.moonY = (this.posterT + this.posterHeight / 6) / hFactor;
+    // this.moonRotateAngle = -550 / wFactor;
+
+    // this.reset();
+
+    if (!this.isAnimated) {
+      this.isAnimated = true;
+
+      const globalAnimationTick = () => {
+        // const showWhaleAnimationDelay = 0;
+        // const cloudsAnimationDelay = 233;
+        // const starsAndMoonAnimationDelay = 350;
+
+        // if (globalProgress >= showWhaleAnimationDelay && this.startAnimations.indexOf(showWhaleAnimationDelay) < 0) {
+        //   this.startAnimations.push(showWhaleAnimationDelay);
+
+        // this.animateWhaleShow();
+        this.startSnowflakesAnimationInfinite();
+        // this.startAnimationInfinite();
+        // }
+      };
+
+      animateDuration(globalAnimationTick, 3900);
+    }
   }
 }

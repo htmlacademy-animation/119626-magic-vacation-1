@@ -23,6 +23,8 @@ export default () => {
           const scene = new ArcticResultScene({
             canvas: `#result-arctic-scene`,
           });
+
+          scene.startAnimation();
         }
 
         relaunchImgAnimate();
