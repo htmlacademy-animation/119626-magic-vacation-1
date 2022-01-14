@@ -1,7 +1,7 @@
-// import {bezierEasing} from '../helpers/cubic-bezier';
-// import {animateDuration, animateEasing} from '../helpers/animate';
+import {bezierEasing} from '../helpers/cubic-bezier';
+import {animateDuration, animateEasing} from '../helpers/animate';
 // import {runSerial, runSerialLoop} from '../helpers/promise';
-import {animateDuration} from '../helpers/animate';
+// import {animateDuration} from '../helpers/animate';
 import {runSerial} from '../helpers/promise';
 
 let winW;
@@ -69,7 +69,6 @@ export default class ArcticResultScene {
     this.snowflakeLeftL = 310;
     this.snowflakeLeftHeight = 200;
     this.snowflakeLeftWidth = 200;
-    this.snowflakeLeftTranslateY = 0;
 
     // snowflake right
     this.snowflakeRightImg = new Image();
@@ -77,7 +76,8 @@ export default class ArcticResultScene {
     this.snowflakeRightL = 760;
     this.snowflakeRightHeight = 130;
     this.snowflakeRightWidth = 130;
-    this.snowflakeRightTranslateY = 0;
+
+    this.snowflakeOpacity = 0;
 
     this.initEventListeners = this.initEventListeners.bind(this);
     this.updateSceneSizing = this.updateSceneSizing.bind(this);
@@ -253,32 +253,88 @@ export default class ArcticResultScene {
     this.seaCalfImg.src = `/img/module-4/win-primary-images/sea-calf.png`;
   }
 
-  getSnowflakeLeftAnimationTick() {
-    return (from, to) => (progress) => {
-      this.snowflakeLeftTranslateY = from + progress * (to - from);
-    };
-  }
+  // getSnowflakeLeftAnimationTick() {
+  //   return (from, to) => (progress) => {
+  //     this.snowflakeLeftTranslateY = from + progress * (to - from);
+  //   };
+  // }
 
-  getSnowflakeRightAnimationTick() {
-    return (from, to) => (progress) => {
-      this.snowflakeRightTranslateY = from + progress * (to - from);
-    };
-  }
+  // getSnowflakeRightAnimationTick() {
+  //   return (from, to) => (progress) => {
+  //     this.snowflakeRightTranslateY = from + progress * (to - from);
+  //   };
+  // }
+
+  // animateSnowflakes() {
+  //   const snowflakeLeftYTick = (from, to) => (progress) => {
+  //     this.cloudLeftL = from + progress * (to - from);
+  //   };
+
+  //   const snowflakeRightYTick = (from, to) => (progress) => {
+  //     this.cloudRightL = from + progress * (to - from);
+  //   };
+
+  //   const snowflakeLeftYTo = 350;
+  //   const cloudLeftAnimations = [
+  //     () => animateEasing(snowflakeLeftYTick(this.snowflakeLeftT, snowflakeLeftYTo), 1000, bezierEasing(0.11, 0, 0, 1)),
+  //   ];
+
+  //   const snowflakeRightYTo = 300;
+  //   const cloudRightAnimations = [
+  //     () => animateEasing(snowflakeRightYTick(this.snowflakeRightT, snowflakeRightYTo), 1000, bezierEasing(0.11, 0, 0, 1)),
+  //   ];
+
+  //   runSerial(cloudLeftAnimations);
+  //   runSerial(cloudRightAnimations);
+
+  //   // const snowflakeOpacityTick = (progress) => {
+  //   //   this.snowflakeOpacity = progress;
+  //   // };
+
+  //   // animateEasing(snowflakeOpacityTick, 250, bezierEasing(0, 0, 1, 1));
+  // }
 
   animateSnowflakesInfinite() {
-    const snowflake1Animations = [
-      // left
-      () => animateDuration(this.getSnowflakeLeftAnimationTick(0, 300), 1000),
-      () => animateDuration(this.getSnowflakeLeftAnimationTick(300, 0), 1000),
-      // right
-      () => animateDuration(this.getSnowflakeRightAnimationTick(0, 350), 1000),
-      () => animateDuration(this.getSnowflakeRightAnimationTick(350, 0), 1000),
+    const snowflakeLeftYTick = (from, to) => (progress) => {
+      this.cloudLeftT = from + progress * (to - from);
+    };
+    const snowflakeRightYTick = (from, to) => (progress) => {
+      this.cloudRightT = from + progress * (to - from);
+    };
+    const symmetricalEase = bezierEasing(0.33, 0, 0.67, 1);
+
+    const snowflakeLeftYTo = 300;
+    const snowflakeLeftAnimations = [
+      () => animateEasing(snowflakeLeftYTick(this.snowflakeLeftT, snowflakeLeftYTo), 4883, symmetricalEase),
+      () => animateEasing(snowflakeLeftYTick(snowflakeLeftYTo, this.snowflakeLeftT), 4317, symmetricalEase),
     ];
 
-    runSerial(snowflake1Animations);
+    const snowflakeRightYTo = 350;
+    const snowflakeRightAnimations = [
+      () => animateEasing(snowflakeRightYTick(this.snowflakeRightT, snowflakeRightYTo), 4883, symmetricalEase),
+      () => animateEasing(snowflakeRightYTick(snowflakeRightYTo, this.snowflakeRightT), 4317, symmetricalEase),
+    ];
+
+    runSerial(snowflakeLeftAnimations);
+    runSerial(snowflakeRightAnimations);
   }
 
-  startSnowflakesAnimationInfinite() {
+  // startSnowflakesAnimationInfinite() {
+  //   const globalAnimationTick = (globalProgress) => {
+  //     if (globalProgress === 0) {
+  //       this.animateSnowflakes();
+  //     }
+  //   };
+
+  //   const animations = [
+  //     () => animateDuration(globalAnimationTick, 1000)
+  //   ];
+
+  //   runSerial(animations).then(this.startSnowflakesAnimationInfinite);
+  // }
+
+
+  startAnimateSnowflakesInfinite() {
     const globalAnimationTick = (globalProgress) => {
       if (globalProgress === 0) {
         this.animateSnowflakesInfinite();
@@ -286,10 +342,22 @@ export default class ArcticResultScene {
     };
 
     const animations = [
-      () => animateDuration(globalAnimationTick, 1000)
+      () => animateDuration(globalAnimationTick, 2000)
     ];
 
-    runSerial(animations).then(this.startSnowflakesAnimationInfinite);
+    runSerial(animations).then(this.startAnimateSnowflakesInfinite.bind(this));
+  }
+
+  startAnimationInfinite() {
+    const globalAnimationTick = () => {
+      this.drawScene();
+    };
+
+    const animations = [
+      () => animateDuration(globalAnimationTick, 6000)
+    ];
+
+    runSerial(animations).then(this.startAnimationInfinite.bind(this));
   }
 
   startAnimation() {
@@ -305,7 +373,6 @@ export default class ArcticResultScene {
     // this.moonRotateAngle = -550 / wFactor;
 
     // this.reset();
-
     if (!this.isAnimated) {
       this.isAnimated = true;
 
@@ -318,12 +385,11 @@ export default class ArcticResultScene {
         //   this.startAnimations.push(showWhaleAnimationDelay);
 
         // this.animateWhaleShow();
-        this.startSnowflakesAnimationInfinite();
-        // this.startAnimationInfinite();
+        this.startAnimateSnowflakesInfinite();
         // }
       };
 
-      animateDuration(globalAnimationTick, 3900);
+      animateDuration(globalAnimationTick, 2000);
     }
   }
 }
