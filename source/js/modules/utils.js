@@ -2,16 +2,13 @@ function easeLinear(x) {
   return x;
 }
 
-
 function easeInCubic(x) {
   return x * x * x;
 }
 
-
 function easeOutCubic(x) {
   return 1 - Math.pow(1 - x, 3);
 }
-
 
 function easeInExpo(x) {
   if (x === 0) {
@@ -21,7 +18,6 @@ function easeInExpo(x) {
   }
 }
 
-
 function easeOutExpo(x) {
   if (x === 1) {
     return 1;
@@ -29,7 +25,6 @@ function easeOutExpo(x) {
     return 1 - Math.pow(2, -10 * x);
   }
 }
-
 
 function easeInElastic(x) {
   const c4 = (2 * Math.PI) / 3;
@@ -43,7 +38,6 @@ function easeInElastic(x) {
   }
 }
 
-
 function easeOutElastic(x) {
   const c4 = (2 * Math.PI) / 3;
 
@@ -56,7 +50,6 @@ function easeOutElastic(x) {
   }
 }
 
-
 const _ = Object.freeze({
   easeLinear,
   easeInCubic,
@@ -66,6 +59,5 @@ const _ = Object.freeze({
   easeInElastic,
   easeOutElastic
 });
-
 
 export default _;
