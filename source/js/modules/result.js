@@ -1,4 +1,5 @@
 import relaunchImgAnimate from './relaunch-img-animate';
+import Scene2DSeaCalf from './scene-2d-sea-calf';
 
 export default () => {
   let showResultEls = document.querySelectorAll(`.js-show-result`);
@@ -16,6 +17,11 @@ export default () => {
         });
         targetEl[0].classList.add(`screen--show`);
         targetEl[0].classList.remove(`screen--hidden`);
+
+        if (target === `result`) {
+          // eslint-disable-next-line no-unused-vars
+          const scene = new Scene2DSeaCalf();
+        }
 
         relaunchImgAnimate();
       });
