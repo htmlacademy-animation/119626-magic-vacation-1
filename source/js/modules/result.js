@@ -1,5 +1,5 @@
 import relaunchImgAnimate from './relaunch-img-animate';
-import ArcticResultScene from './animate-arctic-scene';
+import Scene2DSeaCalf from './scene-2d-sea-calf';
 
 export default () => {
   let showResultEls = document.querySelectorAll(`.js-show-result`);
@@ -20,11 +20,7 @@ export default () => {
 
         if (target === `result`) {
           // eslint-disable-next-line no-unused-vars
-          const scene = new ArcticResultScene({
-            canvas: `#result-arctic-scene`,
-          });
-
-          scene.startAnimation();
+          const scene = new Scene2DSeaCalf();
         }
 
         relaunchImgAnimate();
