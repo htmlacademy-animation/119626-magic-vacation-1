@@ -118,11 +118,9 @@ export default class Scene2DSeaCalf extends Scene2D {
       this.objects.plane.before = this.drawBlob.bind(this);
     };
 
-    this.initEventListeners();
     this.initObjects(OBJECTS);
     this.initLocals();
     this.start();
-    this.updateSize();
   }
 
   initLocals() {
