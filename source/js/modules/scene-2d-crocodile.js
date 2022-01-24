@@ -19,17 +19,17 @@ const THINGS_OUT_PARAMS = {
 
 const CROCODILE_PARAMS = {
   DURATION: 900,
-  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION - 100,
+  DELAY: 700,
 };
 
 const DROP_IN_PARAMS = {
   DURATION: 400,
-  DELAY: CROCODILE_PARAMS.DELAY + CROCODILE_PARAMS.DURATION + 300,
+  DELAY: CROCODILE_PARAMS.DELAY + CROCODILE_PARAMS.DURATION + 400,
 };
 
 const DROP_OUT_PARAMS = {
-  DURATION: 500,
-  DELAY: DROP_IN_PARAMS.DELAY + DROP_IN_PARAMS.DURATION + 200,
+  DURATION: 400,
+  DELAY: DROP_IN_PARAMS.DELAY + DROP_IN_PARAMS.DURATION + 100,
 };
 
 const IMAGES_URLS = Object.freeze({
@@ -74,14 +74,12 @@ const THINGS = {
   },
 };
 
-const KEY_SIZE = 20;
-
 const OBJECTS = Object.freeze({
   key: {
     imageId: `key`,
     x: 50,
     y: 50,
-    size: KEY_SIZE,
+    size: 20,
     opacity: 0,
     transforms: {}
   },
@@ -125,13 +123,13 @@ export default class Scene2DCrocodile extends Scene2D {
       imagesUrls: IMAGES_URLS,
     });
 
-    this.afterInit = () => {
-      this.objects.crocodile.after = this.drawKeyMask.bind(this);
-    };
-
     this.initObjects(OBJECTS);
     this.initLocals();
     this.start();
+
+    this.afterInit = () => {
+      this.objects.crocodile.after = this.drawKeyMask.bind(this);
+    };
   }
 
   initLocals() {
@@ -170,7 +168,7 @@ export default class Scene2DCrocodile extends Scene2D {
     this.animations.push(new Animation({
       func: (progress) => {
         this.objects.key.opacity = progress;
-        this.objects.key.size = OBJECTS[`key`].size / 2 * progress * 2;
+        this.objects.key.size = OBJECTS[`key`].size * progress;
       },
       duration: KEY_FADE_IN_DURATION,
       easing: _.easeInCubic
