@@ -11245,13 +11245,14 @@ class Scene2DCrocodile extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["defaul
       imagesUrls: IMAGES_URLS,
     });
 
+    this.afterInit = () => {
+      this.objects.crocodile.after = this.drawKeyMask.bind(this);
+    };
+
     this.initObjects(OBJECTS);
     this.initLocals();
     this.start();
 
-    this.afterInit = () => {
-      this.objects.crocodile.after = this.drawKeyMask.bind(this);
-    };
   }
 
   initLocals() {
