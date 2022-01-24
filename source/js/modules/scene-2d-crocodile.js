@@ -7,14 +7,6 @@ const SCENE_IMG_FOLDER = `module-4/lose-images`;
 
 const KEY_FADE_IN_DURATION = 300;
 
-const THING_INITIAL_PARAM = {
-  x: 50,
-  y: 50,
-  size: 0,
-  opacity: 1,
-  transforms: {}
-};
-
 const THINGS_IN_PARAMS = {
   DURATION: 400,
   DELAY: KEY_FADE_IN_DURATION + 50,
@@ -41,25 +33,15 @@ const IMAGES_URLS = Object.freeze({
   watermelon: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/watermelon.png`
 });
 
-const OBJECTS = Object.freeze({
-  key: {
-    imageId: `key`,
-    x: 50,
-    y: 50,
-    size: 20,
-    opacity: 0,
-    transforms: {}
-  },
-  crocodile: {
-    imageId: `crocodile`,
-    x: 50,
-    y: 60,
-    size: 80,
-    transforms: {
-      translateX: 50,
-      translateY: -10,
-    }
-  },
+const THING_INITIAL_PARAM = {
+  x: 50,
+  y: 50,
+  size: 0,
+  opacity: 1,
+  transforms: {}
+};
+
+const THINGS = {
   flamingo: {
     imageId: `flamingo`,
     ...THING_INITIAL_PARAM,
@@ -80,6 +62,28 @@ const OBJECTS = Object.freeze({
     imageId: `saturn`,
     ...THING_INITIAL_PARAM,
   },
+};
+
+const OBJECTS = Object.freeze({
+  key: {
+    imageId: `key`,
+    x: 50,
+    y: 50,
+    size: 20,
+    opacity: 0,
+    transforms: {}
+  },
+  crocodile: {
+    imageId: `crocodile`,
+    x: 50,
+    y: 60,
+    size: 80,
+    transforms: {
+      translateX: 50,
+      translateY: -10,
+    }
+  },
+  ...THINGS,
 });
 
 const LOCALS = Object.freeze({
