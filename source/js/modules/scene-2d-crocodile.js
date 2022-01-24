@@ -22,6 +22,16 @@ const CROCODILE_PARAMS = {
   DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION - 100,
 };
 
+const DROP_IN_PARAMS = {
+  DURATION: 400,
+  DELAY: CROCODILE_PARAMS.DELAY + CROCODILE_PARAMS.DURATION + 300,
+};
+
+const DROP_OUT_PARAMS = {
+  DURATION: 500,
+  DELAY: DROP_IN_PARAMS.DELAY + DROP_IN_PARAMS.DURATION + 200,
+};
+
 const IMAGES_URLS = Object.freeze({
   key: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/key.png`,
   flamingo: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/flamingo.png`,
@@ -83,6 +93,14 @@ const OBJECTS = Object.freeze({
       translateY: -10,
     }
   },
+  drop: {
+    imageId: `drop`,
+    x: 45,
+    y: 65,
+    size: 5,
+    opacity: 0,
+    transforms: {}
+  },
   ...THINGS,
 });
 
@@ -138,6 +156,7 @@ export default class Scene2DCrocodile extends Scene2D {
     this.initSnowflakeAnimations();
     this.initSaturnAnimations();
     this.initCrocodileAnimations();
+    this.initDropAnimations();
   }
 
   initKeyAnimations() {
@@ -284,7 +303,35 @@ export default class Scene2DCrocodile extends Scene2D {
       },
       duration: CROCODILE_PARAMS.DURATION,
       delay: CROCODILE_PARAMS.DELAY,
-      easing: _.easeOutCubic
+      easing: _.easeOutCubic,
     }));
+  }
+
+  initDropAnimations() {
+    for (let i = 0; i < 3; i++) {
+      const delay = i * 3000;
+
+      this.animations.push(new Animation({
+        func: (progress) => {
+          this.objects.drop.opacity = progress;
+          this.objects.drop.transforms.translateY = 0;
+          this.objects.drop.transforms.scaleX = progress;
+          this.objects.drop.transforms.scaleY = progress;
+        },
+        duration: DROP_IN_PARAMS.DURATION,
+        delay: DROP_IN_PARAMS.DELAY + delay,
+        easing: _.easeOutCubic,
+      }));
+
+      this.animations.push(new Animation({
+        func: (progress) => {
+          this.objects.drop.opacity = 1 - progress;
+          this.objects.drop.transforms.translateY = progress * 10;
+        },
+        duration: DROP_OUT_PARAMS.DURATION,
+        delay: DROP_OUT_PARAMS.DELAY + delay,
+        easing: _.easeInCubic,
+      }));
+    }
   }
 }
