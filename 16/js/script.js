@@ -11129,22 +11129,29 @@ const SCENE_IMG_FOLDER = `module-4/lose-images`;
 
 const KEY_FADE_IN_DURATION = 300;
 
-const THING_INITIAL_PARAM = {
-  x: 50,
-  y: 50,
-  size: 0,
-  opacity: 1,
-  transforms: {}
-};
-
 const THINGS_IN_PARAMS = {
   DURATION: 400,
-  DELAY: KEY_FADE_IN_DURATION - 100,
+  DELAY: KEY_FADE_IN_DURATION + 50,
 };
 
 const THINGS_OUT_PARAMS = {
   DURATION: 500,
-  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION + 200,
+  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION + 100,
+};
+
+const CROCODILE_PARAMS = {
+  DURATION: 900,
+  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION - 100,
+};
+
+const DROP_IN_PARAMS = {
+  DURATION: 400,
+  DELAY: CROCODILE_PARAMS.DELAY + CROCODILE_PARAMS.DURATION + 300,
+};
+
+const DROP_OUT_PARAMS = {
+  DURATION: 500,
+  DELAY: DROP_IN_PARAMS.DELAY + DROP_IN_PARAMS.DURATION + 200,
 };
 
 const IMAGES_URLS = Object.freeze({
@@ -11158,15 +11165,15 @@ const IMAGES_URLS = Object.freeze({
   watermelon: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/watermelon.png`
 });
 
-const OBJECTS = Object.freeze({
-  key: {
-    imageId: `key`,
-    x: 50,
-    y: 50,
-    size: 20,
-    opacity: 0,
-    transforms: {}
-  },
+const THING_INITIAL_PARAM = {
+  x: 50,
+  y: 50,
+  size: 0,
+  opacity: 1,
+  transforms: {}
+};
+
+const THINGS = {
   flamingo: {
     imageId: `flamingo`,
     ...THING_INITIAL_PARAM,
@@ -11187,6 +11194,39 @@ const OBJECTS = Object.freeze({
     imageId: `saturn`,
     ...THING_INITIAL_PARAM,
   },
+};
+
+const KEY_SIZE = 20;
+
+const OBJECTS = Object.freeze({
+  key: {
+    imageId: `key`,
+    x: 50,
+    y: 50,
+    size: KEY_SIZE,
+    opacity: 0,
+    transforms: {}
+  },
+  crocodile: {
+    imageId: `crocodile`,
+    x: 50,
+    y: 60,
+    size: 80,
+    opacity: 0,
+    transforms: {
+      translateX: 50,
+      translateY: -10,
+    }
+  },
+  drop: {
+    imageId: `drop`,
+    x: 45,
+    y: 65,
+    size: 5,
+    opacity: 0,
+    transforms: {}
+  },
+  ...THINGS,
 });
 
 const LOCALS = Object.freeze({
@@ -11206,6 +11246,10 @@ class Scene2DCrocodile extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["defaul
       locals: LOCALS,
       imagesUrls: IMAGES_URLS,
     });
+
+    this.afterInit = () => {
+      this.objects.crocodile.after = this.drawKeyMask.bind(this);
+    };
 
     this.initObjects(OBJECTS);
     this.initLocals();
@@ -11240,6 +11284,8 @@ class Scene2DCrocodile extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["defaul
     this.initLeafAnimations();
     this.initSnowflakeAnimations();
     this.initSaturnAnimations();
+    this.initCrocodileAnimations();
+    this.initDropAnimations();
   }
 
   initKeyAnimations() {
@@ -11376,6 +11422,93 @@ class Scene2DCrocodile extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["defaul
       delay: THINGS_OUT_PARAMS.DELAY + 150,
       easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
     }));
+  }
+
+  initCrocodileAnimations() {
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.crocodile.opacity = progress;
+        this.objects.crocodile.transforms.translateX = (1 - progress) * 50;
+        this.objects.crocodile.transforms.translateY = (1 - progress) * -10;
+      },
+      duration: CROCODILE_PARAMS.DURATION,
+      delay: CROCODILE_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+  }
+
+  initDropAnimations() {
+    for (let i = 0; i < 3; i++) {
+      const delay = i * 3000;
+
+      this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        func: (progress) => {
+          this.objects.drop.opacity = progress;
+          this.objects.drop.transforms.translateY = 0;
+          this.objects.drop.transforms.scaleX = progress;
+          this.objects.drop.transforms.scaleY = progress;
+        },
+        duration: DROP_IN_PARAMS.DURATION,
+        delay: DROP_IN_PARAMS.DELAY + delay,
+        easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }));
+
+      this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        func: (progress) => {
+          this.objects.drop.opacity = 1 - progress;
+          this.objects.drop.transforms.translateY = progress * 10;
+        },
+        duration: DROP_OUT_PARAMS.DURATION,
+        delay: DROP_OUT_PARAMS.DELAY + delay,
+        easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+      }));
+    }
+  }
+
+  drawKeyMask() {
+    const scale = this.size / 100;
+
+    const x0 = this.size;
+    const y0 = this.size;
+
+    const x1 = (this.locals.keyMask.centerX + this.objects.key.size * 0.5) * scale;
+    const y1 = y0;
+
+    const x2 = x1;
+    const y2 = (this.locals.keyMask.centerY + this.objects.key.size * 0.85) * scale;
+
+    const x3 = (this.locals.keyMask.centerX + this.objects.key.size * 0.33) * scale;
+    const y3 = this.size / 2;
+
+    const cp1x4 = (this.locals.keyMask.centerX + this.objects.key.size * 0.7) * scale;
+    const cp1y4 = (this.locals.keyMask.centerY - this.objects.key.size * 0.4) * scale;
+    const cp2x4 = this.locals.keyMask.centerX * 1.15 * scale;
+    const cp2y4 = (this.locals.keyMask.centerY * 0.66) * scale;
+    const x4 = this.locals.keyMask.centerX * scale;
+    const y4 = (this.locals.keyMask.centerY * 0.66) * scale;
+
+    const x5 = this.locals.keyMask.centerX * scale;
+    const y5 = 0;
+
+    const x6 = this.size;
+    const y6 = 0;
+
+    this.ctx.save();
+
+    this.ctx.fillStyle = `#5f458c`;
+
+    this.ctx.beginPath();
+
+    this.ctx.moveTo(x0, y0);
+    this.ctx.lineTo(x1, y1);
+    this.ctx.lineTo(x2, y2);
+    this.ctx.lineTo(x3, y3);
+    this.ctx.bezierCurveTo(cp1x4, cp1y4, cp2x4, cp2y4, x4, y4);
+    this.ctx.lineTo(x5, y5);
+    this.ctx.lineTo(x6, y6);
+
+    this.ctx.fill();
+    this.ctx.restore();
   }
 }
 
