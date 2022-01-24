@@ -25,6 +25,11 @@ const THINGS_OUT_PARAMS = {
   DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION + 100,
 };
 
+const CROCODILE_PARAMS = {
+  DURATION: 900,
+  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION - 100,
+};
+
 const IMAGES_URLS = Object.freeze({
   key: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/key.png`,
   flamingo: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/flamingo.png`,
@@ -44,6 +49,16 @@ const OBJECTS = Object.freeze({
     size: 20,
     opacity: 0,
     transforms: {}
+  },
+  crocodile: {
+    imageId: `crocodile`,
+    x: 50,
+    y: 60,
+    size: 80,
+    transforms: {
+      translateX: 50,
+      translateY: -10,
+    }
   },
   flamingo: {
     imageId: `flamingo`,
@@ -118,6 +133,7 @@ export default class Scene2DCrocodile extends Scene2D {
     this.initLeafAnimations();
     this.initSnowflakeAnimations();
     this.initSaturnAnimations();
+    this.initCrocodileAnimations();
   }
 
   initKeyAnimations() {
@@ -253,6 +269,18 @@ export default class Scene2DCrocodile extends Scene2D {
       duration: THINGS_OUT_PARAMS.DURATION,
       delay: THINGS_OUT_PARAMS.DELAY + 150,
       easing: _.easeInCubic,
+    }));
+  }
+
+  initCrocodileAnimations() {
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.crocodile.transforms.translateX = (1 - progress) * 50;
+        this.objects.crocodile.transforms.translateY = (1 - progress) * -10;
+      },
+      duration: CROCODILE_PARAMS.DURATION,
+      delay: CROCODILE_PARAMS.DELAY,
+      easing: _.easeOutCubic
     }));
   }
 }
