@@ -1,0 +1,270 @@
+<svg viewBox="0 0 661 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0.5 90.5V6.5H13.94V40.7H51.14V6.5H64.58V90.5H51.14V57.14H13.94V90.5H0.5Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter1"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter1.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter1.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M145.46 6.5V22.94H94.8399V40.1H128.44V56.5H94.8399V74.06H145.48V90.5H81.3799V6.5H145.46Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter2"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter1.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter2.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter2.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M197.06 6.5L217.58 48.86L233.18 6.5H249.62L218.62 90.5H202.22L211.7 64.58L183.62 6.5H197.06Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter3"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter2.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter3.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter3.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+  
+  <path d="M271.58 22.94V90.5H258.14V6.5H308.3V22.94H271.58Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter4"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter3.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter4.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter4.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M304.94 90.5L332.94 6.5H360.06L388.14 90.5H374.66L366.84 66.98H329.04L321.26 90.5H304.94ZM361.58 50.5L348.14 10.34L334.7 50.5H361.58Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter5"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter4.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter5.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter5.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M394.22 108.74V74.06H401.66C406.22 69.38 409.46 55.7 410.42 18.06L410.78 6.5H459.38V74.06H469.38V108.74H454.7V90.5H408.84V108.74H394.22ZM445.94 74.06V22.94H423.38V26.06C422.9 48.5 420.14 63.74 416.18 74.06H445.94Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter6"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter5.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter6.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter6.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M475.58 90.5L503.58 6.5H530.7L558.74 90.5H545.3L537.5 66.98H499.7L491.9 90.5H475.58ZM532.22 50.5L518.78 10.3L505.34 50.5H532.22Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter7"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter6.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter7.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter7.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M566.54 75.38C568.13 76.0217 569.825 76.3608 571.54 76.38C578.14 76.38 581.98 70.14 583.54 18.06L584.06 6.5H630.26V90.5H616.84V22.94H596.66L596.54 26.06C594.98 79.5 586.84 92.9 571.58 92.9C569.314 92.8876 567.059 92.6056 564.86 92.06L566.54 75.38Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter8"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter7.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter8.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter8.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+
+  <path d="M643.94 68.9L645.38 0.5H658.84L660.28 68.9H643.94ZM652.22 75.26C657.02 75.26 660.22 78.5 660.22 83.42C660.22 85.5523 659.373 87.5973 657.865 89.1051C656.357 90.6129 654.312 91.46 652.18 91.46C650.048 91.46 648.003 90.6129 646.495 89.1051C644.987 87.5973 644.14 85.5523 644.14 83.42C644.18 78.5 647.42 75.26 652.22 75.26Z" stroke="white" fill="none" stroke-width="2" stroke-dasharray="600" stroke-dashoffset="600" opacity="0">
+    <animate
+      id="letter9"
+      attributeName="opacity"
+      from="0"
+      to="1"
+      dur="0.1s"
+      begin="letter8.begin + 0.05s"
+      fill="freeze"
+    />
+
+    <animate
+      attributeName="stroke-dashoffset"
+      to="0"
+      dur="0.4s"
+      begin="letter9.begin"
+      fill="freeze"
+    />
+
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 40; 0 30; 0 40"
+      keyTimes="0; 0.5; 0.75; 1"
+      dur="0.2s"
+      begin="letter9.end + 0.3s"
+      fill="freeze"
+    />
+  </path>
+</svg>
