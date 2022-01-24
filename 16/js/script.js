@@ -11053,6 +11053,8 @@ const relaunchImgAnimate = (img) => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _relaunch_img_animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./relaunch-img-animate */ "./source/js/modules/relaunch-img-animate.js");
 /* harmony import */ var _scene_2d_sea_calf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scene-2d-sea-calf */ "./source/js/modules/scene-2d-sea-calf.js");
+/* harmony import */ var _scene_2d_crocodile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scene-2d-crocodile */ "./source/js/modules/scene-2d-crocodile.js");
+
 
 
 
@@ -11073,9 +11075,14 @@ __webpack_require__.r(__webpack_exports__);
         targetEl[0].classList.add(`screen--show`);
         targetEl[0].classList.remove(`screen--hidden`);
 
-        if (target === `result`) {
+        if (target === `result`) { // WIN. sea calf scene
           // eslint-disable-next-line no-new
           new _scene_2d_sea_calf__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        }
+
+        if (target === `result3`) { // LOSE. crocodile scene
+          // eslint-disable-next-line no-new
+          new _scene_2d_crocodile__WEBPACK_IMPORTED_MODULE_2__["default"]();
         }
 
         Object(_relaunch_img_animate__WEBPACK_IMPORTED_MODULE_0__["default"])();
@@ -11095,6 +11102,282 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+
+
+/***/ }),
+
+/***/ "./source/js/modules/scene-2d-crocodile.js":
+/*!*************************************************!*\
+  !*** ./source/js/modules/scene-2d-crocodile.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene2DCrocodile; });
+/* harmony import */ var _animation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation.js */ "./source/js/modules/animation.js");
+/* harmony import */ var _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scene-2d.js */ "./source/js/modules/scene-2d.js");
+/* harmony import */ var _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timing-functions.js */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./source/js/modules/constants.js");
+
+
+
+
+
+const SCENE_IMG_FOLDER = `module-4/lose-images`;
+
+const KEY_FADE_IN_DURATION = 300;
+
+const THING_INITIAL_PARAM = {
+  x: 50,
+  y: 50,
+  size: 0,
+  opacity: 1,
+  transforms: {}
+};
+
+const THINGS_IN_PARAMS = {
+  DURATION: 400,
+  DELAY: KEY_FADE_IN_DURATION - 100,
+};
+
+const THINGS_OUT_PARAMS = {
+  DURATION: 500,
+  DELAY: THINGS_IN_PARAMS.DELAY + THINGS_IN_PARAMS.DURATION + 200,
+};
+
+const IMAGES_URLS = Object.freeze({
+  key: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/key.png`,
+  flamingo: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/flamingo.png`,
+  crocodile: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/crocodile.png`,
+  drop: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/drop.png`,
+  leaf: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/leaf.png`,
+  saturn: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/saturn.png`,
+  snowflake: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/snowflake.png`,
+  watermelon: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/watermelon.png`
+});
+
+const OBJECTS = Object.freeze({
+  key: {
+    imageId: `key`,
+    x: 50,
+    y: 50,
+    size: 20,
+    opacity: 0,
+    transforms: {}
+  },
+  flamingo: {
+    imageId: `flamingo`,
+    ...THING_INITIAL_PARAM,
+  },
+  watermelon: {
+    imageId: `watermelon`,
+    ...THING_INITIAL_PARAM,
+  },
+  leaf: {
+    imageId: `leaf`,
+    ...THING_INITIAL_PARAM,
+  },
+  snowflake: {
+    imageId: `snowflake`,
+    ...THING_INITIAL_PARAM,
+  },
+  saturn: {
+    imageId: `saturn`,
+    ...THING_INITIAL_PARAM,
+  },
+});
+
+const LOCALS = Object.freeze({
+  keyMask: {
+    centerX: 50,
+    centerY: 50,
+  }
+});
+
+class Scene2DCrocodile extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"] {
+  constructor() {
+    const canvas = document.getElementById(`crocodile-scene`);
+
+    super({
+      canvas,
+      objects: OBJECTS,
+      locals: LOCALS,
+      imagesUrls: IMAGES_URLS,
+    });
+
+    this.initObjects(OBJECTS);
+    this.initLocals();
+    this.start();
+  }
+
+  initLocals() {
+    this.locals = {
+      keyMask: {
+        centerX: LOCALS.keyMask.centerX,
+        centerY: LOCALS.keyMask.centerY
+      }
+    };
+  }
+
+  initEventListeners() {
+    window.addEventListener(`resize`, this.updateSize.bind(this));
+  }
+
+  initAnimations() {
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: () => {
+        this.drawScene();
+      },
+      duration: `infinite`,
+      fps: 60
+    }));
+
+    this.initKeyAnimations();
+    this.initFlamingoAnimations();
+    this.initWatermelonAnimations();
+    this.initLeafAnimations();
+    this.initSnowflakeAnimations();
+    this.initSaturnAnimations();
+  }
+
+  initKeyAnimations() {
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.key.opacity = progress;
+        this.objects.key.size = OBJECTS[`key`].size / 2 * progress * 2;
+      },
+      duration: KEY_FADE_IN_DURATION,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic
+    }));
+  }
+
+  initFlamingoAnimations() {
+    const yMultiplier = -5;
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.flamingo.size = progress * 20;
+        this.objects.flamingo.transforms.rotate = (1 - progress) * 40;
+        this.objects.flamingo.transforms.translateX = progress * -25;
+        this.objects.flamingo.transforms.translateY = progress * yMultiplier;
+      },
+      duration: THINGS_IN_PARAMS.DURATION,
+      delay: THINGS_IN_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.flamingo.transforms.translateY = progress * 70 + yMultiplier;
+      },
+      duration: THINGS_OUT_PARAMS.DURATION,
+      delay: THINGS_OUT_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+    }));
+  }
+
+  initWatermelonAnimations() {
+    const yMultiplier = 20;
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.watermelon.size = progress * 15;
+        this.objects.watermelon.transforms.rotate = progress * -10;
+        this.objects.watermelon.transforms.translateX = progress * -40;
+        this.objects.watermelon.transforms.translateY = progress * yMultiplier;
+      },
+      duration: THINGS_IN_PARAMS.DURATION,
+      delay: THINGS_IN_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.watermelon.transforms.translateY = progress * 40 + yMultiplier;
+      },
+      duration: THINGS_OUT_PARAMS.DURATION,
+      delay: THINGS_OUT_PARAMS.DELAY + 150,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+    }));
+  }
+
+  initLeafAnimations() {
+    const yMultiplier = -5;
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.leaf.size = progress * 25;
+        this.objects.leaf.transforms.rotate = progress * -5;
+        this.objects.leaf.transforms.translateX = progress * 40;
+        this.objects.leaf.transforms.translateY = progress * yMultiplier;
+      },
+      duration: THINGS_IN_PARAMS.DURATION,
+      delay: THINGS_IN_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.leaf.transforms.translateY = progress * 70 + yMultiplier;
+      },
+      duration: THINGS_OUT_PARAMS.DURATION,
+      delay: THINGS_OUT_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+    }));
+  }
+
+  initSnowflakeAnimations() {
+    const yMultiplier = 5;
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.snowflake.size = progress * 15;
+        this.objects.snowflake.transforms.rotate = progress * -30;
+        this.objects.snowflake.transforms.translateX = progress * 15;
+        this.objects.snowflake.transforms.translateY = progress * yMultiplier;
+      },
+      duration: THINGS_IN_PARAMS.DURATION,
+      delay: THINGS_IN_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.snowflake.transforms.translateY = progress * 50 + yMultiplier;
+      },
+      duration: THINGS_OUT_PARAMS.DURATION,
+      delay: THINGS_OUT_PARAMS.DELAY + 100,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+    }));
+  }
+
+  initSaturnAnimations() {
+    const yMultiplier = 25;
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.saturn.size = progress * 20;
+        this.objects.saturn.transforms.rotate = progress * -10;
+        this.objects.saturn.transforms.translateX = progress * 35;
+        this.objects.saturn.transforms.translateY = progress * yMultiplier;
+      },
+      duration: THINGS_IN_PARAMS.DURATION,
+      delay: THINGS_IN_PARAMS.DELAY,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+    }));
+
+    this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      func: (progress) => {
+        this.objects.saturn.transforms.translateY = progress * 35 + yMultiplier;
+      },
+      duration: THINGS_OUT_PARAMS.DURATION,
+      delay: THINGS_OUT_PARAMS.DELAY + 150,
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInCubic,
+    }));
+  }
+}
 
 
 /***/ }),
@@ -11233,11 +11516,9 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       this.objects.plane.before = this.drawBlob.bind(this);
     };
 
-    this.initEventListeners();
     this.initObjects(OBJECTS);
     this.initLocals();
     this.start();
-    this.updateSize();
   }
 
   initLocals() {
