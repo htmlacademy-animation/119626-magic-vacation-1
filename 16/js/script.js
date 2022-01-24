@@ -10362,7 +10362,7 @@ const targets = [{
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Animation; });
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils.js */ "./source/js/modules/utils.js");
+/* harmony import */ var _timing_functions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timing-functions.js */ "./source/js/modules/timing-functions.js");
 
 
 class Animation {
@@ -10370,7 +10370,7 @@ class Animation {
     this.options = options;
 
     if (!this.options.easing) {
-      this.options.easing = _utils_js__WEBPACK_IMPORTED_MODULE_0__["default"].easeLinear;
+      this.options.easing = _timing_functions_js__WEBPACK_IMPORTED_MODULE_0__["default"].easeLinear;
     }
 
     if (!this.options.duration) {
@@ -10571,6 +10571,23 @@ __webpack_require__.r(__webpack_exports__);
 
   });
 });
+
+
+/***/ }),
+
+/***/ "./source/js/modules/constants.js":
+/*!****************************************!*\
+  !*** ./source/js/modules/constants.js ***!
+  \****************************************/
+/*! exports provided: CANVAS_IMG_URI */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CANVAS_IMG_URI", function() { return CANVAS_IMG_URI; });
+const CANVAS_IMG_URI = location.origin + location.pathname + `img`;
+
+
 
 
 /***/ }),
@@ -11094,18 +11111,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene2DSeaCalf; });
 /* harmony import */ var _animation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation.js */ "./source/js/modules/animation.js");
 /* harmony import */ var _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scene-2d.js */ "./source/js/modules/scene-2d.js");
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils.js */ "./source/js/modules/utils.js");
+/* harmony import */ var _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timing-functions.js */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./source/js/modules/constants.js");
+
 
 
 
 
 const IMAGES_URLS = Object.freeze({
-  plane: `./img/airplane.png`,
-  tree: `./img/tree.png`,
-  tree2: `./img/tree-2.png`,
-  ice: `./img/ice.png`,
-  seaCalf: `./img/sea-calf-2.png`,
-  snowflake: `./img/snowflake.png`
+  plane: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/airplane.png`,
+  tree: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/tree.png`,
+  tree2: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/tree-2.png`,
+  ice: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/ice.png`,
+  seaCalf: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/sea-calf-2.png`,
+  snowflake: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/snowflake.png`
 });
 
 const OBJECTS = Object.freeze({
@@ -11268,7 +11287,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1200,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
   }
 
@@ -11287,7 +11306,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1200,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
   }
 
@@ -11299,7 +11318,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1200,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
 
     this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -11309,7 +11328,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1500,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
   }
 
@@ -11326,7 +11345,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 2000,
       delay: 1000,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutElastic
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutElastic
     }));
 
     this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -11336,7 +11355,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 100,
       delay: 1000,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
   }
 
@@ -11365,7 +11384,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1500,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
 
     this.animations.push(new _animation_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -11374,7 +11393,7 @@ class Scene2DSeaCalf extends _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__["default"
       },
       duration: 500,
       delay: 1900,
-      easing: _utils_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
+      easing: _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__["default"].easeInQuad
     }));
   }
 
@@ -11818,10 +11837,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./source/js/modules/utils.js":
-/*!************************************!*\
-  !*** ./source/js/modules/utils.js ***!
-  \************************************/
+/***/ "./source/js/modules/timing-functions.js":
+/*!***********************************************!*\
+  !*** ./source/js/modules/timing-functions.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
