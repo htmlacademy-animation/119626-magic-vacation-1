@@ -4,12 +4,12 @@ import _ from './timing-functions.js';
 import {CANVAS_IMG_URI} from './constants';
 
 const IMAGES_URLS = Object.freeze({
-  plane: `${CANVAS_IMG_URI}/airplane.png`,
-  tree: `${CANVAS_IMG_URI}/tree.png`,
-  tree2: `${CANVAS_IMG_URI}/tree-2.png`,
-  ice: `${CANVAS_IMG_URI}/ice.png`,
-  seaCalf: `${CANVAS_IMG_URI}/sea-calf-2.png`,
-  snowflake: `${CANVAS_IMG_URI}/snowflake.png`
+  plane: `${CANVAS_IMG_URI}/win-primary-images/airplane.png`,
+  tree: `${CANVAS_IMG_URI}/win-primary-images/tree.png`,
+  tree2: `${CANVAS_IMG_URI}/win-primary-images/tree-2.png`,
+  ice: `${CANVAS_IMG_URI}/win-primary-images/ice.png`,
+  seaCalf: `${CANVAS_IMG_URI}/win-primary-images/sea-calf-2.png`,
+  snowflake: `${CANVAS_IMG_URI}/win-primary-images/snowflake.png`
 });
 
 const OBJECTS = Object.freeze({
