@@ -123,13 +123,14 @@ export default class Scene2DCrocodile extends Scene2D {
       imagesUrls: IMAGES_URLS,
     });
 
+    this.afterInit = () => {
+      this.objects.crocodile.after = this.drawKeyMask.bind(this);
+    };
+
     this.initObjects(OBJECTS);
     this.initLocals();
     this.start();
 
-    this.afterInit = () => {
-      this.objects.crocodile.after = this.drawKeyMask.bind(this);
-    };
   }
 
   initLocals() {
