@@ -1,4 +1,4 @@
-import _ from './utils.js';
+import _ from './timing-functions.js';
 
 export default class Animation {
   constructor(options) {
