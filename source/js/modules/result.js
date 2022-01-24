@@ -19,8 +19,8 @@ export default () => {
         targetEl[0].classList.remove(`screen--hidden`);
 
         if (target === `result`) {
-          // eslint-disable-next-line no-unused-vars
-          const scene = new Scene2DSeaCalf();
+          // eslint-disable-next-line no-new
+          new Scene2DSeaCalf();
         }
 
         relaunchImgAnimate();
