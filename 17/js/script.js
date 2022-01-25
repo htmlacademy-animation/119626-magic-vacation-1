@@ -10585,7 +10585,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CANVAS_IMG_URI", function() { return CANVAS_IMG_URI; });
-const CANVAS_IMG_URI = location.origin + location.pathname + `img`;
+const CANVAS_IMG_URI = `../../../img`;
 
 
 
