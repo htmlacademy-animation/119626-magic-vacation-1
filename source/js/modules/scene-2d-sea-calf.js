@@ -1,17 +1,16 @@
 import Animation from './animation.js';
 import Scene2D from './scene-2d.js';
 import _ from './timing-functions.js';
-import {CANVAS_IMG_URI} from './constants';
 
-const SCENE_IMG_FOLDER = `module-4/win-primary-images`;
+const SCENE_IMG_FOLDER = `./img/module-4/win-primary-images`;
 
 const IMAGES_URLS = Object.freeze({
-  plane: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/airplane.png`,
-  tree: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/tree.png`,
-  tree2: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/tree-2.png`,
-  ice: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/ice.png`,
-  seaCalf: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/sea-calf-2.png`,
-  snowflake: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/snowflake.png`
+  plane: `${SCENE_IMG_FOLDER}/airplane.png`,
+  tree: `${SCENE_IMG_FOLDER}/tree.png`,
+  tree2: `${SCENE_IMG_FOLDER}/tree-2.png`,
+  ice: `${SCENE_IMG_FOLDER}/ice.png`,
+  seaCalf: `${SCENE_IMG_FOLDER}/sea-calf-2.png`,
+  snowflake: `${SCENE_IMG_FOLDER}/snowflake.png`
 });
 
 const OBJECTS = Object.freeze({
