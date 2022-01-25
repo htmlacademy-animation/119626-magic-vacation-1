@@ -10575,6 +10575,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./source/js/modules/constants.js":
+/*!****************************************!*\
+  !*** ./source/js/modules/constants.js ***!
+  \****************************************/
+/*! exports provided: CANVAS_IMG_URI */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CANVAS_IMG_URI", function() { return CANVAS_IMG_URI; });
+const CANVAS_IMG_URI = location.origin + location.pathname + `img`;
+
+
+
+
+/***/ }),
+
 /***/ "./source/js/modules/footer.js":
 /*!*************************************!*\
   !*** ./source/js/modules/footer.js ***!
@@ -11102,12 +11119,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _animation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation.js */ "./source/js/modules/animation.js");
 /* harmony import */ var _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scene-2d.js */ "./source/js/modules/scene-2d.js");
 /* harmony import */ var _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timing-functions.js */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./source/js/modules/constants.js");
 
 
 
 
 
-const SCENE_IMG_FOLDER = `../../img/module-4/lose-images`;
+const SCENE_IMG_FOLDER = `module-4/lose-images`;
 
 const KEY_FADE_IN_DURATION = 300;
 
@@ -11137,14 +11155,14 @@ const DROP_OUT_PARAMS = {
 };
 
 const IMAGES_URLS = Object.freeze({
-  key: `${SCENE_IMG_FOLDER}/key.png`,
-  flamingo: `${SCENE_IMG_FOLDER}/flamingo.png`,
-  crocodile: `${SCENE_IMG_FOLDER}/crocodile.png`,
-  drop: `${SCENE_IMG_FOLDER}/drop.png`,
-  leaf: `${SCENE_IMG_FOLDER}/leaf.png`,
-  saturn: `${SCENE_IMG_FOLDER}/saturn.png`,
-  snowflake: `${SCENE_IMG_FOLDER}/snowflake.png`,
-  watermelon: `${SCENE_IMG_FOLDER}/watermelon.png`
+  key: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/key.png`,
+  flamingo: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/flamingo.png`,
+  crocodile: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/crocodile.png`,
+  drop: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/drop.png`,
+  leaf: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/leaf.png`,
+  saturn: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/saturn.png`,
+  snowflake: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/snowflake.png`,
+  watermelon: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/watermelon.png`
 });
 
 const THING_INITIAL_PARAM = {
@@ -11509,19 +11527,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _animation_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animation.js */ "./source/js/modules/animation.js");
 /* harmony import */ var _scene_2d_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scene-2d.js */ "./source/js/modules/scene-2d.js");
 /* harmony import */ var _timing_functions_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./timing-functions.js */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants */ "./source/js/modules/constants.js");
 
 
 
 
-const SCENE_IMG_FOLDER = `../../img/module-4/win-primary-images`;
+
+const SCENE_IMG_FOLDER = `module-4/win-primary-images`;
 
 const IMAGES_URLS = Object.freeze({
-  plane: `${SCENE_IMG_FOLDER}/airplane.png`,
-  tree: `${SCENE_IMG_FOLDER}/tree.png`,
-  tree2: `${SCENE_IMG_FOLDER}/tree-2.png`,
-  ice: `${SCENE_IMG_FOLDER}/ice.png`,
-  seaCalf: `${SCENE_IMG_FOLDER}/sea-calf-2.png`,
-  snowflake: `${SCENE_IMG_FOLDER}/snowflake.png`
+  plane: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/airplane.png`,
+  tree: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/tree.png`,
+  tree2: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/tree-2.png`,
+  ice: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/ice.png`,
+  seaCalf: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/sea-calf-2.png`,
+  snowflake: `${_constants__WEBPACK_IMPORTED_MODULE_3__["CANVAS_IMG_URI"]}/${SCENE_IMG_FOLDER}/snowflake.png`
 });
 
 const OBJECTS = Object.freeze({
