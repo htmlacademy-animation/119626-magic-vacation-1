@@ -5,7 +5,7 @@ export default class Scene3D {
     this.canvas = options.canvas;
     this.width = window.innerWidth;
     this.height = window.innerHeight;
-
+    this.devicePixelRatio = window.devicePixelRatio;
     this.aspectRatio = this.width / this.height;
     this.perspectiveAngle = 45;
     this.zCoordinateMin = 0.1;
@@ -23,6 +23,10 @@ export default class Scene3D {
         this.zCoordinateMax
     );
 
+    this.camera.position.z = 1000;
+
+    this.textureLoader = new THREE.TextureLoader();
+
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas
     });
@@ -31,7 +35,7 @@ export default class Scene3D {
     const alpha = 0.6;
 
     this.renderer.setClearColor(color, alpha);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(this.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
 
     this.render();
