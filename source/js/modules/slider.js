@@ -1,6 +1,24 @@
 import Swiper from "swiper";
 import Scene3DStory from "./scene-3d-story";
 
+const CN_BLUE = `body-theme-blue`;
+const CN_LIGHT_BLUE = `body-theme-light-blue`;
+const CN_PURPLE = `body-theme-purple`;
+const CN_DARK = `body-theme-dark`;
+
+const bodyThemeClasses = [
+  CN_BLUE,
+  CN_LIGHT_BLUE,
+  CN_PURPLE,
+  CN_DARK,
+];
+
+const removeTheme = () => {
+  bodyThemeClasses.forEach((cn) => {
+    document.body.classList.remove(cn);
+  });
+};
+
 export default () => {
   let storySlider;
 
@@ -38,6 +56,8 @@ export default () => {
         observeParents: true
       });
     } else {
+      removeTheme();
+
       storySlider = new Swiper(`.js-slider`, {
         slidesPerView: 2,
         slidesPerGroup: 2,
@@ -55,12 +75,16 @@ export default () => {
         on: {
           slideChange: () => {
             if (storySlider.activeIndex === 0) {
+              document.body.classList.add(CN_PURPLE);
               scene.setSceneBackground(0);
             } else if (storySlider.activeIndex === 2) {
+              document.body.classList.add(CN_BLUE);
               scene.setSceneBackground(1);
             } else if (storySlider.activeIndex === 4) {
+              document.body.classList.add(CN_LIGHT_BLUE);
               scene.setSceneBackground(2);
             } else if (storySlider.activeIndex === 6) {
+              document.body.classList.add(CN_DARK);
               scene.setSceneBackground(3);
             }
           },
@@ -77,6 +101,7 @@ export default () => {
   window.addEventListener(`resize`, function () {
     if (storySlider) {
       storySlider.destroy();
+      removeTheme();
     }
     setSlider();
   });
