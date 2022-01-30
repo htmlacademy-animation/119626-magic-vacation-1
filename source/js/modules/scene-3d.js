@@ -31,8 +31,8 @@ export default class Scene3D {
       canvas: this.canvas
     });
 
-    const color = new THREE.Color(0xEEEEEE);
-    const alpha = 0.6;
+    const color = new THREE.Color(`#5f458c`);
+    const alpha = 1;
 
     this.renderer.setClearColor(color, alpha);
     this.renderer.setPixelRatio(this.devicePixelRatio);

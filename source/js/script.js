@@ -11,6 +11,7 @@ import FullPageScroll from './modules/full-page-scroll';
 import pageLoaded from './modules/page-loaded';
 import animateTypography from './modules/animate-typography';
 import initGameCounter from './modules/game-counter';
+import AnimationLauncher from './modules/animation-launcher';
 
 // init modules
 mobileHeight();
@@ -28,3 +29,5 @@ initGameCounter();
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
 
+const animationLauncher = new AnimationLauncher();
+animationLauncher.init();
