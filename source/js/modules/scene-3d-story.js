@@ -31,7 +31,7 @@ export default class Scene3DStory extends Scene3D {
 
   updateBackground(texture) {
     const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const material = new THREE.MeshBasicMaterial({map: texture});
+    const material = new THREE.RawShaderMaterial(this.getShader(texture));
     const mesh = new THREE.Mesh(geometry, material);
 
     this.scene.add(mesh);

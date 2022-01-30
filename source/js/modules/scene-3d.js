@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import fragmentSheder from '../webGL/shaders/fragmentShader.glsl';
+import vertexShader from '../webGL/shaders/vertexShader.glsl';
 
 export default class Scene3D {
   constructor(options) {
@@ -12,6 +14,18 @@ export default class Scene3D {
     this.zCoordinateMax = 1000;
 
     this.init();
+  }
+
+  getShader(texture) {
+    return {
+      uniforms: {
+        map: {
+          value: texture,
+        },
+      },
+      vertexShader: vertexShader.sourceCode,
+      fragmentShader: fragmentSheder.sourceCode,
+    };
   }
 
   init() {
