@@ -1,9 +1,8 @@
 import Animation from './animation.js';
 import Scene2D from './scene-2d.js';
 import _ from './timing-functions.js';
-import {CANVAS_IMG_URI} from './constants';
 
-const SCENE_IMG_FOLDER = `module-4/lose-images`;
+const SCENE_IMG_FOLDER = `./img/module-4/lose-images`;
 
 const KEY_FADE_IN_DURATION = 300;
 
@@ -33,14 +32,14 @@ const DROP_OUT_PARAMS = {
 };
 
 const IMAGES_URLS = Object.freeze({
-  key: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/key.png`,
-  flamingo: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/flamingo.png`,
-  crocodile: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/crocodile.png`,
-  drop: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/drop.png`,
-  leaf: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/leaf.png`,
-  saturn: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/saturn.png`,
-  snowflake: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/snowflake.png`,
-  watermelon: `${CANVAS_IMG_URI}/${SCENE_IMG_FOLDER}/watermelon.png`
+  key: `${SCENE_IMG_FOLDER}/key.png`,
+  flamingo: `${SCENE_IMG_FOLDER}/flamingo.png`,
+  crocodile: `${SCENE_IMG_FOLDER}/crocodile.png`,
+  drop: `${SCENE_IMG_FOLDER}/drop.png`,
+  leaf: `${SCENE_IMG_FOLDER}/leaf.png`,
+  saturn: `${SCENE_IMG_FOLDER}/saturn.png`,
+  snowflake: `${SCENE_IMG_FOLDER}/snowflake.png`,
+  watermelon: `${SCENE_IMG_FOLDER}/watermelon.png`
 });
 
 const THING_INITIAL_PARAM = {
