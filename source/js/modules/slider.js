@@ -57,8 +57,6 @@ export default () => {
         observeParents: true
       });
     } else {
-      removeTheme();
-
       storySlider = new Swiper(`.js-slider`, {
         slidesPerView: 2,
         slidesPerGroup: 2,
@@ -75,6 +73,8 @@ export default () => {
         },
         on: {
           slideChange: () => {
+            removeTheme();
+
             if (storySlider.activeIndex === 0) {
               document.body.classList.add(CN_PURPLE);
               scene.setSceneBackground(0);
