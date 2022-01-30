@@ -25,6 +25,7 @@ export default () => {
   const scene = new Scene3DStory();
 
   const setSlider = function () {
+    document.body.classList.add(CN_DARK);
     scene.setSceneBackground(0);
 
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
