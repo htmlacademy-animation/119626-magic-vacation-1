@@ -16,11 +16,14 @@ export default class Scene3D {
     this.init();
   }
 
-  getShader(texture) {
+  getShader(texture, hue = 0.0) {
     return {
       uniforms: {
         map: {
           value: texture,
+        },
+        hue: {
+          value: hue,
         },
       },
       vertexShader: vertexShader.sourceCode,
