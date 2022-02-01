@@ -11,6 +11,7 @@ const SCENE_BGS = [
   {
     src: `${SCENE_IMG_FOLDER}/scene-2.png`, // #3e72ee
     texture: null,
+    hue: -0.2,
   },
   {
     src: `${SCENE_IMG_FOLDER}/scene-3.png`, // #5f458c
@@ -29,9 +30,10 @@ export default class Scene3DStory extends Scene3D {
     super({canvas});
   }
 
-  updateBackground(texture) {
+  updateBackground(texture, hue) {
+    const shader = this.getShader(texture, hue);
     const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const material = new THREE.RawShaderMaterial(this.getShader(texture));
+    const material = new THREE.RawShaderMaterial(shader);
     const mesh = new THREE.Mesh(geometry, material);
 
     this.scene.add(mesh);
@@ -40,12 +42,14 @@ export default class Scene3DStory extends Scene3D {
   }
 
   setSceneBackground(slideCount) {
-    if (SCENE_BGS[slideCount].texture) {
-      this.updateBackground(SCENE_BGS[slideCount].texture);
+    const {src, texture, hue} = SCENE_BGS[slideCount];
+
+    if (texture) {
+      this.updateBackground(texture, hue);
     } else {
-      this.textureLoader.load(SCENE_BGS[slideCount].src, (texture) => {
-        SCENE_BGS[slideCount].texture = texture;
-        this.updateBackground(SCENE_BGS[slideCount].texture);
+      this.textureLoader.load(src, (textureFromLoader) => {
+        SCENE_BGS[slideCount].texture = textureFromLoader;
+        this.updateBackground(textureFromLoader, hue);
       });
     }
   }
