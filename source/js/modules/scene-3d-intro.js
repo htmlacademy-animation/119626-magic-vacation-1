@@ -13,6 +13,8 @@ export default class Scene3DIntro extends Scene3D {
   }
 
   start() {
+    super.start();
+
     if (SCENE_BG.texture) {
       this.updateBackground(SCENE_BG);
     } else {
@@ -21,7 +23,5 @@ export default class Scene3DIntro extends Scene3D {
         this.updateBackground(SCENE_BG);
       });
     }
-
-    super.start();
   }
 }

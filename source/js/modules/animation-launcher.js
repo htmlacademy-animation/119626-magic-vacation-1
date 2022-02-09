@@ -9,38 +9,38 @@ export default class AnimationLauncher {
     this.sceneStorySlider = new Slider(this.sceneStory);
 
     if (window.location.hash === `#top`) {
-      this.launchIntroAnimation();
+      this.startIntro();
     }
 
     if (window.location.hash === `#story`) {
-      this.launchStoryAnimation();
+      this.startStory();
     }
   }
 
-  stopAnimations() {
+  stopAll() {
     this.sceneIntro.stop();
     this.sceneStory.stop();
   }
 
-  launchIntroAnimation() {
+  startIntro() {
     this.sceneIntro.start();
   }
 
-  launchStoryAnimation() {
+  startStory() {
     this.sceneStorySlider.init();
     this.sceneStory.start();
   }
 
   addScreenChangedListener() {
     document.body.addEventListener(`screenChanged`, (event) => {
-      this.stopAnimations();
+      this.stopAll();
 
       if (event.detail.screenName === `top`) {
-        this.launchIntroAnimation();
+        this.startIntro();
       }
 
       if (event.detail.screenName === `story`) {
-        this.launchStoryAnimation();
+        this.startStory();
       }
     });
   }

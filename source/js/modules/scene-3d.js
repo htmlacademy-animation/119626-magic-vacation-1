@@ -16,6 +16,8 @@ export default class Scene3D {
     this.animationId = null;
 
     this.init();
+
+    this.tick = this.tick.bind(this);
   }
 
   getShader(scene) {
