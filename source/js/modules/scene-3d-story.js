@@ -34,7 +34,7 @@ export default class Scene3DStory extends Scene3D {
 
   start() {
     this.setSceneBackground(0);
-    this.render();
+    super.start();
   }
 
   setSceneBackground(slideCount) {

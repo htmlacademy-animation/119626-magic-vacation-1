@@ -1,7 +1,6 @@
 import * as THREE from 'three';
-import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
-import fragmentShaderBubbles from '../webGL/shaders/fragmentShaderBubbles.glsl';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
+import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
 
 export default class Scene3D {
   constructor(options) {
@@ -14,7 +13,7 @@ export default class Scene3D {
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
-    this.requestAnimationFrameId = null;
+    this.animationId = null;
 
     this.init();
   }
@@ -33,7 +32,7 @@ export default class Scene3D {
         },
       },
       vertexShader: vertexShader.sourceCode,
-      fragmentShader: scene.shouldRenderBubbles ? fragmentShaderBubbles.sourceCode : fragmentShader.sourceCode,
+      fragmentShader: fragmentShader.sourceCode,
     };
   }
 
@@ -71,11 +70,18 @@ export default class Scene3D {
     this.renderer.setSize(this.width, this.height);
   }
 
-  render() {
+  tick() {
     this.renderer.render(this.scene, this.camera);
 
-    setInterval(() => {
-      this.renderer.render(this.scene, this.camera);
-    }, 50);
+    this.animationId = requestAnimationFrame(this.tick);
+  }
+
+  stop() {
+    cancelAnimationFrame(this.animationId);
+    this.animationId = null;
+  }
+
+  start() {
+    this.animationId = requestAnimationFrame(this.tick);
   }
 }

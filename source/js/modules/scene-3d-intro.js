@@ -22,6 +22,6 @@ export default class Scene3DIntro extends Scene3D {
       });
     }
 
-    this.render();
+    super.start();
   }
 }

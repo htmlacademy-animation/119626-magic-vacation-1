@@ -97,7 +97,7 @@ export default class Slider {
   }
 
   init() {
-    this.setSlider();
+    this.relaunchSlider();
   }
 
   removeTheme() {
@@ -106,7 +106,7 @@ export default class Slider {
     });
   }
 
-  handleResize() {
+  relaunchSlider() {
     if (this.storySlider) {
       this.storySlider.destroy();
       this.removeTheme();
@@ -115,6 +115,6 @@ export default class Slider {
   }
 
   addEventListener() {
-    window.addEventListener(`resize`, this.handleResize);
+    window.addEventListener(`resize`, this.relaunchSlider);
   }
 }
