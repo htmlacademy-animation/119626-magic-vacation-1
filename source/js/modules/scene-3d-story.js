@@ -1,4 +1,3 @@
-import * as THREE from 'three';
 import Scene3D from "./scene-3d";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
@@ -12,6 +11,7 @@ const SCENE_BGS = [
     src: `${SCENE_IMG_FOLDER}/scene-2.png`, // #3e72ee
     texture: null,
     hue: -0.2,
+    shouldRenderBubbles: false,
   },
   {
     src: `${SCENE_IMG_FOLDER}/scene-3.png`, // #5f458c
@@ -28,28 +28,23 @@ export default class Scene3DStory extends Scene3D {
     const canvas = document.getElementById(`story-scene`);
 
     super({canvas});
+
+    this.setSceneBackground = this.setSceneBackground.bind(this);
   }
 
-  updateBackground(texture, hue) {
-    const shader = this.getShader(texture, hue);
-    const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const material = new THREE.RawShaderMaterial(shader);
-    const mesh = new THREE.Mesh(geometry, material);
-
-    this.scene.add(mesh);
-    this.render();
+  start() {
+    this.setSceneBackground(0);
     this.render();
   }
 
   setSceneBackground(slideCount) {
-    const {src, texture, hue} = SCENE_BGS[slideCount];
-
-    if (texture) {
-      this.updateBackground(texture, hue);
+    if (SCENE_BGS[slideCount].texture) {
+      this.updateBackground(SCENE_BGS[slideCount]);
     } else {
-      this.textureLoader.load(src, (textureFromLoader) => {
-        SCENE_BGS[slideCount].texture = textureFromLoader;
-        this.updateBackground(textureFromLoader, hue);
+      this.textureLoader.load(SCENE_BGS[slideCount].src, (texture) => {
+        SCENE_BGS[slideCount].texture = texture;
+
+        this.updateBackground(SCENE_BGS[slideCount]);
       });
     }
   }

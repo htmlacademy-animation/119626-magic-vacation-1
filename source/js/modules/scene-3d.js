@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import fragmentSheder from '../webGL/shaders/fragmentShader.glsl';
+import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
+import fragmentShaderBubbles from '../webGL/shaders/fragmentShaderBubbles.glsl';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
 
 export default class Scene3D {
@@ -13,22 +14,36 @@ export default class Scene3D {
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
+    this.requestAnimationFrameId = null;
+
     this.init();
   }
 
-  getShader(texture, hue = 0.0) {
+  getShader(scene) {
     return {
       uniforms: {
         map: {
-          value: texture,
+          value: scene.texture,
         },
         hue: {
-          value: hue,
+          value: scene.hue || 0.0,
+        },
+        canvasSize: {
+          value: [this.width, this.height]
         },
       },
       vertexShader: vertexShader.sourceCode,
-      fragmentShader: fragmentSheder.sourceCode,
+      fragmentShader: scene.shouldRenderBubbles ? fragmentShaderBubbles.sourceCode : fragmentShader.sourceCode,
     };
+  }
+
+  updateBackground(texture) {
+    const shader = this.getShader(texture);
+    const geometry = new THREE.PlaneGeometry(this.width, this.height);
+    const material = new THREE.RawShaderMaterial(shader);
+    const mesh = new THREE.Mesh(geometry, material);
+
+    this.scene.add(mesh);
   }
 
   init() {
@@ -54,11 +69,13 @@ export default class Scene3D {
     this.renderer.setClearColor(color, alpha);
     this.renderer.setPixelRatio(this.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
-
-    this.render();
   }
 
   render() {
     this.renderer.render(this.scene, this.camera);
+
+    setInterval(() => {
+      this.renderer.render(this.scene, this.camera);
+    }, 50);
   }
 }

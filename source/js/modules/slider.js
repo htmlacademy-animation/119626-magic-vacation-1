@@ -1,5 +1,4 @@
 import Swiper from "swiper";
-import Scene3DStory from "./scene-3d-story";
 
 const CN_BLUE = `body-theme-blue`;
 const CN_LIGHT_BLUE = `body-theme-light-blue`;
@@ -13,23 +12,21 @@ const bodyThemeClasses = [
   CN_DARK,
 ];
 
-const removeTheme = () => {
-  bodyThemeClasses.forEach((cn) => {
-    document.body.classList.remove(cn);
-  });
-};
+export default class Slider {
+  constructor(scene) {
+    this.scene = scene;
 
-export default () => {
-  let storySlider;
+    this.setSlider = this.setSlider.bind(this);
+    this.addEventListener = this.addEventListener.bind(this);
 
-  const scene = new Scene3DStory();
+    this.addEventListener();
+  }
 
-  const setSlider = function () {
+  setSlider() {
     document.body.classList.add(CN_DARK);
-    scene.setSceneBackground(0);
 
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
-      storySlider = new Swiper(`.js-slider`, {
+      this.storySlider = new Swiper(`.js-slider`, {
         pagination: {
           el: `.swiper-pagination`,
           type: `bullets`
@@ -39,25 +36,25 @@ export default () => {
         },
         on: {
           slideChange: () => {
-            if (storySlider.activeIndex === 0 || storySlider.activeIndex === 1) {
-              scene.setSceneBackground(0);
-            } else if (storySlider.activeIndex === 2 || storySlider.activeIndex === 3) {
-              scene.setSceneBackground(1);
-            } else if (storySlider.activeIndex === 4 || storySlider.activeIndex === 5) {
-              scene.setSceneBackground(2);
-            } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
-              scene.setSceneBackground(3);
+            if (this.storySlider.activeIndex === 0 || this.storySlider.activeIndex === 1) {
+              this.scene.setSceneBackground(0);
+            } else if (this.storySlider.activeIndex === 2 || this.storySlider.activeIndex === 3) {
+              this.scene.setSceneBackground(1);
+            } else if (this.storySlider.activeIndex === 4 || this.storySlider.activeIndex === 5) {
+              this.scene.setSceneBackground(2);
+            } else if (this.storySlider.activeIndex === 6 || this.storySlider.activeIndex === 7) {
+              this.scene.setSceneBackground(3);
             }
           },
           resize: () => {
-            storySlider.update();
+            this.storySlider.update();
           }
         },
         observer: true,
         observeParents: true
       });
     } else {
-      storySlider = new Swiper(`.js-slider`, {
+      this.storySlider = new Swiper(`.js-slider`, {
         slidesPerView: 2,
         slidesPerGroup: 2,
         pagination: {
@@ -73,39 +70,51 @@ export default () => {
         },
         on: {
           slideChange: () => {
-            removeTheme();
+            this.removeTheme();
 
-            if (storySlider.activeIndex === 0) {
+            if (this.storySlider.activeIndex === 0) {
               document.body.classList.add(CN_PURPLE);
-              scene.setSceneBackground(0);
-            } else if (storySlider.activeIndex === 2) {
+              this.scene.setSceneBackground(0);
+            } else if (this.storySlider.activeIndex === 2) {
               document.body.classList.add(CN_BLUE);
-              scene.setSceneBackground(1);
-            } else if (storySlider.activeIndex === 4) {
+              this.scene.setSceneBackground(1);
+            } else if (this.storySlider.activeIndex === 4) {
               document.body.classList.add(CN_LIGHT_BLUE);
-              scene.setSceneBackground(2);
-            } else if (storySlider.activeIndex === 6) {
+              this.scene.setSceneBackground(2);
+            } else if (this.storySlider.activeIndex === 6) {
               document.body.classList.add(CN_DARK);
-              scene.setSceneBackground(3);
+              this.scene.setSceneBackground(3);
             }
           },
           resize: () => {
-            storySlider.update();
+            this.storySlider.update();
           }
         },
         observer: true,
         observeParents: true
       });
     }
-  };
+  }
 
-  window.addEventListener(`resize`, function () {
-    if (storySlider) {
-      storySlider.destroy();
-      removeTheme();
+  init() {
+    this.setSlider();
+  }
+
+  removeTheme() {
+    bodyThemeClasses.forEach((cn) => {
+      document.body.classList.remove(cn);
+    });
+  }
+
+  handleResize() {
+    if (this.storySlider) {
+      this.storySlider.destroy();
+      this.removeTheme();
     }
-    setSlider();
-  });
+    this.setSlider();
+  }
 
-  setSlider();
-};
+  addEventListener() {
+    window.addEventListener(`resize`, this.handleResize);
+  }
+}
