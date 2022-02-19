@@ -7,7 +7,6 @@ uniform float hue;
 uniform vec2 canvasSize;
 
 uniform bool shouldRenderBubbles;
-
 uniform vec3 bubble1;
 uniform vec3 bubble2;
 uniform vec3 bubble3;
@@ -15,20 +14,18 @@ uniform vec3 bubble3;
 varying vec2 vUv;
 
 vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
-  float bubbleX = bubble[0];
-  float bubbleY = bubble[1];
-  float bubbleRadius = bubble[2];
+  float radius = bubble[2];
 
-  vec2 bubbleCoord = vec2(canvasSize.x * bubbleX, canvasSize.y * bubbleY);
+  vec2 bubbleCoord = vec2(canvasSize.x * bubble[0], canvasSize.y * bubble[1]);
 
   float distance = distance(gl_FragCoord.xy, bubbleCoord) / bubbleCoord.y;
 
-  if (distance < bubbleRadius) {
+  if (distance < radius) {
 		const float distortion = 0.02;
 
     vec2 direction = vec2(bubbleCoord.x / canvasSize.x, bubbleCoord.y / canvasSize.y);
 
-		vec2 shift = direction * (distortion - (distortion / bubbleRadius) * distance);
+		vec2 shift = direction * (distortion - (distortion / radius) * distance);
 
     texel = texture2D(map, vUv + shift);
   }
@@ -47,7 +44,7 @@ vec3 hueShift(vec3 color, float hue) {
 void main() {
   vec4 texel = texture2D(map, vUv);
 
-  if (shouldRenderBubbles == true) {
+  if (shouldRenderBubbles) {
     texel = getTextureWithBubble(bubble1, texel);
     texel = getTextureWithBubble(bubble2, texel);
     texel = getTextureWithBubble(bubble3, texel);
