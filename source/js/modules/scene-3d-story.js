@@ -1,6 +1,6 @@
 import Scene3D from "./scene-3d";
 
-const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`
+const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
 const SCENE_BGS = [
   {
@@ -12,9 +12,9 @@ const SCENE_BGS = [
     texture: null,
     hue: -0.2,
     shouldRenderBubbles: true,
-    bubble1: [0.95, 1.8, 0.1],
-    bubble2: [0.65, 0.65, 0.15],
-    bubble3: [1.25, 0.75, 0.25],
+    bubble1: [0.5, 0.5, 0.15],
+    bubble2: [1.0, 1.0, 0.15],
+    bubble3: [1.25, 1.75, 0.15],
   },
   {
     src: `${SCENE_IMG_FOLDER}/scene-3.png`, // #5f458c

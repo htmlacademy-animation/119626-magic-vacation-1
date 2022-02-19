@@ -21,21 +21,38 @@ export default class Scene3D {
   }
 
   getShader(scene) {
-    return {
+    const shader = {
       uniforms: {
-        map: {
+        uMap: {
           value: scene.texture,
         },
-        hue: {
+        uHue: {
           value: scene.hue || 0.0,
         },
-        canvasSize: {
-          value: [this.width, this.height]
+        uCanvasSize: {
+          value: [this.width, this.height],
         },
       },
       vertexShader: vertexShader.sourceCode,
       fragmentShader: fragmentShader.sourceCode,
     };
+
+    if (scene.shouldRenderBubbles) {
+      shader.uniforms.uWithBubble = {
+        value: true
+      };
+      shader.uniforms.uBubble1 = {
+        value: scene.bubble1,
+      };
+      shader.uniforms.uBubble2 = {
+        value: scene.bubble2,
+      };
+      shader.uniforms.uBubble3 = {
+        value: scene.bubble3,
+      };
+    }
+
+    return shader;
   }
 
   updateBackground(texture) {
