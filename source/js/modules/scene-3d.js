@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import fragmentSheder from '../webGL/shaders/fragmentShader.glsl';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
+import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
 
 export default class Scene3D {
   constructor(options) {
@@ -13,22 +13,55 @@ export default class Scene3D {
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
+    this.animationId = null;
+
     this.init();
+
+    this.tick = this.tick.bind(this);
   }
 
-  getShader(texture, hue = 0.0) {
-    return {
+  getShader(scene) {
+    const shader = {
       uniforms: {
-        map: {
-          value: texture,
+        uMap: {
+          value: scene.texture,
         },
-        hue: {
-          value: hue,
+        uHue: {
+          value: scene.hue || 0.0,
+        },
+        uCanvasSize: {
+          value: [this.width, this.height],
         },
       },
       vertexShader: vertexShader.sourceCode,
-      fragmentShader: fragmentSheder.sourceCode,
+      fragmentShader: fragmentShader.sourceCode,
     };
+
+    if (scene.shouldRenderBubbles) {
+      shader.uniforms.uWithBubble = {
+        value: true
+      };
+      shader.uniforms.uBubble1 = {
+        value: scene.bubble1,
+      };
+      shader.uniforms.uBubble2 = {
+        value: scene.bubble2,
+      };
+      shader.uniforms.uBubble3 = {
+        value: scene.bubble3,
+      };
+    }
+
+    return shader;
+  }
+
+  updateBackground(texture) {
+    const shader = this.getShader(texture);
+    const geometry = new THREE.PlaneGeometry(this.width, this.height);
+    const material = new THREE.RawShaderMaterial(shader);
+    const mesh = new THREE.Mesh(geometry, material);
+
+    this.scene.add(mesh);
   }
 
   init() {
@@ -54,11 +87,20 @@ export default class Scene3D {
     this.renderer.setClearColor(color, alpha);
     this.renderer.setPixelRatio(this.devicePixelRatio);
     this.renderer.setSize(this.width, this.height);
-
-    this.render();
   }
 
-  render() {
+  tick() {
     this.renderer.render(this.scene, this.camera);
+
+    this.animationId = requestAnimationFrame(this.tick);
+  }
+
+  stop() {
+    cancelAnimationFrame(this.animationId);
+    this.animationId = null;
+  }
+
+  start() {
+    this.animationId = requestAnimationFrame(this.tick);
   }
 }
