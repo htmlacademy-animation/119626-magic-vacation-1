@@ -3,10 +3,11 @@ precision mediump float;
 uniform sampler2D uMap;
 uniform float uHue;
 uniform vec2 uCanvasSize;
-uniform bool uWithBubble;
-uniform vec3 uBubble1;
-uniform vec3 uBubble2;
-uniform vec3 uBubble3;
+uniform bool uShouldRenderBubbles;
+
+const vec3 uBubble1 = vec3(0.75, 0.75, 0.2);
+const vec3 uBubble2 = vec3(1.0, 1.0, 0.15);
+const vec3 uBubble3 = vec3(1.15, 1.25, 0.1);
 
 varying vec2 vUv;
 
@@ -34,7 +35,7 @@ vec3 hueShift(vec3 color, float uHue) {
 void main() {
   vec4 texel = texture2D(uMap, vUv);
 
-  if (uWithBubble) {
+  if (uShouldRenderBubbles) {
     texel = getTextureWithBubble(uBubble1, texel);
     texel = getTextureWithBubble(uBubble2, texel);
     texel = getTextureWithBubble(uBubble3, texel);

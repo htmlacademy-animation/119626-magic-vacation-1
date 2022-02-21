@@ -12,9 +12,6 @@ const SCENE_BGS = [
     texture: null,
     hue: -0.2,
     shouldRenderBubbles: true,
-    bubble1: [0.5, 0.5, 0.15],
-    bubble2: [1.0, 1.0, 0.15],
-    bubble3: [1.25, 1.75, 0.15],
   },
   {
     src: `${SCENE_IMG_FOLDER}/scene-3.png`, // #5f458c
