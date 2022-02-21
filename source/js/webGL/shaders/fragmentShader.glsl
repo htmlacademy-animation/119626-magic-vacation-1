@@ -46,7 +46,7 @@ vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
 
   bool shouldRenderHighlight = highlightAngle >= highlightAngleStart && highlightAngle <= highlightAngleEnd;
 
-  if (dist > highlightRadius && dist < highlightRadius + bubbleBorderWidth && shouldRenderHighlight) {
+  if (shouldRenderHighlight && dist > highlightRadius && dist < highlightRadius + bubbleBorderWidth) {
     texel = getTextureWithBubbleBorder(texture2D(uMap, vUv), bubbleBorderColor);
   }
 
