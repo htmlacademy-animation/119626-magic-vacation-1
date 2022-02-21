@@ -16,7 +16,6 @@ export default class Slider {
   constructor(scene) {
     this.scene = scene;
 
-    this.setSlider = this.setSlider.bind(this);
     this.addEventListener = this.addEventListener.bind(this);
 
     this.addEventListener();
@@ -111,7 +110,10 @@ export default class Slider {
       this.storySlider.destroy();
       this.removeTheme();
     }
-    this.setSlider();
+
+    if (this.setSlider) {
+      this.setSlider();
+    }
   }
 
   addEventListener() {
