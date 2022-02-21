@@ -27,7 +27,7 @@ vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
 
   // distortion
   if (dist < radius) {
-    texel = texture2D(uMap, vUv + (dist * dist * dist));
+    texel = texture2D(uMap, vUv + dist * dist * dist);
   }
 
   // border
