@@ -5,9 +5,9 @@ uniform float uHue;
 uniform vec2 uCanvasSize;
 uniform bool uShouldRenderBubbles;
 
-const vec3 uBubble1 = vec3(0.75, 0.75, 0.2);
-const vec3 uBubble2 = vec3(1.0, 1.0, 0.15);
-const vec3 uBubble3 = vec3(1.15, 1.25, 0.1);
+const vec3 uBubble1 = vec3(0.75, 0.5, 0.3);
+const vec3 uBubble2 = vec3(1.0, 1.0, 0.25);
+const vec3 uBubble3 = vec3(1.1, 1.45, 0.2);
 
 varying vec2 vUv;
 
@@ -17,8 +17,7 @@ vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
   float dist = distance(gl_FragCoord.xy, bubbleCoords) / uCanvasSize.y;
 
   if (dist < bubble.z) {
-    vec2 direction = (vec2(bubbleCoords.x / uCanvasSize.x, bubbleCoords.y / uCanvasSize.y ) - vUv);
-    texel = texture2D(uMap, vUv + direction * dist);
+    texel = texture2D(uMap, vUv + (dist * dist * dist));
   }
 
   return texel;
