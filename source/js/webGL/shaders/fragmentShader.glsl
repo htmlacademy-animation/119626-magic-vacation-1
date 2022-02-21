@@ -37,10 +37,14 @@ vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
 
   // highlight
   float highlightRadius = radius * 0.75;
+
   vec2 highlightCoords = gl_FragCoord.xy - bubbleCoords;
+
+  float highlightAngleStart = 2.0;
+  float highlightAngleEnd = 2.5;
   float highlightAngle = atan(highlightCoords.y, highlightCoords.x);
 
-  bool shouldRenderHighlight = highlightAngle >= 2.0 && highlightAngle <= 3.0;
+  bool shouldRenderHighlight = highlightAngle >= highlightAngleStart && highlightAngle <= highlightAngleEnd;
 
   if (dist > highlightRadius && dist < highlightRadius + bubbleBorderWidth && shouldRenderHighlight) {
     texel = getTextureWithBubbleBorder(texture2D(uMap, vUv), bubbleBorderColor);
