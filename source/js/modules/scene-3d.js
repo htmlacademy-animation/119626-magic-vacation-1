@@ -38,17 +38,8 @@ export default class Scene3D {
     };
 
     if (scene.shouldRenderBubbles) {
-      shader.uniforms.uWithBubble = {
+      shader.uniforms.uShouldRenderBubbles = {
         value: true
-      };
-      shader.uniforms.uBubble1 = {
-        value: scene.bubble1,
-      };
-      shader.uniforms.uBubble2 = {
-        value: scene.bubble2,
-      };
-      shader.uniforms.uBubble3 = {
-        value: scene.bubble3,
       };
     }
 
