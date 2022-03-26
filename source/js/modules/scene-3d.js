@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Animation from './animation';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
 import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
 
@@ -20,14 +21,32 @@ export default class Scene3D {
     this.tick = this.tick.bind(this);
   }
 
-  getShader(scene) {
-    const shader = {
+  getRandomHue() {
+    const HUE_MIN = 0.2;
+    const HUE_MAX = 0.7;
+
+    const randomHue = Math.random();
+
+    if (randomHue > HUE_MAX) {
+      return HUE_MAX;
+    }
+
+    if (randomHue < HUE_MIN) {
+      return HUE_MIN;
+    }
+    return randomHue;
+  }
+
+  setMaterial(scene) {
+    const hue = scene.shouldRenderBubbles ? this.getRandomHue() : 0;
+
+    this.material = new THREE.RawShaderMaterial({
       uniforms: {
         uMap: {
           value: scene.texture,
         },
         uHue: {
-          value: scene.hue || 0.0,
+          value: hue,
         },
         uCanvasSize: {
           value: [this.width, this.height],
@@ -35,19 +54,20 @@ export default class Scene3D {
         uShouldRenderBubbles: {
           value: scene.shouldRenderBubbles,
         },
+        uProgress: {
+          value: 0,
+        }
       },
       vertexShader: vertexShader.sourceCode,
       fragmentShader: fragmentShader.sourceCode,
-    };
-
-    return shader;
+    });
   }
 
   updateBackground(texture) {
-    const shader = this.getShader(texture);
+    this.setMaterial(texture);
+
     const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const material = new THREE.RawShaderMaterial(shader);
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(geometry, this.material);
 
     this.scene.add(mesh);
   }
@@ -89,6 +109,20 @@ export default class Scene3D {
   }
 
   start() {
-    this.animationId = requestAnimationFrame(this.tick);
+    this.stop();
+
+    this.animation = new Animation(
+        {
+          func: (progress) => {
+            if (this.material) {
+              this.material.uniforms.uProgress = {value: progress};
+            }
+            this.tick();
+          },
+          duration: 2000,
+        }
+    );
+
+    this.animation.start();
   }
 }

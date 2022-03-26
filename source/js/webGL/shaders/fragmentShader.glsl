@@ -2,6 +2,7 @@ precision mediump float;
 
 uniform sampler2D uMap;
 uniform float uHue;
+uniform float uProgress;
 uniform vec2 uCanvasSize;
 uniform bool uShouldRenderBubbles;
 
@@ -53,27 +54,27 @@ vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
   return texel;
 }
 
-vec3 hueShift(vec3 color, float uHue) {
+vec3 hueShift(vec3 color, float hue) {
 	const vec3 k = vec3(0.57735, 0.57735, 0.57735);
 
-	float cosAngle = cos(uHue);
+	float cosAngle = cos(hue);
 
-	return vec3(color * cosAngle + cross(k, color) * sin(uHue) + k * dot(k, color) * (1.0 - cosAngle));
+	return vec3(color * cosAngle + cross(k, color) * sin(hue) + k * dot(k, color) * (1.0 - cosAngle));
 }
 
 void main() {
   vec4 texel = texture2D(uMap, vUv);
 
   if (uShouldRenderBubbles) {
+    // render bubbles
     texel = getTextureWithBubble(bubble1, texel);
     texel = getTextureWithBubble(bubble2, texel);
     texel = getTextureWithBubble(bubble3, texel);
-  }
 
-	if (uHue == 0.0) {
-    gl_FragColor = texel;
-  } else {
-    vec3 hueShifted = hueShift(texel.rgb, uHue);
+    // hue shift
+    vec3 hueShifted = hueShift(texel.rgb, uHue * uProgress);
 		gl_FragColor = vec4(hueShifted.rgb, 1);
+  } else {
+    gl_FragColor = texel;
   }
 }

@@ -10,7 +10,6 @@ const SCENE_BGS = [
   {
     src: `${SCENE_IMG_FOLDER}/scene-2.png`, // #3e72ee
     texture: null,
-    hue: -0.2,
     shouldRenderBubbles: true,
   },
   {
@@ -33,8 +32,8 @@ export default class Scene3DStory extends Scene3D {
   }
 
   start() {
-    super.start();
     this.setSceneBackground(0);
+    super.start();
   }
 
   setSceneBackground(slideCount) {
@@ -47,5 +46,7 @@ export default class Scene3DStory extends Scene3D {
         this.updateBackground(SCENE_BGS[slideCount]);
       });
     }
+
+    super.start();
   }
 }
