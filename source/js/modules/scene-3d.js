@@ -32,16 +32,13 @@ export default class Scene3D {
         uCanvasSize: {
           value: [this.width, this.height],
         },
+        uShouldRenderBubbles: {
+          value: scene.shouldRenderBubbles,
+        },
       },
       vertexShader: vertexShader.sourceCode,
       fragmentShader: fragmentShader.sourceCode,
     };
-
-    if (scene.shouldRenderBubbles) {
-      shader.uniforms.uShouldRenderBubbles = {
-        value: true
-      };
-    }
 
     return shader;
   }
