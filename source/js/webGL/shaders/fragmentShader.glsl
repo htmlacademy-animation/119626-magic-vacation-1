@@ -72,7 +72,8 @@ void main() {
     texel = getTextureWithBubble(bubble3, texel);
 
     // hue shift
-    vec3 hueShifted = hueShift(texel.rgb, uHue * uProgress);
+    float hue = uHue * uProgress * -1.0;
+    vec3 hueShifted = hueShift(texel.rgb, hue);
 		gl_FragColor = vec4(hueShifted.rgb, 1);
   } else {
     gl_FragColor = texel;

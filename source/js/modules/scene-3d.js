@@ -19,7 +19,7 @@ export default class Scene3D {
 
   getRandomHue() {
     const HUE_MIN = 0.2;
-    const HUE_MAX = 0.7;
+    const HUE_MAX = 0.5;
 
     const randomHue = Math.random();
 
@@ -34,15 +34,13 @@ export default class Scene3D {
   }
 
   setMaterial(scene) {
-    const hue = scene.shouldRenderBubbles ? this.getRandomHue() : 0;
-
     this.material = new THREE.RawShaderMaterial({
       uniforms: {
         uMap: {
           value: scene.texture,
         },
         uHue: {
-          value: hue,
+          value: this.getRandomHue(),
         },
         uCanvasSize: {
           value: [this.width, this.height],
