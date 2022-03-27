@@ -14,8 +14,6 @@ export default class Scene3D {
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
-    this.animationId = null;
-
     this.init();
   }
 
@@ -100,8 +98,9 @@ export default class Scene3D {
   }
 
   stop() {
-    cancelAnimationFrame(this.animationId);
-    this.animationId = null;
+    if (this.animation) {
+      this.animation.stop();
+    }
   }
 
   start() {
