@@ -17,8 +17,6 @@ export default class Scene3D {
     this.animationId = null;
 
     this.init();
-
-    this.tick = this.tick.bind(this);
   }
 
   getRandomHue() {
@@ -97,10 +95,8 @@ export default class Scene3D {
     this.renderer.setSize(this.width, this.height);
   }
 
-  tick() {
+  renderScene() {
     this.renderer.render(this.scene, this.camera);
-
-    this.animationId = requestAnimationFrame(this.tick);
   }
 
   stop() {
@@ -117,7 +113,7 @@ export default class Scene3D {
             if (this.material) {
               this.material.uniforms.uProgress = {value: progress};
             }
-            this.tick();
+            this.renderScene();
           },
           duration: 2000,
         }
