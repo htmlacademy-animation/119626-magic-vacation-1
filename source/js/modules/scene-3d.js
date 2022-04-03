@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import Animation from './animation';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
 import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
 
@@ -14,7 +13,13 @@ export default class Scene3D {
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
+    this.animationId = null;
+    this.animations = [];
+    this.material = null;
+
     this.init();
+
+    this.tick = this.tick.bind(this);
   }
 
   getRandomHue() {
@@ -91,31 +96,41 @@ export default class Scene3D {
     this.renderer.setSize(this.width, this.height);
   }
 
-  renderScene() {
+  tick() {
     this.renderer.render(this.scene, this.camera);
+
+    this.animationId = requestAnimationFrame(this.tick);
+  }
+
+  stopAnimation() {
+    if (this.animations && this.animations.length) {
+      this.animations.forEach((animation) => {
+        animation.stop();
+      });
+    }
+  }
+
+  startAnimation() {
+    this.stopAnimation();
+
+    if (this.animations && this.animations.length) {
+      this.animations.forEach((animation) => {
+        animation.start();
+      });
+    }
   }
 
   stop() {
-    if (this.animation) {
-      this.animation.stop();
-    }
+    this.stopAnimation();
+
+    cancelAnimationFrame(this.animationId);
+    this.animationId = null;
   }
 
   start() {
     this.stop();
+    this.startAnimation();
 
-    this.animation = new Animation(
-        {
-          func: (progress) => {
-            if (this.material) {
-              this.material.uniforms.uProgress = {value: progress};
-            }
-            this.renderScene();
-          },
-          duration: 2000,
-        }
-    );
-
-    this.animation.start();
+    this.animationId = requestAnimationFrame(this.tick);
   }
 }

@@ -1,4 +1,5 @@
 import Scene3D from "./scene-3d";
+import Animation from './animation';
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -28,7 +29,21 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
+    this.start = this.start.bind(this);
     this.setSceneBackground = this.setSceneBackground.bind(this);
+
+    this.setAnimations();
+  }
+
+  setAnimations() {
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgress = {value: progress};
+        }
+      },
+      duration: 2000,
+    }));
   }
 
   start() {
@@ -47,6 +62,6 @@ export default class Scene3DStory extends Scene3D {
       });
     }
 
-    super.start();
+    this.startAnimation();
   }
 }
