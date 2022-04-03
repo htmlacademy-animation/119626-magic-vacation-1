@@ -29,9 +29,6 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
-    this.start = this.start.bind(this);
-    this.setSceneBackground = this.setSceneBackground.bind(this);
-
     this.setAnimations();
   }
 

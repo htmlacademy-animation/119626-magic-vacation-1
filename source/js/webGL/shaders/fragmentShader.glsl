@@ -31,7 +31,7 @@ vec4 getTextureWithBubbleBorder(vec4 texel, vec4 color) {
 }
 
 vec2 getBubbleCoords(Bubble bubble, float progress){
-  float x = bubble.amplitude * sin(progress * 3.14 * 3.0) + bubble.startXCoord;
+  float x = bubble.amplitude * pow(1.0 - progress, 1.0) * sin(progress * 3.14 * 3.0) + bubble.startXCoord;
   float y = 2.0 * progress + bubble.radius;
 
   return vec2(uCanvasSize.x * x, uCanvasSize.y * y);
