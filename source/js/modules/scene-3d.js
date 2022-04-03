@@ -14,8 +14,8 @@ export default class Scene3D {
     this.zCoordinateMax = 1000;
 
     this.animationId = null;
-    this.animations = [];
     this.material = null;
+    this.animations = [];
 
     this.init();
 
@@ -53,7 +53,16 @@ export default class Scene3D {
         uShouldRenderBubbles: {
           value: scene.shouldRenderBubbles,
         },
-        uProgress: {
+        uProgressHue: {
+          value: 0,
+        },
+        uProgressBubble1: {
+          value: 0.5,
+        },
+        uProgressBubble2: {
+          value: 0,
+        },
+        uProgressBubble3: {
           value: 0,
         }
       },
@@ -96,8 +105,12 @@ export default class Scene3D {
     this.renderer.setSize(this.width, this.height);
   }
 
-  tick() {
+  renderScene() {
     this.renderer.render(this.scene, this.camera);
+  }
+
+  tick() {
+    this.renderScene();
 
     this.animationId = requestAnimationFrame(this.tick);
   }

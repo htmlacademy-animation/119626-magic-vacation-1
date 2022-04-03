@@ -39,10 +39,39 @@ export default class Scene3DStory extends Scene3D {
     this.animations.push(new Animation({
       func: (progress) => {
         if (this.material) {
-          this.material.uniforms.uProgress = {value: progress};
+          this.material.uniforms.uProgressHue = {value: progress};
         }
       },
       duration: 2000,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble1 = {value: progress};
+        }
+      },
+      duration: 1100,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble2 = {value: progress};
+        }
+      },
+      duration: 900,
+      delay: 900,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble3 = {value: progress};
+        }
+      },
+      duration: 800,
+      delay: 1200,
     }));
   }
 
@@ -62,6 +91,10 @@ export default class Scene3DStory extends Scene3D {
       });
     }
 
-    this.startAnimation();
+    if (slideCount === 1) {
+      super.startAnimation();
+    } else {
+      super.stopAnimation();
+    }
   }
 }

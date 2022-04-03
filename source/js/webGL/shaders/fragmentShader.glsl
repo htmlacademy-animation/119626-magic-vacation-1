@@ -2,16 +2,27 @@ precision mediump float;
 
 uniform sampler2D uMap;
 uniform float uHue;
-uniform float uProgress;
 uniform vec2 uCanvasSize;
 uniform bool uShouldRenderBubbles;
+
+uniform float uProgressHue;
+uniform float uProgressBubble1;
+uniform float uProgressBubble2;
+uniform float uProgressBubble3;
 
 const float bubbleBorderWidth = 0.01;
 const vec4 bubbleBorderColor = vec4(1.0, 1.0, 1.0, 0.15);
 
-const vec3 bubble1 = vec3(0.75, 0.25, 0.3);
-const vec3 bubble2 = vec3(1.0, 1.0, 0.25);
-const vec3 bubble3 = vec3(1.2, 1.5, 0.2);
+struct Bubble {
+  vec2 coords;
+  float radius;
+  float amplitude;
+  float startXCoord;
+};
+
+const Bubble bubble1 = Bubble(vec2(0.75, 0.25), 0.3, 0.08, 0.9);
+const Bubble bubble2 = Bubble(vec2(1.0, 1.0), 0.25, 0.1, 0.75);
+const Bubble bubble3 = Bubble(vec2(1.2, 1.5), 0.2, 0.05, 0.6);
 
 varying vec2 vUv;
 
@@ -19,10 +30,17 @@ vec4 getTextureWithBubbleBorder(vec4 texel, vec4 color) {
   return vec4(mix(texel.rgb, color.rgb, color.a), texel.a);
 }
 
-vec4 getTextureWithBubble(vec3 bubble, vec4 texel) {
-  float radius = bubble.z;
+vec2 getBubbleCoords(Bubble bubble, float progress){
+  float x = bubble.amplitude * sin(progress * 3.14 * 3.0) + bubble.startXCoord;
+  float y = 2.0 * progress + bubble.radius;
 
-  vec2 bubbleCoords = vec2(uCanvasSize.x * bubble.x, uCanvasSize.y * bubble.y);
+  return vec2(uCanvasSize.x * x, uCanvasSize.y * y);
+}
+
+vec4 getTextureWithBubble(Bubble bubble, vec4 texel, float progress) {
+  float radius = bubble.radius;
+
+  vec2 bubbleCoords = getBubbleCoords(bubble, progress);
 
   float dist = distance(gl_FragCoord.xy, bubbleCoords) / uCanvasSize.y;
 
@@ -67,12 +85,20 @@ void main() {
 
   if (uShouldRenderBubbles) {
     // render bubbles
-    texel = getTextureWithBubble(bubble1, texel);
-    texel = getTextureWithBubble(bubble2, texel);
-    texel = getTextureWithBubble(bubble3, texel);
+    if (uProgressBubble1 > 0.0) {
+      texel = getTextureWithBubble(bubble1, texel, uProgressBubble1);
+    }
+
+    if (uProgressBubble2 > 0.0) {
+      texel = getTextureWithBubble(bubble2, texel, uProgressBubble2);
+    }
+
+    if (uProgressBubble3 > 0.0) {
+      texel = getTextureWithBubble(bubble3, texel, uProgressBubble3);
+    }
 
     // hue shift
-    float hue = uHue * uProgress * -1.0;
+    float hue = uHue * uProgressHue * -1.0;
     vec3 hueShifted = hueShift(texel.rgb, hue);
 		gl_FragColor = vec4(hueShifted.rgb, 1);
   } else {
