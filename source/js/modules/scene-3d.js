@@ -17,9 +17,9 @@ export default class Scene3D {
     this.material = null;
     this.animations = [];
 
-    this.init();
-
     this.tick = this.tick.bind(this);
+
+    this.init();
   }
 
   getRandomHue() {
