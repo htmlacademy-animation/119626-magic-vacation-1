@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import Animation from './animation';
 import vertexShader from '../webGL/shaders/vertexShader.glsl';
 import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
 
@@ -13,6 +12,12 @@ export default class Scene3D {
     this.perspectiveAngle = 45;
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
+
+    this.animationId = null;
+    this.material = null;
+    this.animations = [];
+
+    this.tick = this.tick.bind(this);
 
     this.init();
   }
@@ -48,7 +53,16 @@ export default class Scene3D {
         uShouldRenderBubbles: {
           value: scene.shouldRenderBubbles,
         },
-        uProgress: {
+        uProgressHue: {
+          value: 0,
+        },
+        uProgressBubble1: {
+          value: 0.5,
+        },
+        uProgressBubble2: {
+          value: 0,
+        },
+        uProgressBubble3: {
           value: 0,
         }
       },
@@ -95,27 +109,41 @@ export default class Scene3D {
     this.renderer.render(this.scene, this.camera);
   }
 
-  stop() {
-    if (this.animation) {
-      this.animation.stop();
+  tick() {
+    this.renderScene();
+
+    this.animationId = requestAnimationFrame(this.tick);
+  }
+
+  stopAnimation() {
+    if (this.animations && this.animations.length) {
+      this.animations.forEach((animation) => {
+        animation.stop();
+      });
     }
+  }
+
+  startAnimation() {
+    this.stopAnimation();
+
+    if (this.animations && this.animations.length) {
+      this.animations.forEach((animation) => {
+        animation.start();
+      });
+    }
+  }
+
+  stop() {
+    this.stopAnimation();
+
+    cancelAnimationFrame(this.animationId);
+    this.animationId = null;
   }
 
   start() {
     this.stop();
+    this.startAnimation();
 
-    this.animation = new Animation(
-        {
-          func: (progress) => {
-            if (this.material) {
-              this.material.uniforms.uProgress = {value: progress};
-            }
-            this.renderScene();
-          },
-          duration: 2000,
-        }
-    );
-
-    this.animation.start();
+    this.animationId = requestAnimationFrame(this.tick);
   }
 }

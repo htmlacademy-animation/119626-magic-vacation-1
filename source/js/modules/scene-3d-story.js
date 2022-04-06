@@ -1,4 +1,5 @@
 import Scene3D from "./scene-3d";
+import Animation from './animation';
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -28,7 +29,47 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
-    this.setSceneBackground = this.setSceneBackground.bind(this);
+    this.setAnimations();
+  }
+
+  setAnimations() {
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressHue = {value: progress};
+        }
+      },
+      duration: 2000,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble1 = {value: progress};
+        }
+      },
+      duration: 1100,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble2 = {value: progress};
+        }
+      },
+      duration: 900,
+      delay: 900,
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        if (this.material) {
+          this.material.uniforms.uProgressBubble3 = {value: progress};
+        }
+      },
+      duration: 800,
+      delay: 1200,
+    }));
   }
 
   start() {
@@ -47,6 +88,10 @@ export default class Scene3DStory extends Scene3D {
       });
     }
 
-    super.start();
+    if (slideCount === 1) {
+      super.startAnimation();
+    } else {
+      super.stopAnimation();
+    }
   }
 }
