@@ -25,7 +25,6 @@ export default class Scene3D {
   getRandomHue() {
     const HUE_MIN = 0.2;
     const HUE_MAX = 0.5;
-
     const randomHue = Math.random();
 
     if (randomHue > HUE_MAX) {
@@ -35,6 +34,7 @@ export default class Scene3D {
     if (randomHue < HUE_MIN) {
       return HUE_MIN;
     }
+
     return randomHue;
   }
 
