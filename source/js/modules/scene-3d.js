@@ -9,7 +9,7 @@ export default class Scene3D {
     this.height = window.innerHeight;
     this.devicePixelRatio = window.devicePixelRatio;
     this.aspectRatio = this.width / this.height;
-    this.perspectiveAngle = 45;
+    this.perspectiveAngle = 35;
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
@@ -89,7 +89,7 @@ export default class Scene3D {
         this.zCoordinateMax
     );
 
-    this.camera.position.z = 1000;
+    this.camera.position.z = 750;
 
     this.textureLoader = new THREE.TextureLoader();
 
