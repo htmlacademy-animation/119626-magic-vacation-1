@@ -62881,10 +62881,10 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_1__["default"] {
   }
 
   getSphere() {
-    const geometry = new three__WEBPACK_IMPORTED_MODULE_0__["SphereGeometry"](100, 200, 32);
+    const geometry = new three__WEBPACK_IMPORTED_MODULE_0__["SphereGeometry"](100, 32, 32);
 
     const material = new three__WEBPACK_IMPORTED_MODULE_0__["MeshStandardMaterial"]({
-      color: 0x000000,
+      color: new three__WEBPACK_IMPORTED_MODULE_0__["Color"](`aqua`),
       metalness: 0.05,
       emissive: 0x0,
       roughness: 0.5
@@ -62967,7 +62967,6 @@ class Scene3D {
   getRandomHue() {
     const HUE_MIN = 0.2;
     const HUE_MAX = 0.5;
-
     const randomHue = Math.random();
 
     if (randomHue > HUE_MAX) {
@@ -62977,6 +62976,7 @@ class Scene3D {
     if (randomHue < HUE_MIN) {
       return HUE_MIN;
     }
+
     return randomHue;
   }
 
