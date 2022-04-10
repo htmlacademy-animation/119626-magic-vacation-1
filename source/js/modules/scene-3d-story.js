@@ -48,7 +48,7 @@ export default class Scene3DStory extends Scene3D {
           this.material.uniforms.uProgressBubble1 = {value: progress};
         }
       },
-      duration: 1100,
+      duration: 1300,
     }));
 
     this.animations.push(new Animation({
@@ -57,8 +57,8 @@ export default class Scene3DStory extends Scene3D {
           this.material.uniforms.uProgressBubble2 = {value: progress};
         }
       },
-      duration: 900,
-      delay: 900,
+      duration: 1200,
+      delay: 700,
     }));
 
     this.animations.push(new Animation({
@@ -67,13 +67,13 @@ export default class Scene3DStory extends Scene3D {
           this.material.uniforms.uProgressBubble3 = {value: progress};
         }
       },
-      duration: 800,
+      duration: 1100,
       delay: 1200,
     }));
   }
 
   start() {
-    this.setSceneBackground(0);
+    this.setSceneBackground(1);
     super.start();
   }
 

@@ -20,9 +20,9 @@ struct Bubble {
   float startXCoord;
 };
 
-const Bubble bubble1 = Bubble(vec2(0.75, 0.25), 0.3, 0.08, 0.9);
-const Bubble bubble2 = Bubble(vec2(1.0, 1.0), 0.25, 0.1, 0.75);
-const Bubble bubble3 = Bubble(vec2(1.2, 1.5), 0.2, 0.05, 0.6);
+const Bubble bubble1 = Bubble(vec2(0.75, 0.25), 0.125, 0.08, 0.75);
+const Bubble bubble2 = Bubble(vec2(1.0, 1.0), 0.1, 0.1, 0.6);
+const Bubble bubble3 = Bubble(vec2(1.2, 1.5), 0.075, 0.05, 0.9);
 
 varying vec2 vUv;
 
@@ -46,7 +46,7 @@ vec4 getTextureWithBubble(Bubble bubble, vec4 texel, float progress) {
 
   // distortion
   if (dist < radius) {
-    texel = texture2D(uMap, vUv + dist * dist * dist);
+    texel = texture2D(uMap, vUv + dist * dist);
   }
 
   // border
