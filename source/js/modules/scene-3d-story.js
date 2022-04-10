@@ -99,10 +99,10 @@ export default class Scene3DStory extends Scene3D {
   }
 
   getSphere() {
-    const geometry = new THREE.SphereGeometry(100, 200, 32);
+    const geometry = new THREE.SphereGeometry(100, 32, 32);
 
     const material = new THREE.MeshStandardMaterial({
-      color: 0x000000,
+      color: new THREE.Color(`aqua`),
       metalness: 0.05,
       emissive: 0x0,
       roughness: 0.5
