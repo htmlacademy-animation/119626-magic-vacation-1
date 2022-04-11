@@ -1,6 +1,6 @@
 import * as THREE from 'three';
+import Animation from '../animation';
 import Scene3D from "./scene-3d";
-import Animation from './animation';
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
