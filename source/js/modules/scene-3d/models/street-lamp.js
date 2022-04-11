@@ -4,7 +4,7 @@ export default class ModelStreetLamp extends THREE.Group {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0x514EF3});
+    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0x1861cf});
 
     this.constructChildren();
   }
