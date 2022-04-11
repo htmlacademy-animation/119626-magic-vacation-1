@@ -9,7 +9,7 @@ export default class Scene3D {
     this.height = window.innerHeight;
     this.devicePixelRatio = window.devicePixelRatio;
     this.aspectRatio = this.width / this.height;
-    this.perspectiveAngle = 45;
+    this.perspectiveAngle = 35;
     this.zCoordinateMin = 0.1;
     this.zCoordinateMax = 1000;
 
@@ -25,7 +25,6 @@ export default class Scene3D {
   getRandomHue() {
     const HUE_MIN = 0.2;
     const HUE_MAX = 0.5;
-
     const randomHue = Math.random();
 
     if (randomHue > HUE_MAX) {
@@ -35,6 +34,7 @@ export default class Scene3D {
     if (randomHue < HUE_MIN) {
       return HUE_MIN;
     }
+
     return randomHue;
   }
 
@@ -89,7 +89,7 @@ export default class Scene3D {
         this.zCoordinateMax
     );
 
-    this.camera.position.z = 1000;
+    this.camera.position.z = 750;
 
     this.textureLoader = new THREE.TextureLoader();
 
