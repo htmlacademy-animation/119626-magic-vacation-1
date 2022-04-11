@@ -3,6 +3,7 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
 import SceneWithPyramid from "./scenes/scene-with-pyramid";
+import SceneWithSnowman from "./scenes/scene-with-snowman";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -77,8 +78,10 @@ export default class Scene3DStory extends Scene3D {
 
   start() {
     this.setSceneBackground(0);
+
     this.scene.add(this.getLight());
     this.scene.add(this.getSceneWithPyramid());
+    this.scene.add(this.getSceneWithSnowman());
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
@@ -104,7 +107,7 @@ export default class Scene3DStory extends Scene3D {
   }
 
   renderScene() {
-    this.controls.update();
+    this.controls.update(); // TODO: remove. for devs only
 
     super.renderScene();
   }
@@ -138,5 +141,9 @@ export default class Scene3DStory extends Scene3D {
 
   getSceneWithPyramid() {
     return new SceneWithPyramid();
+  }
+
+  getSceneWithSnowman() {
+    return new SceneWithSnowman();
   }
 }

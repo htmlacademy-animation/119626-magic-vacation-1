@@ -14,9 +14,9 @@ export default class SceneWithPyramid extends THREE.Group {
   }
 
   addStreetLamp() {
-    const streetLamp = new ModelStreetLamp(this.defaultMaterial);
-    streetLamp.position.set(150, -250, 0);
+    const model = new ModelStreetLamp();
+    model.position.set(150, -250, 0);
 
-    this.add(streetLamp);
+    this.add(model);
   }
 }
