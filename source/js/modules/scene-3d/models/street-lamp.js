@@ -4,7 +4,7 @@ export default class ModelStreetLamp extends THREE.Group {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0x1861cf});
+    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0X1861CF});
 
     this.constructChildren();
   }
@@ -25,7 +25,7 @@ export default class ModelStreetLamp extends THREE.Group {
     this.add(lampTopMesh);
 
     const lampMidGeometry = new THREE.CylinderGeometry(42, 34, 60, 4);
-    const lampMidMaterial = new THREE.MeshStandardMaterial({color: 0xAE9BFF});
+    const lampMidMaterial = new THREE.MeshStandardMaterial({color: 0XAE9BFF});
     const lampMidMesh = new THREE.Mesh(lampMidGeometry, lampMidMaterial);
 
     lampMidMesh.position.set(0, 400, 0);

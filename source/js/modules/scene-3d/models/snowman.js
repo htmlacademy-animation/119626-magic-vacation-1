@@ -4,7 +4,7 @@ export default class ModelSnowman extends THREE.Group {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0xb2d0f4});
+    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0XB2D0F4});
 
     this.constructChildren();
   }
@@ -36,7 +36,7 @@ export default class ModelSnowman extends THREE.Group {
 
   addCarrot() {
     const geometry = new THREE.ConeGeometry(18, 75, 30);
-    const material = new THREE.MeshStandardMaterial({color: 0xff4500});
+    const material = new THREE.MeshStandardMaterial({color: 0XFF4500});
     const mesh = new THREE.Mesh(geometry, material);
 
     mesh.position.set(50, 173, 0);

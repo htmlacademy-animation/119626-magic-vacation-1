@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
 import SceneWithPyramid from "./scenes/scene-with-pyramid";
@@ -83,7 +83,7 @@ export default class Scene3DStory extends Scene3D {
     this.scene.add(this.getSceneWithPyramid());
     this.scene.add(this.getSceneWithSnowman());
 
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
     super.start();
   }

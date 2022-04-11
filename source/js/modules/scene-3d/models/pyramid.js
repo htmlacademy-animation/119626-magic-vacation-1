@@ -4,7 +4,7 @@ export default class ModelPyramid extends THREE.Group {
   constructor() {
     super();
 
-    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0x1861cf});
+    this.defaultMaterial = new THREE.MeshStandardMaterial({color: 0X1861CF});
 
     this.constructChildren();
   }
