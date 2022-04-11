@@ -15,7 +15,7 @@ export default class ModelPyramid extends THREE.Group {
   }
 
   addPyramid() {
-    const geometry = new THREE.ConeBufferGeometry(Math.hypot(250, 250) / 2, 280, 4);
+    const geometry = new THREE.ConeGeometry(Math.hypot(250, 250) / 2, 280, 4);
     const mesh = new THREE.Mesh(geometry, this.defaultMaterial);
 
     mesh.position.set(0, 125, 0);
