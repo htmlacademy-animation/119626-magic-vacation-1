@@ -1,6 +1,8 @@
 import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
+import SceneWithPyramid from "./scenes/scene-with-pyramid";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -75,8 +77,11 @@ export default class Scene3DStory extends Scene3D {
 
   start() {
     this.setSceneBackground(0);
-    this.scene.add(this.getSphere());
     this.scene.add(this.getLight());
+    this.scene.add(this.getSceneWithPyramid());
+
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+
     super.start();
   }
 
@@ -98,19 +103,11 @@ export default class Scene3DStory extends Scene3D {
     }
   }
 
-  getSphere() {
-    const geometry = new THREE.SphereGeometry(100, 32, 32);
+  renderScene() {
+    this.controls.update();
 
-    const material = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(`aqua`),
-      metalness: 0.05,
-      emissive: 0x0,
-      roughness: 0.5
-    });
-
-    return new THREE.Mesh(geometry, material);
+    super.renderScene();
   }
-
 
   getLight() {
     const light = new THREE.Group();
@@ -137,5 +134,9 @@ export default class Scene3DStory extends Scene3D {
     light.add(lightUnit3);
 
     return light;
+  }
+
+  getSceneWithPyramid() {
+    return new SceneWithPyramid();
   }
 }
