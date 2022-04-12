@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import vertexShader from '../webGL/shaders/vertexShader.glsl';
-import fragmentShader from '../webGL/shaders/fragmentShader.glsl';
+import vertexShader from '../../webGL/shaders/vertexShader.glsl';
+import fragmentShader from '../../webGL/shaders/fragmentShader.glsl';
 
 export default class Scene3D {
   constructor(options) {

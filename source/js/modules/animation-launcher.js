@@ -1,5 +1,5 @@
-import Scene3DIntro from "./scene-3d-intro";
-import Scene3DStory from "./scene-3d-story";
+import Scene3DIntro from "./scene-3d/scene-3d-intro";
+import Scene3DStory from "./scene-3d/scene-3d-story";
 import Slider from "./slider";
 
 export default class AnimationLauncher {
