@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
-import SceneWithPyramid from "./scenes/scene-with-pyramid";
-import SceneWithSnowman from "./scenes/scene-with-snowman";
+import StoryScene2 from "./story-scenes/story-scene-2";
+import StoryScene3 from "./story-scenes/story-scene-3";
 
 const SCENE_IMG_FOLDER = `./img/module-5/scenes-textures`;
 
@@ -140,10 +140,10 @@ export default class Scene3DStory extends Scene3D {
   }
 
   getSceneWithPyramid() {
-    return new SceneWithPyramid();
+    return new StoryScene2();
   }
 
   getSceneWithSnowman() {
-    return new SceneWithSnowman();
+    return new StoryScene3();
   }
 }
