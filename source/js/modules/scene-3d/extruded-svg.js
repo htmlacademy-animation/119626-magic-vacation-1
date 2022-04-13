@@ -4,34 +4,34 @@ export default class ExtrudedSVG extends THREE.Group {
   constructor(shape) {
     super();
 
-    this.setShape(shape);
-    this.constructChildren();
-  }
-
-  constructChildren() {
-    this.addExtrudedShape();
-  }
-
-  setShape(shape) {
+    this.group = new THREE.Group();
     this.depth = shape.depth;
     this.cap = shape.cap;
     this.color = shape.color;
-    this.shape = shape.shape;
+    this.paths = shape.paths;
   }
 
-  addExtrudedShape() {
-    const geometry = new THREE.ExtrudeBufferGeometry(this.shape, {
-      depth: this.depth,
-      bevelThickness: this.cap,
-      bevelEnabled: true,
-    });
+  get3DModel() {
+    for (let i = 0; i < this.paths.length; i++) {
+      const path = this.paths[i];
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color(this.color),
+      });
 
-    const material = new THREE.MeshStandardMaterial({
-      color: this.color,
-    });
+      const shapes = path.toShapes(false);
 
-    const mesh = new THREE.Mesh(geometry, material);
+      for (let j = 0; j < shapes.length; j++) {
+        const shape = shapes[j];
+        const geometry = new THREE.ExtrudeBufferGeometry(shape, {
+          depth: this.depth,
+          bevelThickness: this.cap
+        });
+        const mesh = new THREE.Mesh(geometry, material);
 
-    this.add(mesh);
+        this.group.add(mesh);
+      }
+    }
+
+    return this.group;
   }
 }

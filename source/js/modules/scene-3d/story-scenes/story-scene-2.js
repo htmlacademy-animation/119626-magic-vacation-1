@@ -11,22 +11,22 @@ export default class StoryScene2 extends THREE.Group {
     this.constructChildren();
   }
 
-  async constructChildren() {
+  constructChildren() {
     this.addStreetLamp();
     this.addPyramid();
-    await this.addLeaf();
+    this.addLeaf();
   }
 
   addStreetLamp() {
     const model = new ModelStreetLamp();
-    model.position.set(200, -250, 0);
+    model.position.set(200, -250, 0); // TODO: change
 
     this.add(model);
   }
 
   addPyramid() {
     const model = new ModelPyramid();
-    model.position.set(0, -250, 0);
+    model.position.set(0, -250, 0); // TODO: change
 
     this.add(model);
   }
@@ -34,12 +34,10 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf`);
-    const leaf = new ExtrudedSVG(shape);
-    // const scale = 0.8;
+    const model = new ExtrudedSVG(shape).get3DModel();
 
-    // leaf.position.set(-105, 6, 10);
-    // leaf.scale.set(scale, -scale, scale);
-    // leaf.rotation.copy(new THREE.Euler(0, 10 * THREE.Math.DEG2RAD, -1 * THREE.Math.DEG2RAD), `XYZ`);
-    this.add(leaf);
+    model.position.set(50, -100, 50); // TODO: change
+
+    this.add(model);
   }
 }
