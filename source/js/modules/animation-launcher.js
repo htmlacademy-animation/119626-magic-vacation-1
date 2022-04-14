@@ -7,14 +7,6 @@ export default class AnimationLauncher {
     this.sceneIntro = new Scene3DIntro();
     this.sceneStory = new Scene3DStory();
     this.sceneStorySlider = new Slider(this.sceneStory);
-
-    if (window.location.hash === `#top`) {
-      this.startIntro();
-    }
-
-    if (window.location.hash === `#story`) {
-      this.startStory();
-    }
   }
 
   stopAll() {
@@ -45,7 +37,20 @@ export default class AnimationLauncher {
     });
   }
 
+  firstLaunch() {
+    const hash = window.location.hash;
+
+    if (hash === `#top` || !hash) {
+      this.startIntro();
+    }
+
+    if (hash === `#story`) {
+      this.startStory();
+    }
+  }
+
   init() {
     this.addScreenChangedListener();
+    this.firstLaunch();
   }
 }
