@@ -24,7 +24,14 @@ const SVG_SHAPES = {
     color: `#224FA7`,
     paths: null,
   },
-  leaf: {
+  leaf1: {
+    src: `${SVG_IMG_FOLDER}/leaf.svg`,
+    depth: 8,
+    cap: 2,
+    color: `#07925D`,
+    paths: null,
+  },
+  leaf2: {
     src: `${SVG_IMG_FOLDER}/leaf.svg`,
     depth: 3,
     cap: 3,
