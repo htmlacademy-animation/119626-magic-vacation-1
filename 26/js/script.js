@@ -64208,14 +64208,6 @@ class AnimationLauncher {
     this.sceneIntro = new _scene_3d_scene_3d_intro__WEBPACK_IMPORTED_MODULE_0__["default"]();
     this.sceneStory = new _scene_3d_scene_3d_story__WEBPACK_IMPORTED_MODULE_1__["default"]();
     this.sceneStorySlider = new _slider__WEBPACK_IMPORTED_MODULE_2__["default"](this.sceneStory);
-
-    if (window.location.hash === `#top`) {
-      this.startIntro();
-    }
-
-    if (window.location.hash === `#story`) {
-      this.startStory();
-    }
   }
 
   stopAll() {
@@ -64246,8 +64238,21 @@ class AnimationLauncher {
     });
   }
 
+  firstLaunch() {
+    const hash = window.location.hash;
+
+    if (hash === `#top` || !hash) {
+      this.startIntro();
+    }
+
+    if (hash === `#story`) {
+      this.startStory();
+    }
+  }
+
   init() {
     this.addScreenChangedListener();
+    this.firstLaunch();
   }
 }
 
