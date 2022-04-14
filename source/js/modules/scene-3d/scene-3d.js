@@ -141,7 +141,7 @@ export default class Scene3D {
   }
 
   start() {
-    this.scene.add(this.getLight());
+    this.scene.add(this.getLights());
 
     this.stop();
     this.startAnimation();
@@ -149,7 +149,7 @@ export default class Scene3D {
     this.animationId = requestAnimationFrame(this.tick);
   }
 
-  getLight() {
+  getLights() {
     const light = new THREE.Group();
 
     // Light 1
