@@ -17,11 +17,7 @@ export default class Model extends THREE.Group {
     return points;
   }
 
-
-  getLatheDegrees(degStart, degEnd) {
-    const start = THREE.Math.DEG2RAD * degStart;
-    const length = THREE.Math.DEG2RAD * (degEnd - degStart);
-
-    return {start, length};
+  getLatheLength(degStart, degEnd) {
+    return THREE.MathUtils.degToRad(degEnd - degStart);
   }
 }

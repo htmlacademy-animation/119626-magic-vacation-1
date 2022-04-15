@@ -6,6 +6,9 @@ export default class ModelCarpet extends Model {
   constructor() {
     super();
 
+    this.degStart = 16;
+    this.degEnd = 74;
+
     this.constructChildren();
   }
 
@@ -15,7 +18,8 @@ export default class ModelCarpet extends Model {
 
   addCarpet() {
     const points = this.getLathePoints(180, 3, 763);
-    const {start, length} = this.getLatheDegrees(16, 74);
+    const start = THREE.MathUtils.degToRad(this.degStart);
+    const length = this.getLatheLength(this.degStart, this.degEnd);
 
     const geometry = new THREE.LatheGeometry(points, 50, start, length);
     const material = new THREE.MeshBasicMaterial({color: 0X5B3EA5});

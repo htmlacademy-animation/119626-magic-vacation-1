@@ -6,6 +6,9 @@ export default class ModelRoad extends Model {
   constructor() {
     super();
 
+    this.degStart = 0;
+    this.degEnd = 90;
+
     this.constructChildren();
   }
 
@@ -15,7 +18,8 @@ export default class ModelRoad extends Model {
 
   addRoad() {
     const points = this.getLathePoints(160, 3, 732);
-    const {start, length} = this.getLatheDegrees(0, 90);
+    const start = THREE.MathUtils.degToRad(this.degStart);
+    const length = this.getLatheLength(this.degStart, this.degEnd);
 
     const geometry = new THREE.LatheGeometry(points, 50, start, length);
     const material = new THREE.MeshBasicMaterial({color: 0X585F6D});
