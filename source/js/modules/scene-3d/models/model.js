@@ -17,7 +17,7 @@ export default class Model extends THREE.Group {
     return points;
   }
 
-  getLatheLength(degStart, degEnd) {
+  getDegLength(degStart, degEnd) {
     return THREE.MathUtils.degToRad(degEnd - degStart);
   }
 }
