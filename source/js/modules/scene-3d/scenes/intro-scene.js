@@ -22,9 +22,9 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`question`);
     const model = new ExtrudedSVG(shape).get3DModel();
 
-    model.position.set(0, 0, 20); // TODO: change
-    model.rotateX(THREE.MathUtils.degToRad(-220)); // TODO: change
-    model.scale.set(2, 2, 2); // TODO: change
+    model.position.set(0, 0, 20);
+    model.rotateX(THREE.MathUtils.degToRad(-220));
+    model.scale.set(2, 2, 2);
 
     this.add(model);
   }
@@ -34,10 +34,10 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`flamingo`);
     const model = new ExtrudedSVG(shape).get3DModel();
 
-    model.position.set(-250, 200, 50); // TODO: change
-    model.rotateX(THREE.MathUtils.degToRad(-215)); // TODO: change
-    model.rotateY(THREE.MathUtils.degToRad(-205)); // TODO: change
-    model.scale.set(2, 2, 1); // TODO: change
+    model.position.set(-250, 200, 50);
+    model.rotateX(THREE.MathUtils.degToRad(-215));
+    model.rotateY(THREE.MathUtils.degToRad(-205));
+    model.scale.set(2, 2, 1);
 
     this.add(model);
   }
@@ -47,9 +47,9 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`snowflake`);
     const model = new ExtrudedSVG(shape).get3DModel();
 
-    model.position.set(-200, 0, 40); // TODO: change
-    model.rotateX(THREE.MathUtils.degToRad(-15)); // TODO: change
-    model.rotateY(THREE.MathUtils.degToRad(25)); // TODO: change
+    model.position.set(-200, 0, 40);
+    model.rotateX(THREE.MathUtils.degToRad(-15));
+    model.rotateY(THREE.MathUtils.degToRad(25));
 
     this.add(model);
   }
@@ -59,9 +59,9 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`leaf1`);
     const model = new ExtrudedSVG(shape).get3DModel();
 
-    model.position.set(200, 100, 70); // TODO: change
-    model.rotateX(THREE.MathUtils.degToRad(180)); // TODO: change
-    model.rotateY(THREE.MathUtils.degToRad(0)); // TODO: change
+    model.position.set(200, 100, 70);
+    model.rotateX(THREE.MathUtils.degToRad(180));
+    model.rotateY(THREE.MathUtils.degToRad(0));
 
     this.add(model);
   }
@@ -71,8 +71,8 @@ export default class IntroScene extends THREE.Group {
     const shape = await loader.getShape(`keyhole`);
     const model = new ExtrudedSVG(shape).get3DModel();
 
-    model.position.set(-1000, 1000, 20); // TODO: change
-    model.rotateX(THREE.MathUtils.degToRad(180)); // TODO: change
+    model.position.set(-1000, 1000, 20);
+    model.rotateX(THREE.MathUtils.degToRad(180));
 
     this.add(model);
   }
