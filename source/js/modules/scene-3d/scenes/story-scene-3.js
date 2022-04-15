@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import ModelSnowman from '../models/snowman';
 
-export default class SceneWithSnowman extends THREE.Group {
+export default class StoryScene3 extends THREE.Group {
   constructor() {
     super();
 
