@@ -39,6 +39,10 @@ export default class StoryScene1 extends THREE.Group {
   addCarpet() {
     const model = new ModelCarpet();
 
+    model.position.set(0, -50, 0);
+    model.scale.set(0.5, 0.5, 1);
+    model.rotateY(THREE.MathUtils.degToRad(-45));
+
     this.add(model);
   }
 }

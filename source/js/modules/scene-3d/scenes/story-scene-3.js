@@ -26,8 +26,9 @@ export default class StoryScene3 extends THREE.Group {
   addRoad() {
     const model = new ModelRoad();
 
-    // model.position.set(-150, -250, 150);
-    // model.rotateY(THREE.MathUtils.degToRad(-45));
+    model.scale.set(0.5, 0.5, 1);
+    model.rotateY(THREE.MathUtils.degToRad(-45));
+    model.position.set(0, 50, 0);
 
     this.add(model);
   }
