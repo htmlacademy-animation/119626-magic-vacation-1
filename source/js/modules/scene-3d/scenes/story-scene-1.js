@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import ExtrudedSVG from '../extruded-svg';
 import ShapesLoader from "../shapes-loader";
 import ModelSaturn from "../models/saturn";
+import ModelCarpet from "../models/carpet";
 
 export default class StoryScene1 extends THREE.Group {
   constructor() {
@@ -13,6 +14,7 @@ export default class StoryScene1 extends THREE.Group {
   constructChildren() {
     this.addFlower();
     this.addSaturn();
+    this.addCarpet();
   }
 
   async addFlower() {
@@ -30,6 +32,12 @@ export default class StoryScene1 extends THREE.Group {
   addSaturn() {
     const model = new ModelSaturn();
     model.position.set(-250, 80, 100);
+
+    this.add(model);
+  }
+
+  addCarpet() {
+    const model = new ModelCarpet();
 
     this.add(model);
   }

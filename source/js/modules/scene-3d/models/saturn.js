@@ -45,7 +45,7 @@ export default class ModelSaturn extends Model {
   }
 
   addRope() {
-    const geometry = new THREE.CylinderBufferGeometry(1, 1, 1000, 8);
+    const geometry = new THREE.CylinderGeometry(1, 1, 1000, 8);
     const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({color: this.colorWhite}));
     const meshY = this.radiusPlanet + geometry.parameters.height / 2;
 
@@ -56,8 +56,9 @@ export default class ModelSaturn extends Model {
 
   addRing() {
     const points = this.getLathePoints(this.radiusRingOuter - this.radiusRingInner, 2, 80);
-    const geometry = new THREE.LatheBufferGeometry(points, 32);
-    const mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({color: this.colorPurple, side: THREE.DoubleSide}));
+    const geometry = new THREE.LatheGeometry(points, 32);
+    const material = new THREE.MeshBasicMaterial({color: this.colorPurple, side: THREE.DoubleSide});
+    const mesh = new THREE.Mesh(geometry, material);
 
     mesh.rotateX(THREE.MathUtils.degToRad(18));
     mesh.rotateZ(THREE.MathUtils.degToRad(10));
