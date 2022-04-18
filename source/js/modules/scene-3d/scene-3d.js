@@ -11,7 +11,7 @@ export default class Scene3D {
     this.aspectRatio = this.width / this.height;
     this.perspectiveAngle = 35;
     this.zCoordinateMin = 0.1;
-    this.zCoordinateMax = 1000;
+    this.zCoordinateMax = 3000; // TODO: change to 1000
 
     this.animationId = null;
     this.material = null;
