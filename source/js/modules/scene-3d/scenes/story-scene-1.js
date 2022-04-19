@@ -40,7 +40,10 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   addCarpet() {
-    const model = new ModelCarpet();
+    const model = new ModelCarpet({
+      colorBase: `lightPurple`,
+      colorAdditional: `additionalPurple`,
+    });
 
     model.position.set(0, -200, -250);
     model.rotateY(THREE.MathUtils.degToRad(-45));
