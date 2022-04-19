@@ -31,8 +31,8 @@ export default class StoryScene1 extends THREE.Group {
 
   addSaturn() {
     const model = new ModelSaturn({
-      mainColor: `dominantRed`,
-      additionalColor: `brightPurple`,
+      colorBase: `dominantRed`,
+      colorAdditional: `brightPurple`,
     });
     model.position.set(-250, 80, 100);
 
