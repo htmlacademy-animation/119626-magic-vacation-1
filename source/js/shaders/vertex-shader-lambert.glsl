@@ -24,7 +24,6 @@ varying vec3 vIndirectFront;
 #include <clipping_planes_pars_vertex>
 
 void main() {
-
 	#include <uv_vertex>
 	#include <uv2_vertex>
 	#include <color_vertex>
