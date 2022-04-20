@@ -6,6 +6,7 @@ import ModelFlamingo from '../models/flamingo';
 import ModelSnowflake from '../models/snowflake';
 import ModelQuestion from '../models/question';
 import ModelLeaf1 from '../models/leaf-1';
+import Model from '../models/model';
 
 export default class IntroScene extends THREE.Group {
   constructor() {
@@ -118,7 +119,8 @@ export default class IntroScene extends THREE.Group {
 
   async addAirplane() {
     const modelName = `airplane`;
-    const material = new THREE.MeshLambertMaterial({color: `white`});
+    const model = new Model();
+    const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
 
     const callback = (mesh) => {
       mesh.name = modelName;
