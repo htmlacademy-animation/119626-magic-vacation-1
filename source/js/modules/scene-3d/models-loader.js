@@ -66,6 +66,13 @@ export default class ModelsLoader {
     return MODELS[key].model;
   }
 
+  getFileExt(path) {
+    const splittedPath = path.split(`/`);
+    const filename = splittedPath.pop();
+
+    return filename.split(`.`).pop();
+  }
+
   async loadModel(key, material, callback) {
     const params = MODELS[key];
 
@@ -91,7 +98,7 @@ export default class ModelsLoader {
       this.onComplete(obj, material, callback);
     };
 
-    if (params.type === `gltf`) {
+    if (this.getFileExt(params.path) === `gltf`) {
       await this.loadGltf(params.path, onGltfComplete);
     } else {
       await this.loadObj(params.path, onObjectComplete);
