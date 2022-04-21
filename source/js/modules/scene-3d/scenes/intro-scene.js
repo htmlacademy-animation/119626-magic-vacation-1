@@ -1,14 +1,18 @@
 import * as THREE from 'three';
 import ShapesLoader from "../shapes-loader";
+import ModelsLoader from "../models-loader";
 import ModelKeyhole from '../models/keyhole';
 import ModelFlamingo from '../models/flamingo';
 import ModelSnowflake from '../models/snowflake';
 import ModelQuestion from '../models/question';
 import ModelLeaf1 from '../models/leaf-1';
+import Model from '../models/model';
 
 export default class IntroScene extends THREE.Group {
   constructor() {
     super();
+
+    this.modelsLoader = new ModelsLoader();
 
     this.constructChildren();
   }
@@ -19,6 +23,10 @@ export default class IntroScene extends THREE.Group {
     this.addSnowflake();
     this.addLeaf();
     this.addKeyhole();
+
+    this.addSuitcase();
+    this.addWatermelon();
+    this.addAirplane();
   }
 
   async addQuestion() {
@@ -79,5 +87,49 @@ export default class IntroScene extends THREE.Group {
     model.rotateX(THREE.MathUtils.degToRad(180));
 
     this.add(model);
+  }
+
+  async addSuitcase() {
+    const modelName = `suitcase`;
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+      mesh.position.set(-100, -200, 50);
+      mesh.rotateY(THREE.MathUtils.degToRad(15));
+      mesh.rotateX(THREE.MathUtils.degToRad(45));
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, null, callback);
+  }
+
+  async addWatermelon() {
+    const modelName = `watermelon`;
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+      mesh.position.set(150, -100, 150);
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, null, callback);
+  }
+
+  async addAirplane() {
+    const modelName = `airplane`;
+    const model = new Model();
+    const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+      mesh.position.set(-250, -100, 150);
+      mesh.rotateZ(THREE.MathUtils.degToRad(25));
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, material, callback);
   }
 }
