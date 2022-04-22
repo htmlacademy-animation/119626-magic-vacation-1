@@ -35,6 +35,8 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
+    this.sceneYAngle = 45;
+
     this.setAnimations();
   }
 
@@ -118,7 +120,7 @@ export default class Scene3DStory extends Scene3D {
   getScene1() {
     const story = new StoryScene1();
 
-    story.rotateY(THREE.MathUtils.degToRad(45));
+    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
     return story;
   }
@@ -126,7 +128,7 @@ export default class Scene3DStory extends Scene3D {
   getScene2() {
     const story = new StoryScene2();
 
-    story.rotateY(THREE.MathUtils.degToRad(135));
+    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 90));
 
     return story;
   }
@@ -134,7 +136,7 @@ export default class Scene3DStory extends Scene3D {
   getScene3() {
     const story = new StoryScene3();
 
-    story.rotateY(THREE.MathUtils.degToRad(225));
+    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 180));
 
     return story;
   }
@@ -142,7 +144,7 @@ export default class Scene3DStory extends Scene3D {
   getScene4() {
     const story = new StoryScene4();
 
-    story.rotateY(THREE.MathUtils.degToRad(315));
+    story.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle + 270));
 
     return story;
   }

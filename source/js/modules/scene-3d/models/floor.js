@@ -16,10 +16,10 @@ export default class ModelFloor extends Model {
   }
 
   constructChildren(colorBase) {
-    this.addBase(colorBase);
+    this.addFloor(colorBase);
   }
 
-  addBase(colorBase) {
+  addFloor(colorBase) {
     const start = THREE.MathUtils.degToRad(this.degStart);
     const length = this.getDegLength(this.degStart, this.degEnd);
 
