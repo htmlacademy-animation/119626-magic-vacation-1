@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
@@ -80,9 +81,9 @@ export default class Scene3DStory extends Scene3D {
   start() {
     this.setSceneBackground(0);
 
-    // this.scene.add(this.getScene1());
-    // this.scene.add(this.getScene2());
-    // this.scene.add(this.getScene3());
+    this.scene.add(this.getScene1());
+    this.scene.add(this.getScene2());
+    this.scene.add(this.getScene3());
     this.scene.add(this.getScene4());
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
@@ -115,18 +116,34 @@ export default class Scene3DStory extends Scene3D {
   }
 
   getScene1() {
-    return new StoryScene1();
+    const story = new StoryScene1();
+
+    story.rotateY(THREE.MathUtils.degToRad(45));
+
+    return story;
   }
 
   getScene2() {
-    return new StoryScene2();
+    const story = new StoryScene2();
+
+    story.rotateY(THREE.MathUtils.degToRad(135));
+
+    return story;
   }
 
   getScene3() {
-    return new StoryScene3();
+    const story = new StoryScene3();
+
+    story.rotateY(THREE.MathUtils.degToRad(225));
+
+    return story;
   }
 
   getScene4() {
-    return new StoryScene4();
+    const story = new StoryScene4();
+
+    story.rotateY(THREE.MathUtils.degToRad(315));
+
+    return story;
   }
 }
