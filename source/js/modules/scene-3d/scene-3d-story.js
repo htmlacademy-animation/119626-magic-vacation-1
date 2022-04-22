@@ -80,8 +80,8 @@ export default class Scene3DStory extends Scene3D {
   start() {
     this.setSceneBackground(0);
 
-    this.scene.add(this.getScene1());
-    // this.scene.add(this.getScene2());
+    // this.scene.add(this.getScene1());
+    this.scene.add(this.getScene2());
     // this.scene.add(this.getScene3());
     // this.scene.add(this.getScene4());
 

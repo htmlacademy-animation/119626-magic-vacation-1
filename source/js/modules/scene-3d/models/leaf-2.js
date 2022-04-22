@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import ModelExtrudedSVG from './model-extruded-svg';
 
 export default class ModelLeaf2 extends ModelExtrudedSVG {
@@ -19,6 +20,8 @@ export default class ModelLeaf2 extends ModelExtrudedSVG {
 
   addLeaf2() {
     const mesh = this.get3DModel(this.material);
+
+    mesh.rotateX(THREE.MathUtils.degToRad(180));
 
     this.add(mesh);
   }

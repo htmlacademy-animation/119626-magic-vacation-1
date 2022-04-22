@@ -18,7 +18,7 @@ export default class ModelPyramid extends Model {
     const material = this.getMaterial(`soft`, materialParams);
     const mesh = new THREE.Mesh(geometry, material);
 
-    mesh.position.set(0, 125, 0);
+    mesh.rotateY(THREE.MathUtils.degToRad(45));
 
     this.add(mesh);
   }
