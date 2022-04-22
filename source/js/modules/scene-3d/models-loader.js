@@ -28,6 +28,10 @@ const MODELS = {
     path: `${MODEL_FOLDER}/scene2-static-output-1.gltf`,
     model: null,
   },
+  scene3Static: {
+    path: `${MODEL_FOLDER}/scene3-static-output-1.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {

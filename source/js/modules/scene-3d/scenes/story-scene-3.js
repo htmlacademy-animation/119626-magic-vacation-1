@@ -1,10 +1,15 @@
 import * as THREE from 'three';
 import ModelSnowman from '../models/snowman';
 import ModelRoad from '../models/road';
+import ModelFloor from '../models/floor';
+import Model from '../models/model';
+import ModelsLoader from '../models-loader';
 
 export default class StoryScene3 extends THREE.Group {
   constructor() {
     super();
+
+    this.modelsLoader = new ModelsLoader();
 
     this.constructChildren();
   }
@@ -12,13 +17,15 @@ export default class StoryScene3 extends THREE.Group {
   constructChildren() {
     this.addSnowman();
     this.addRoad();
+    this.addFloor();
+    this.addStatic();
+    this.addWall();
   }
 
   addSnowman() {
     const model = new ModelSnowman();
 
-    model.position.set(-150, -250, 150);
-    model.rotateY(THREE.MathUtils.degToRad(-45));
+    model.position.set(200, 50, 400);
 
     this.add(model);
   }
@@ -26,9 +33,40 @@ export default class StoryScene3 extends THREE.Group {
   addRoad() {
     const model = new ModelRoad();
 
-    model.position.set(0, -250, -400);
-    model.rotateY(THREE.MathUtils.degToRad(-45));
+    this.add(model);
+  }
+
+  addFloor() {
+    const model = new ModelFloor({
+      colorBase: `mountainBlue`,
+    });
+
+    model.rotateX(THREE.MathUtils.degToRad(90));
 
     this.add(model);
+  }
+
+  async addStatic() {
+    const modelName = `scene3Static`;
+
+    const callback = (mesh) => {
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, null, callback);
+  }
+
+  async addWall() {
+    const modelName = `wall`;
+    const model = new Model();
+    const material = model.getMaterial(`soft`, {color: model.getColor(`skyLightBlue`), side: THREE.DoubleSide});
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, material, callback);
   }
 }
