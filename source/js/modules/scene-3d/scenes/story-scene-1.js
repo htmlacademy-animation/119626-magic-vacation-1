@@ -4,10 +4,14 @@ import ModelSaturn from "../models/saturn";
 import ModelFlower from "../models/flower";
 import ModelCarpet from "../models/carpet";
 import ModelFloor from "../models/floor";
+import Model from "../models/model";
+import ModelsLoader from "../models-loader";
 
 export default class StoryScene1 extends THREE.Group {
   constructor() {
     super();
+
+    this.modelsLoader = new ModelsLoader();
 
     this.constructChildren();
   }
@@ -17,6 +21,8 @@ export default class StoryScene1 extends THREE.Group {
     this.addSaturn();
     this.addCarpet();
     this.addFloor();
+    this.addStatic();
+    this.addWall();
   }
 
   async addFlower() {
@@ -24,7 +30,7 @@ export default class StoryScene1 extends THREE.Group {
     const shape = await loader.getShape(`flower`);
     const model = new ModelFlower(shape);
 
-    model.position.set(0, 420, 8);
+    model.position.set(58, 420, 100);
     model.rotateX(THREE.MathUtils.degToRad(180));
     model.rotateY(THREE.MathUtils.degToRad(90));
 
@@ -37,7 +43,7 @@ export default class StoryScene1 extends THREE.Group {
       colorAdditional: `brightPurple`,
     });
 
-    model.position.set(300, 550, 200);
+    model.position.set(300, 500, 200);
 
     this.add(model);
   }
@@ -64,24 +70,27 @@ export default class StoryScene1 extends THREE.Group {
     this.add(model);
   }
 
-  // async addAirplane() {
-  //   const scale = 1;
-  //   const modelName = `airplane`;
-  //   const model = new Model();
-  //   const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
+  async addStatic() {
+    const modelName = `scene1Static`;
 
-  //   const callback = (mesh) => {
-  //     mesh.name = modelName;
+    const callback = (mesh) => {
+      this.add(mesh);
+    };
 
-  //     mesh.position.set(200, 100, Z_POS);
-  //     mesh.scale.set(scale, scale, scale);
+    await this.modelsLoader.getModel(modelName, null, callback);
+  }
 
-  //     mesh.rotateX(THREE.MathUtils.degToRad(55));
-  //     mesh.rotateY(THREE.MathUtils.degToRad(140));
+  async addWall() {
+    const modelName = `wall`;
+    const model = new Model();
+    const material = model.getMaterial(`soft`, {color: model.getColor(`purple`), side: THREE.DoubleSide});
 
-  //     this.add(mesh);
-  //   };
+    const callback = (mesh) => {
+      mesh.name = modelName;
 
-  //   await this.modelsLoader.getModel(modelName, material, callback);
-  // }
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, material, callback);
+  }
 }
