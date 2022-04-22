@@ -1,10 +1,15 @@
 import * as THREE from 'three';
 import ModelSaturn from "../models/saturn";
 import ModelCarpet from "../models/carpet";
+import ModelFloor from '../models/floor';
+import Model from '../models/model';
+import ModelsLoader from '../models-loader';
 
 export default class StoryScene4 extends THREE.Group {
   constructor() {
     super();
+
+    this.modelsLoader = new ModelsLoader();
 
     this.constructChildren();
   }
@@ -12,6 +17,9 @@ export default class StoryScene4 extends THREE.Group {
   constructChildren() {
     this.addSaturn();
     this.addCarpet();
+    this.addFloor();
+    this.addStatic();
+    this.addWall();
   }
 
   addSaturn() {
@@ -19,7 +27,7 @@ export default class StoryScene4 extends THREE.Group {
       colorBase: `shadowedDominantRed`,
       colorAdditional: `shadowedBrightPurple`,
     });
-    model.position.set(250, 80, 100);
+    model.position.set(300, 500, 200);
 
     this.add(model);
   }
@@ -30,9 +38,40 @@ export default class StoryScene4 extends THREE.Group {
       colorAdditional: `shadowedAdditionalPurple`,
     });
 
-    model.position.set(0, -300, -250);
-    model.rotateY(THREE.MathUtils.degToRad(-45));
+    this.add(model);
+  }
+
+  addFloor() {
+    const model = new ModelFloor({
+      colorBase: `shadowedDarkPurple`,
+    });
+
+    model.rotateX(THREE.MathUtils.degToRad(90));
 
     this.add(model);
+  }
+
+  async addStatic() {
+    const modelName = `scene4Static`;
+
+    const callback = (mesh) => {
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, null, callback);
+  }
+
+  async addWall() {
+    const modelName = `wall`;
+    const model = new Model();
+    const material = model.getMaterial(`basic`, {color: model.getColor(`shadowedPurple`), side: THREE.DoubleSide});
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel(modelName, material, callback);
   }
 }
