@@ -36,6 +36,18 @@ const MODELS = {
     path: `${MODEL_FOLDER}/scene4-static-output-1.gltf`,
     model: null,
   },
+  dog: {
+    path: `${MODEL_FOLDER}/dog.gltf`,
+    model: null,
+  },
+  compass: {
+    path: `${MODEL_FOLDER}/compass.gltf`,
+    model: null,
+  },
+  sonya: {
+    path: `${MODEL_FOLDER}/sonya.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {
@@ -56,6 +68,8 @@ export default class ModelsLoader {
       obj3d.traverse((child) => {
         if (child.isMesh) {
           child.material = material;
+          // TODO: cast shadow here
+          // child.castShadow = true;
         }
       });
     }
