@@ -89,7 +89,8 @@ export default class Scene3D {
         this.cameraZCoordinateMax
     );
 
-    this.camera.position.z = 1405;
+    this.camera.position.y = 800;
+    this.camera.position.z = 2550;
 
     this.textureLoader = new THREE.TextureLoader();
 

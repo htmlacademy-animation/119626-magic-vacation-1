@@ -74,8 +74,7 @@ export default class ModelSaturn extends Model {
     const geometry = new THREE.LatheGeometry(points, 32);
     const mesh = new THREE.Mesh(geometry, this.materialRing);
 
-    mesh.rotateX(THREE.MathUtils.degToRad(5));
-    mesh.rotateZ(THREE.MathUtils.degToRad(25));
+    mesh.rotateX(THREE.MathUtils.degToRad(10));
 
     this.add(mesh);
   }

@@ -6,17 +6,34 @@ const MODEL_FOLDER = `./img/module-6/models`;
 const MODELS = {
   airplane: {
     path: `${MODEL_FOLDER}/airplane.obj`,
-    type: `obj`,
     model: null,
   },
   suitcase: {
     path: `${MODEL_FOLDER}/suitcase.gltf`,
-    type: `gltf`,
     model: null,
   },
   watermelon: {
     path: `${MODEL_FOLDER}/watermelon.gltf`,
-    type: `gltf`,
+    model: null,
+  },
+  wall: {
+    path: `${MODEL_FOLDER}/WallCornerUnit.obj`,
+    model: null,
+  },
+  scene1Static: {
+    path: `${MODEL_FOLDER}/scene1-static-output-1.gltf`,
+    model: null,
+  },
+  scene2Static: {
+    path: `${MODEL_FOLDER}/scene2-static-output-1.gltf`,
+    model: null,
+  },
+  scene3Static: {
+    path: `${MODEL_FOLDER}/scene3-static-output-1.gltf`,
+    model: null,
+  },
+  scene4Static: {
+    path: `${MODEL_FOLDER}/scene4-static-output-1.gltf`,
     model: null,
   },
 };
