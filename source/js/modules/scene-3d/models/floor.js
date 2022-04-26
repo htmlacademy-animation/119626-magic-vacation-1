@@ -31,6 +31,8 @@ export default class ModelFloor extends Model {
     const material = this.getMaterial(`soft`, materialParams);
     const mesh = new THREE.Mesh(geometry, material);
 
+    mesh.receiveShadow = true;
+
     this.add(mesh);
   }
 }

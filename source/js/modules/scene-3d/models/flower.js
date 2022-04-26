@@ -1,8 +1,8 @@
 import ModelExtrudedSVG from './model-extruded-svg';
 
 export default class ModelFlower extends ModelExtrudedSVG {
-  constructor(shape) {
-    super(shape);
+  constructor({shape, castShadow}) {
+    super({shape, castShadow});
 
     this.depth = 4;
     this.cap = 2;
@@ -19,6 +19,8 @@ export default class ModelFlower extends ModelExtrudedSVG {
 
   addFlower() {
     const mesh = this.get3DModel(this.material);
+
+    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }

@@ -2,11 +2,12 @@ import * as THREE from 'three';
 import Model from './model';
 
 export default class ModelExtrudedSVG extends Model {
-  constructor(shape) {
+  constructor({shape, castShadow}) {
     super();
 
     this.group = new THREE.Group();
     this.paths = shape.paths;
+    this.castShadow = Boolean(castShadow);
   }
 
   get3DModel(material) {
@@ -21,6 +22,8 @@ export default class ModelExtrudedSVG extends Model {
           bevelThickness: this.cap
         });
         const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.castShadow = this.castShadow;
 
         this.group.add(mesh);
       }

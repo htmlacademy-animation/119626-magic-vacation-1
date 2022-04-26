@@ -27,6 +27,7 @@ export default class StoryScene4 extends THREE.Group {
     const model = new ModelSaturn({
       colorBase: `shadowedDominantRed`,
       colorAdditional: `shadowedBrightPurple`,
+      castShadow: true,
     });
     model.position.set(300, 500, 200);
 
@@ -59,7 +60,12 @@ export default class StoryScene4 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 
   async addWall() {
@@ -73,7 +79,11 @@ export default class StoryScene4 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
   }
 
   async addSonya() {
@@ -85,6 +95,11 @@ export default class StoryScene4 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 }

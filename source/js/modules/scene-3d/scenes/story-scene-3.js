@@ -54,7 +54,12 @@ export default class StoryScene3 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 
   async addWall() {
@@ -68,7 +73,11 @@ export default class StoryScene3 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
   }
 
   async addCompass() {
@@ -79,6 +88,11 @@ export default class StoryScene3 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 }

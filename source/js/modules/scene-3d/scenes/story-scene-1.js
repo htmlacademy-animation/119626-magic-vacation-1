@@ -29,7 +29,7 @@ export default class StoryScene1 extends THREE.Group {
   async addFlower() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flower`);
-    const model = new ModelFlower(shape);
+    const model = new ModelFlower({shape, castShadow: true});
 
     model.position.set(57, 420, 100);
     model.rotateX(THREE.MathUtils.degToRad(180));
@@ -75,7 +75,12 @@ export default class StoryScene1 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(`scene1Static`, null, callback);
+    await this.modelsLoader.getModel({
+      key: `scene1Static`,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 
   async addWall() {
@@ -86,7 +91,11 @@ export default class StoryScene1 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(`wall`, material, callback);
+    await this.modelsLoader.getModel({
+      key: `wall`,
+      material,
+      callback,
+    });
   }
 
   async addDog() {
@@ -96,6 +105,11 @@ export default class StoryScene1 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(`dog`, null, callback);
+    await this.modelsLoader.getModel({
+      key: `dog`,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 }

@@ -19,6 +19,11 @@ export default class StorySuitcase extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(`suitcase`, null, callback);
+    await this.modelsLoader.getModel({
+      key: `suitcase`,
+      material: null,
+      castShadow: true,
+      callback,
+    });
   }
 }

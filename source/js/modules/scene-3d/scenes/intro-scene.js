@@ -122,7 +122,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addWatermelon() {
@@ -140,7 +144,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addAirplane() {
@@ -161,7 +169,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
   }
 
   addSaturn() {

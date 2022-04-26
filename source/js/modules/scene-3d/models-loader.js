@@ -63,13 +63,19 @@ export default class ModelsLoader {
     await loaderGltf.load(path, onComplete);
   }
 
-  onComplete(obj3d, material, callback) {
+  onComplete({obj3d, material, callback, castShadow, receiveShadow}) {
     if (material) {
       obj3d.traverse((child) => {
         if (child.isMesh) {
           child.material = material;
-          // TODO: cast shadow here
-          // child.castShadow = true;
+
+          if (castShadow) {
+            child.castShadow = true;
+          }
+
+          if (receiveShadow) {
+            child.receiveShadow = true;
+          }
         }
       });
     }
@@ -85,13 +91,13 @@ export default class ModelsLoader {
     }
   }
 
-  async getModel(key, material, callback) {
+  async getModel({key, material, callback, castShadow, receiveShadow}) {
     if (!key || !MODELS[key]) {
       throw new Error(`Wrong key! Check ModelsLoader.setModel argument`);
     }
 
     if (!MODELS[key].model) {
-      await this.loadModel(key, material, callback);
+      await this.loadModel({key, material, callback, castShadow, receiveShadow});
     }
 
     return MODELS[key].model;
@@ -104,7 +110,7 @@ export default class ModelsLoader {
     return filename.split(`.`).pop();
   }
 
-  async loadModel(key, material, callback) {
+  async loadModel({key, material, callback, castShadow, receiveShadow}) {
     const params = MODELS[key];
 
     if (!params) {
@@ -117,7 +123,7 @@ export default class ModelsLoader {
       }
 
       this.setModel(key, gltf.scene);
-      this.onComplete(gltf.scene, material, callback);
+      this.onComplete({obj3d: gltf.scene, material, callback, castShadow, receiveShadow});
     };
 
     const onObjectComplete = (obj) => {
@@ -126,7 +132,7 @@ export default class ModelsLoader {
       }
 
       this.setModel(key, obj);
-      this.onComplete(obj, material, callback);
+      this.onComplete({obj3d: obj, material, callback, castShadow, receiveShadow});
     };
 
     if (this.getFileExt(params.path) === `gltf`) {

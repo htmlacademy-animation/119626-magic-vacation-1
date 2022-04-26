@@ -33,6 +33,8 @@ export default class ModelRoad extends Model {
     });
     const mesh = new THREE.Mesh(geometry, material);
 
+    mesh.receiveShadow = true;
+
     this.add(mesh);
   }
 }
