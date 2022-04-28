@@ -45,7 +45,7 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf1() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf2`);
-    const model = new ModelLeaf2({shape, castShadow: true});
+    const model = new ModelLeaf2({shape});
 
     model.scale.set(2.7, 2.7, 1);
     model.position.set(100, 350, 400);
@@ -58,7 +58,7 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf2() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf2`);
-    const model = new ModelLeaf2({shape, castShadow: true});
+    const model = new ModelLeaf2({shape});
 
     model.scale.set(1.5, 1.5, 1);
     model.position.set(100, 120, 500);
@@ -88,7 +88,6 @@ export default class StoryScene2 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material: null,
-      castShadow: true,
       callback,
     });
   }

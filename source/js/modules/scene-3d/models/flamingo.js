@@ -1,8 +1,8 @@
 import ModelExtrudedSVG from './model-extruded-svg';
 
 export default class ModelFlamingo extends ModelExtrudedSVG {
-  constructor({shape, castShadow}) {
-    super({shape, castShadow});
+  constructor({shape, castShadow, receivedShadow}) {
+    super({shape, castShadow, receivedShadow});
 
     this.depth = 8;
     this.cap = 2;

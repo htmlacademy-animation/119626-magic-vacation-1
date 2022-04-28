@@ -22,7 +22,6 @@ export default class StorySuitcase extends THREE.Group {
     await this.modelsLoader.getModel({
       key: `suitcase`,
       material: null,
-      castShadow: true,
       callback,
     });
   }

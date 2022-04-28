@@ -57,7 +57,6 @@ export default class StoryScene3 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material: null,
-      castShadow: true,
       callback,
     });
   }
@@ -91,7 +90,6 @@ export default class StoryScene3 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material: null,
-      castShadow: true,
       callback,
     });
   }

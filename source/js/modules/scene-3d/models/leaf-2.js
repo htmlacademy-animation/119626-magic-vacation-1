@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import ModelExtrudedSVG from './model-extruded-svg';
 
 export default class ModelLeaf2 extends ModelExtrudedSVG {
-  constructor({shape, castShadow}) {
-    super({shape, castShadow});
+  constructor({shape, castShadow, receivedShadow}) {
+    super({shape, castShadow, receivedShadow});
 
     this.depth = 3;
     this.cap = 2;
