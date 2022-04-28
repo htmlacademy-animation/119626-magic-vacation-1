@@ -36,7 +36,7 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
-    this.sceneYAngle = -135 - 45 - 45;
+    this.sceneYAngle = 45;
 
     this.setAnimations();
   }

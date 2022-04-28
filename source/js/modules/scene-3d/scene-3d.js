@@ -173,11 +173,8 @@ export default class Scene3D {
     // Light 2
     const lightUnit2 = new THREE.PointLight(new THREE.Color(`rgb(246,242,255)`), 0.6, 0, 2);
 
-    lightUnit2.position.set(-800, -350, -710);
+    lightUnit2.position.set(-800, -350, 710);
     lightUnit2.castShadow = true;
-    lightUnit2.shadow.camera.far = 2550;
-    lightUnit2.shadow.mapSize.width = 1000;
-    lightUnit2.shadow.mapSize.height = 1000;
 
     light.add(lightUnit2);
 
@@ -186,9 +183,6 @@ export default class Scene3D {
 
     lightUnit3.position.set(730, 800, 985);
     lightUnit3.castShadow = true;
-    lightUnit3.shadow.camera.far = 3000;
-    lightUnit3.shadow.mapSize.width = 1000;
-    lightUnit3.shadow.mapSize.height = 1000;
 
     light.add(lightUnit3);
 
