@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import ModelExtrudedSVG from './model-extruded-svg';
 
 export default class ModelKeyhole extends ModelExtrudedSVG {
-  constructor({shape, castShadow}) {
-    super({shape, castShadow});
+  constructor({shape}) {
+    super({shape});
 
     this.depth = 20;
     this.cap = 2;
@@ -25,8 +25,6 @@ export default class ModelKeyhole extends ModelExtrudedSVG {
   addKeyhole() {
     const mesh = this.get3DModel(this.materialMain);
 
-    mesh.castShadow = this.castShadow;
-
     this.add(mesh);
   }
 
@@ -35,7 +33,6 @@ export default class ModelKeyhole extends ModelExtrudedSVG {
     const mesh = new THREE.Mesh(geometry, this.materialAdditional);
 
     mesh.position.set(1000, 1000, 200);
-    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }

@@ -22,7 +22,6 @@ export default class ModelLeaf2 extends ModelExtrudedSVG {
     const mesh = this.get3DModel(this.material);
 
     mesh.rotateX(THREE.MathUtils.degToRad(180));
-    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }

@@ -68,14 +68,8 @@ export default class ModelsLoader {
       obj3d.traverse((child) => {
         if (child.isMesh) {
           child.material = material;
-
-          if (castShadow) {
-            child.castShadow = true;
-          }
-
-          if (receiveShadow) {
-            child.receiveShadow = true;
-          }
+          child.castShadow = Boolean(castShadow);
+          child.receiveShadow = Boolean(receiveShadow);
         }
       });
     }
@@ -111,9 +105,9 @@ export default class ModelsLoader {
   }
 
   async loadModel({key, material, callback, castShadow, receiveShadow}) {
-    const params = MODELS[key];
+    const model = MODELS[key];
 
-    if (!params) {
+    if (!model) {
       return;
     }
 
@@ -135,10 +129,10 @@ export default class ModelsLoader {
       this.onComplete({obj3d: obj, material, callback, castShadow, receiveShadow});
     };
 
-    if (this.getFileExt(params.path) === `gltf`) {
-      await this.loadGltf(params.path, onGltfComplete);
+    if (this.getFileExt(model.path) === `gltf`) {
+      await this.loadGltf(model.path, onGltfComplete);
     } else {
-      await this.loadObj(params.path, onObjectComplete);
+      await this.loadObj(model.path, onObjectComplete);
     }
   }
 }

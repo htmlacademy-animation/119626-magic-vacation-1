@@ -20,8 +20,6 @@ export default class ModelLeaf1 extends ModelExtrudedSVG {
   addLeaf1() {
     const mesh = this.get3DModel(this.material);
 
-    mesh.castShadow = this.castShadow;
-
     this.add(mesh);
   }
 }

@@ -35,8 +35,6 @@ export default class ModelCarpet extends Model {
     });
     const mesh = new THREE.Mesh(geometry, material);
 
-    mesh.receiveShadow = true;
-
     this.add(mesh);
   }
 }

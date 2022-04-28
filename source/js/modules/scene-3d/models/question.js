@@ -20,8 +20,6 @@ export default class ModelQuestion extends ModelExtrudedSVG {
   addQuestion() {
     const mesh = this.get3DModel(this.material);
 
-    mesh.castShadow = this.castShadow;
-
     this.add(mesh);
   }
 }

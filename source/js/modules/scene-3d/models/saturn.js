@@ -17,7 +17,7 @@ export default class ModelSaturn extends Model {
 
     this.shouldRenderSattelite = shouldRenderSattelite;
 
-    this.castShadow = !!castShadow;
+    this.castShadow = Boolean(castShadow);
 
     this.materialMainParams = {color: this.getColor(colorBase)};
     this.materialMain = this.getMaterial(`soft`, this.materialMainParams);
