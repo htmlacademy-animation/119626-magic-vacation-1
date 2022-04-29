@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Stats from 'stats.js';
 import vertexShader from '../../shaders/vertex-shader-base.glsl';
 import fragmentShader from '../../shaders/fragment-shader-scene-2.glsl';
 
@@ -74,10 +75,11 @@ export default class Scene3D {
   updateBackground(texture) {
     this.setMaterial(texture);
 
-    const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    const mesh = new THREE.Mesh(geometry, this.material);
+    // TODO: rm
+    // const geometry = new THREE.PlaneGeometry(this.width, this.height);
+    // const mesh = new THREE.Mesh(geometry, this.material);
 
-    this.scene.add(mesh);
+    // this.scene.add(mesh);
   }
 
   init() {
@@ -98,6 +100,9 @@ export default class Scene3D {
       canvas: this.canvas
     });
 
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
     const color = new THREE.Color(`#5f458c`);
     const alpha = 1;
 
@@ -106,6 +111,11 @@ export default class Scene3D {
     this.renderer.setSize(this.width, this.height);
 
     this.scene.add(this.getLights());
+
+    // TODO: remove. for devs only
+    const stats = new Stats();
+    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild(stats.dom);
   }
 
   renderScene() {
@@ -163,7 +173,8 @@ export default class Scene3D {
     // Light 2
     const lightUnit2 = new THREE.PointLight(new THREE.Color(`rgb(246,242,255)`), 0.6, 0, 2);
 
-    lightUnit2.position.set(-785, -350, 710);
+    lightUnit2.position.set(-800, -350, 710);
+    lightUnit2.castShadow = true;
 
     light.add(lightUnit2);
 
@@ -171,6 +182,7 @@ export default class Scene3D {
     const lightUnit3 = new THREE.PointLight(new THREE.Color(`rgb(245,254,255)`), 0.95, 0, 2);
 
     lightUnit3.position.set(730, 800, 985);
+    lightUnit3.castShadow = true;
 
     light.add(lightUnit3);
 

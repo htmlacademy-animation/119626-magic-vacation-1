@@ -5,6 +5,7 @@ export default class ModelSaturn extends Model {
   constructor({
     colorBase,
     colorAdditional,
+    castShadow,
     shouldRenderSattelite = true,
   }) {
     super();
@@ -15,6 +16,8 @@ export default class ModelSaturn extends Model {
     this.radiusRingOuter = 120;
 
     this.shouldRenderSattelite = shouldRenderSattelite;
+
+    this.castShadow = Boolean(castShadow);
 
     this.materialMainParams = {color: this.getColor(colorBase)};
     this.materialMain = this.getMaterial(`soft`, this.materialMainParams);
@@ -46,6 +49,8 @@ export default class ModelSaturn extends Model {
     const geometry = new THREE.SphereGeometry(this.radiusPlanet, 32, 32);
     const mesh = new THREE.Mesh(geometry, this.materialMain);
 
+    mesh.castShadow = this.castShadow;
+
     this.add(mesh);
   }
 
@@ -55,6 +60,7 @@ export default class ModelSaturn extends Model {
     const meshY = this.radiusPlanet * 2;
 
     mesh.position.set(0, meshY, 0);
+    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }
@@ -65,6 +71,7 @@ export default class ModelSaturn extends Model {
     const meshY = this.radiusPlanet + geometry.parameters.height / 2;
 
     mesh.position.set(0, meshY, 0);
+    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }
@@ -75,6 +82,7 @@ export default class ModelSaturn extends Model {
     const mesh = new THREE.Mesh(geometry, this.materialRing);
 
     mesh.rotateX(THREE.MathUtils.degToRad(10));
+    mesh.castShadow = this.castShadow;
 
     this.add(mesh);
   }

@@ -37,7 +37,7 @@ export default class IntroScene extends THREE.Group {
   async addQuestion() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`question`);
-    const model = new ModelQuestion(shape);
+    const model = new ModelQuestion({shape});
 
     model.position.set(100, -250, Z_POS);
 
@@ -51,7 +51,7 @@ export default class IntroScene extends THREE.Group {
     const scale = 2;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flamingo`);
-    const model = new ModelFlamingo(shape);
+    const model = new ModelFlamingo({shape});
 
     model.position.set(-400, 300, Z_POS);
     model.scale.set(scale, scale, scale);
@@ -67,7 +67,7 @@ export default class IntroScene extends THREE.Group {
     const scale = 0.85;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`snowflake`);
-    const model = new ModelSnowflake(shape);
+    const model = new ModelSnowflake({shape});
 
     model.position.set(-350, 0, Z_POS);
     model.scale.set(scale, scale, scale);
@@ -82,7 +82,7 @@ export default class IntroScene extends THREE.Group {
     const scale = 1.5;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf1`);
-    const model = new ModelLeaf1(shape);
+    const model = new ModelLeaf1({shape});
 
     model.position.set(500, 300, Z_POS);
     model.scale.set(scale, scale, scale);
@@ -97,7 +97,7 @@ export default class IntroScene extends THREE.Group {
   async addKeyhole() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`keyhole`);
-    const model = new ModelKeyhole(shape);
+    const model = new ModelKeyhole({shape});
 
     model.position.set(-1000, 1000, 0);
     model.rotateX(THREE.MathUtils.degToRad(180));
@@ -122,7 +122,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addWatermelon() {
@@ -140,7 +144,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addAirplane() {
@@ -161,7 +169,11 @@ export default class IntroScene extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
   }
 
   addSaturn() {

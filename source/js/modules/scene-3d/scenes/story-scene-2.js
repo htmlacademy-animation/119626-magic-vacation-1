@@ -22,13 +22,13 @@ export default class StoryScene2 extends THREE.Group {
     this.addPyramid();
     this.addLeaf1();
     this.addLeaf2();
-    this.addFloor();
     this.addStatic();
     this.addWall();
   }
 
   addStreetLamp() {
     const model = new ModelStreetLamp();
+
     model.position.set(650, 0, 120);
 
     this.add(model);
@@ -36,6 +36,7 @@ export default class StoryScene2 extends THREE.Group {
 
   addPyramid() {
     const model = new ModelPyramid();
+
     model.position.set(230, 140, 280);
 
     this.add(model);
@@ -44,7 +45,7 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf1() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf2`);
-    const model = new ModelLeaf2(shape);
+    const model = new ModelLeaf2({shape});
 
     model.scale.set(2.7, 2.7, 1);
     model.position.set(100, 350, 400);
@@ -57,7 +58,7 @@ export default class StoryScene2 extends THREE.Group {
   async addLeaf2() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf2`);
-    const model = new ModelLeaf2(shape);
+    const model = new ModelLeaf2({shape});
 
     model.scale.set(1.5, 1.5, 1);
     model.position.set(100, 120, 500);
@@ -84,7 +85,11 @@ export default class StoryScene2 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addWall() {
@@ -98,6 +103,10 @@ export default class StoryScene2 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
   }
 }

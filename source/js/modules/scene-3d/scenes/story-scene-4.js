@@ -20,6 +20,7 @@ export default class StoryScene4 extends THREE.Group {
     this.addFloor();
     this.addStatic();
     this.addWall();
+    this.addSonya();
   }
 
   addSaturn() {
@@ -58,7 +59,11 @@ export default class StoryScene4 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 
   async addWall() {
@@ -72,6 +77,26 @@ export default class StoryScene4 extends THREE.Group {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
+  }
+
+  async addSonya() {
+    const modelName = `sonya`;
+
+    const callback = (mesh) => {
+      mesh.position.set(450, 140, 300);
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
   }
 }

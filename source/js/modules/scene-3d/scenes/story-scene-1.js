@@ -23,12 +23,13 @@ export default class StoryScene1 extends THREE.Group {
     this.addFloor();
     this.addStatic();
     this.addWall();
+    this.addDog();
   }
 
   async addFlower() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flower`);
-    const model = new ModelFlower(shape);
+    const model = new ModelFlower({shape});
 
     model.position.set(57, 420, 100);
     model.rotateX(THREE.MathUtils.degToRad(180));
@@ -70,26 +71,43 @@ export default class StoryScene1 extends THREE.Group {
   }
 
   async addStatic() {
-    const modelName = `scene1Static`;
-
     const callback = (mesh) => {
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, null, callback);
+    await this.modelsLoader.getModel({
+      key: `scene1Static`,
+      material: null,
+      callback,
+    });
   }
 
   async addWall() {
-    const modelName = `wall`;
     const model = new Model();
     const material = model.getMaterial(`soft`, {color: model.getColor(`purple`), side: THREE.DoubleSide});
 
     const callback = (mesh) => {
-      mesh.name = modelName;
-
       this.add(mesh);
     };
 
-    await this.modelsLoader.getModel(modelName, material, callback);
+    await this.modelsLoader.getModel({
+      key: `wall`,
+      material,
+      callback,
+    });
+  }
+
+  async addDog() {
+    const callback = (mesh) => {
+      mesh.position.set(470, 0, 470);
+      mesh.rotateY(THREE.MathUtils.degToRad(60));
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel({
+      key: `dog`,
+      material: null,
+      callback,
+    });
   }
 }

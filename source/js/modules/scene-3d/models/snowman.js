@@ -25,6 +25,7 @@ export default class ModelSnowman extends Model {
     const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 173, 0);
+    mesh.castShadow = true;
 
     this.add(mesh);
   }
@@ -34,6 +35,7 @@ export default class ModelSnowman extends Model {
     const mesh = new THREE.Mesh(geometry, this.materialMain);
 
     mesh.position.set(0, 65, 0);
+    mesh.castShadow = true;
 
     this.add(mesh);
   }
@@ -44,6 +46,7 @@ export default class ModelSnowman extends Model {
 
     mesh.position.set(50, 173, 0);
     mesh.rotateZ(THREE.MathUtils.degToRad(-90));
+    mesh.castShadow = true;
 
     this.add(mesh);
   }

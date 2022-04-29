@@ -36,6 +36,18 @@ const MODELS = {
     path: `${MODEL_FOLDER}/scene4-static-output-1.gltf`,
     model: null,
   },
+  dog: {
+    path: `${MODEL_FOLDER}/dog.gltf`,
+    model: null,
+  },
+  compass: {
+    path: `${MODEL_FOLDER}/compass.gltf`,
+    model: null,
+  },
+  sonya: {
+    path: `${MODEL_FOLDER}/sonya.gltf`,
+    model: null,
+  },
 };
 
 export default class ModelsLoader {
@@ -51,11 +63,13 @@ export default class ModelsLoader {
     await loaderGltf.load(path, onComplete);
   }
 
-  onComplete(obj3d, material, callback) {
+  onComplete({obj3d, material, callback, castShadow, receiveShadow}) {
     if (material) {
       obj3d.traverse((child) => {
         if (child.isMesh) {
           child.material = material;
+          child.castShadow = Boolean(castShadow);
+          child.receiveShadow = Boolean(receiveShadow);
         }
       });
     }
@@ -71,13 +85,13 @@ export default class ModelsLoader {
     }
   }
 
-  async getModel(key, material, callback) {
+  async getModel({key, material, callback, castShadow, receiveShadow}) {
     if (!key || !MODELS[key]) {
       throw new Error(`Wrong key! Check ModelsLoader.setModel argument`);
     }
 
     if (!MODELS[key].model) {
-      await this.loadModel(key, material, callback);
+      await this.loadModel({key, material, callback, castShadow, receiveShadow});
     }
 
     return MODELS[key].model;
@@ -90,10 +104,10 @@ export default class ModelsLoader {
     return filename.split(`.`).pop();
   }
 
-  async loadModel(key, material, callback) {
-    const params = MODELS[key];
+  async loadModel({key, material, callback, castShadow, receiveShadow}) {
+    const model = MODELS[key];
 
-    if (!params) {
+    if (!model) {
       return;
     }
 
@@ -103,7 +117,7 @@ export default class ModelsLoader {
       }
 
       this.setModel(key, gltf.scene);
-      this.onComplete(gltf.scene, material, callback);
+      this.onComplete({obj3d: gltf.scene, material, callback, castShadow, receiveShadow});
     };
 
     const onObjectComplete = (obj) => {
@@ -112,13 +126,13 @@ export default class ModelsLoader {
       }
 
       this.setModel(key, obj);
-      this.onComplete(obj, material, callback);
+      this.onComplete({obj3d: obj, material, callback, castShadow, receiveShadow});
     };
 
-    if (this.getFileExt(params.path) === `gltf`) {
-      await this.loadGltf(params.path, onGltfComplete);
+    if (this.getFileExt(model.path) === `gltf`) {
+      await this.loadGltf(model.path, onGltfComplete);
     } else {
-      await this.loadObj(params.path, onObjectComplete);
+      await this.loadObj(model.path, onObjectComplete);
     }
   }
 }
