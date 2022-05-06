@@ -29,7 +29,10 @@ export default class StoryScene1 extends THREE.Group {
   async addFlower() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flower`);
-    const model = new ModelFlower({shape});
+    const model = new ModelFlower({
+      shape,
+      castShadow: true,
+    });
 
     model.position.set(57, 420, 100);
     model.rotateX(THREE.MathUtils.degToRad(180));
@@ -42,6 +45,7 @@ export default class StoryScene1 extends THREE.Group {
     const model = new ModelSaturn({
       colorBase: `dominantRed`,
       colorAdditional: `brightPurple`,
+      castShadow: true,
     });
 
     model.position.set(300, 500, 200);
@@ -78,6 +82,8 @@ export default class StoryScene1 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: `scene1Static`,
       material: null,
+      castShadow: true,
+      receiveShadow: true,
       callback,
     });
   }
@@ -93,6 +99,7 @@ export default class StoryScene1 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: `wall`,
       material,
+      receiveShadow: true,
       callback,
     });
   }
@@ -101,12 +108,15 @@ export default class StoryScene1 extends THREE.Group {
     const callback = (mesh) => {
       mesh.position.set(470, 0, 470);
       mesh.rotateY(THREE.MathUtils.degToRad(60));
+      mesh.castShadow = true;
+
       this.add(mesh);
     };
 
     await this.modelsLoader.getModel({
       key: `dog`,
       material: null,
+      castShadow: true,
       callback,
     });
   }

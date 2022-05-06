@@ -64,15 +64,16 @@ export default class ModelsLoader {
   }
 
   onComplete({obj3d, material, callback, castShadow, receiveShadow}) {
-    if (material) {
-      obj3d.traverse((child) => {
-        if (child.isMesh) {
-          child.material = material;
-          child.castShadow = Boolean(castShadow);
-          child.receiveShadow = Boolean(receiveShadow);
-        }
-      });
-    }
+    obj3d.traverse((child) => {
+      if (material && child.isMesh) {
+        child.material = material;
+      }
+
+      if (child.isMesh) {
+        child.castShadow = Boolean(castShadow);
+        child.receiveShadow = Boolean(receiveShadow);
+      }
+    });
 
     if (typeof callback === `function`) {
       callback.call(null, obj3d);
@@ -108,12 +109,12 @@ export default class ModelsLoader {
     const model = MODELS[key];
 
     if (!model) {
-      return;
+      throw new Error(`ModelsLoader.loadModel. model does not exist`);
     }
 
     const onGltfComplete = (gltf) => {
       if (!gltf.scene) {
-        return;
+        throw new Error(`ModelsLoader.loadModel. onGltfComplete. gltf.scene does not exist`);
       }
 
       this.setModel(key, gltf.scene);
@@ -122,7 +123,7 @@ export default class ModelsLoader {
 
     const onObjectComplete = (obj) => {
       if (!obj) {
-        return;
+        throw new Error(`ModelsLoader.loadModel. onObjectComplete. obj does not exist`);
       }
 
       this.setModel(key, obj);
