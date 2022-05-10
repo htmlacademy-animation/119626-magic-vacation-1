@@ -13,11 +13,6 @@ import Model from './models/model';
 import ShapesLoader from "./shapes-loader";
 import Scene3D from "./scene-3d";
 
-const Z_POS = 200;
-const ANIMATION_DELAY = 1500; // duration of css animations
-const ANIMATION_DELAY_INFINITE = ANIMATION_DELAY + 1500;
-const ANIMATION_DURATION = 1500;
-
 export default class Scene3DIntro extends Scene3D {
   constructor() {
     const canvas = document.getElementById(`intro-scene`);
@@ -25,9 +20,15 @@ export default class Scene3DIntro extends Scene3D {
     super({canvas});
 
     this.modelsLoader = new ModelsLoader();
+
+    this.objectZPosition = 200;
+
+    this.animationDelay = 1500; // duration of css animations
+    this.animationDelayInfinite = this.animationDelay + 1500;
+    this.animationDuration = 1500;
   }
 
-  getUpdatedYPositionFormInfiniteAnimation(position, amplutide, current, start, period) {
+  getUpdatedYPositionForInfiniteAnimation(position, amplutide, current, start, period) {
     return position + amplutide * Math.sin(2 * Math.PI * (current - start) / period);
   }
 
@@ -37,11 +38,11 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.question.position.set(100 * t, -250 * t, Z_POS);
+          this.objects.question.position.set(100 * t, -250 * t, this.objectZPosition);
           this.objects.question.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
@@ -49,7 +50,7 @@ export default class Scene3DIntro extends Scene3D {
           const amplitude = 0.25;
           const period = 3500;
 
-          this.objects.question.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.question.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.question.position.y,
               amplitude,
               details.currentTime,
@@ -57,7 +58,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -86,11 +87,11 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.flamingo.position.set(-400 * t, 300 * t, Z_POS);
+          this.objects.flamingo.position.set(-400 * t, 300 * t, this.objectZPosition);
           this.objects.flamingo.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
@@ -98,7 +99,7 @@ export default class Scene3DIntro extends Scene3D {
           const amplitude = 0.2;
           const period = 5000;
 
-          this.objects.flamingo.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.flamingo.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.flamingo.position.y,
               amplitude,
               details.currentTime,
@@ -106,7 +107,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -136,11 +137,11 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.snowflake.position.set(-350 * t, 0, Z_POS);
+          this.objects.snowflake.position.set(-350 * t, 0, this.objectZPosition);
           this.objects.snowflake.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
@@ -148,7 +149,7 @@ export default class Scene3DIntro extends Scene3D {
           const amplitude = 0.2;
           const period = 4000;
 
-          this.objects.snowflake.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.snowflake.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.snowflake.position.y,
               amplitude,
               details.currentTime,
@@ -156,7 +157,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -185,11 +186,11 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.leaf.position.set(500 * t, 300 * t, Z_POS);
+          this.objects.leaf.position.set(500 * t, 300 * t, this.objectZPosition);
           this.objects.leaf.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
@@ -197,7 +198,7 @@ export default class Scene3DIntro extends Scene3D {
           const amplitude = 0.15;
           const period = 4500;
 
-          this.objects.leaf.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.leaf.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.leaf.position.y,
               amplitude,
               details.currentTime,
@@ -205,7 +206,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -247,7 +248,7 @@ export default class Scene3DIntro extends Scene3D {
     const callback = (mesh) => {
       mesh.name = modelName;
 
-      mesh.position.set(-50, -125, Z_POS);
+      mesh.position.set(-50, -125, this.objectZPosition);
       mesh.scale.set(scale, scale, scale);
 
       mesh.rotateX(THREE.MathUtils.degToRad(35));
@@ -270,19 +271,19 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.watermelon.position.set(-600 * t, -250 * t, Z_POS);
+          this.objects.watermelon.position.set(-600 * t, -250 * t, this.objectZPosition);
           this.objects.watermelon.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
         func: (t, details) => {
-          const amplitude = 0.25;
-          const period = 4000;
+          const amplitude = 0.27;
+          const period = 3500;
 
-          this.objects.watermelon.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.watermelon.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.watermelon.position.y,
               amplitude,
               details.currentTime,
@@ -290,7 +291,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -329,7 +330,7 @@ export default class Scene3DIntro extends Scene3D {
     const callback = (mesh) => {
       mesh.name = modelName;
 
-      mesh.position.set(200, 100, Z_POS);
+      mesh.position.set(200, 100, this.objectZPosition);
       mesh.scale.set(scale, scale, scale);
 
       mesh.rotateX(THREE.MathUtils.degToRad(55));
@@ -351,11 +352,11 @@ export default class Scene3DIntro extends Scene3D {
     const animations = [
       new Animation({
         func: (t) => {
-          this.objects.saturn.position.set(350 * t, -100 * t, Z_POS);
+          this.objects.saturn.position.set(350 * t, -100 * t, this.objectZPosition);
           this.objects.saturn.scale.set(scale * t, scale * t, scale * t);
         },
-        delay: ANIMATION_DELAY,
-        duration: ANIMATION_DURATION,
+        delay: this.animationDelay,
+        duration: this.animationDuration,
         easing: _.easeOutCubic,
       }),
       new Animation({
@@ -363,7 +364,7 @@ export default class Scene3DIntro extends Scene3D {
           const amplitude = 0.19;
           const period = 5500;
 
-          this.objects.saturn.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+          this.objects.saturn.position.y = this.getUpdatedYPositionForInfiniteAnimation(
               this.objects.saturn.position.y,
               amplitude,
               details.currentTime,
@@ -371,7 +372,7 @@ export default class Scene3DIntro extends Scene3D {
               period
           );
         },
-        delay: ANIMATION_DELAY_INFINITE,
+        delay: this.animationDelayInfinite,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
