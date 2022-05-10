@@ -345,18 +345,52 @@ export default class Scene3DIntro extends Scene3D {
     });
   }
 
-  addSaturn() {
+  addSaturnAnimations() {
     const scale = 0.5;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.saturn.position.set(350 * t, -100 * t, Z_POS);
+          this.objects.saturn.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const amplitude = 0.19;
+          const period = 5500;
+
+          this.objects.saturn.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.saturn.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: ANIMATION_DELAY_INFINITE,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
+  }
+
+  addSaturn() {
     const model = new ModelSaturn({
       colorBase: `dominantRed`,
       colorAdditional: `brightPurple`,
       shouldRenderSattelite: false,
     });
 
-    model.position.set(350, -100, Z_POS);
-    model.scale.set(scale, scale, scale);
-
     this.scene.add(model);
+    this.objects.saturn = model;
   }
 
   constructChildren() {
@@ -379,6 +413,7 @@ export default class Scene3DIntro extends Scene3D {
     this.addSnowflakeAnimations();
     this.addLeafAnimations();
     this.addWatermelonAnimations();
+    this.addSaturnAnimations();
   }
 
   start() {
