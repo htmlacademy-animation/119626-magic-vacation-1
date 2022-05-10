@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
+import Animation from '../animation';
+import _ from "../timing-functions";
 import ModelsLoader from './models-loader';
 import ModelKeyhole from './models/keyhole';
 import ModelFlamingo from './models/flamingo';
@@ -10,9 +12,12 @@ import ModelLeaf1 from './models/leaf-1';
 import Model from './models/model';
 import ShapesLoader from "./shapes-loader";
 import Scene3D from "./scene-3d";
+
 // import IntroScene from "./scenes/intro-scene";
 
 const Z_POS = 200;
+const ANIMATION_DELAY = 1500;
+const ANIMATION_DURATION = 1500;
 
 export default class Scene3DIntro extends Scene3D {
   constructor() {
@@ -21,8 +26,6 @@ export default class Scene3DIntro extends Scene3D {
     super({canvas});
 
     this.modelsLoader = new ModelsLoader();
-
-    this.setAnimations();
   }
 
   async addQuestion() {
@@ -38,20 +41,48 @@ export default class Scene3DIntro extends Scene3D {
     this.scene.add(model);
   }
 
-  async addFlamingo() {
+  addFlamingoAnimations() {
     const scale = 2;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.flamingo.position.set(-400 * t, 300 * t, Z_POS);
+          this.objects.flamingo.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const ampY = 0.3;
+          const period = 4000;
+
+          this.objects.flamingo.position.y = this.objects.flamingo.position.y + ampY * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+        },
+        delay: ANIMATION_DELAY + 1500,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
+  }
+
+  async addFlamingo() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`flamingo`);
     const model = new ModelFlamingo({shape});
-
-    model.position.set(-400, 300, Z_POS);
-    model.scale.set(scale, scale, scale);
 
     model.rotateX(THREE.MathUtils.degToRad(180));
     model.rotateY(THREE.MathUtils.degToRad(160));
     model.rotateZ(THREE.MathUtils.degToRad(15));
 
     this.scene.add(model);
+    this.objects.flamingo = model;
   }
 
   async addSnowflake() {
@@ -196,11 +227,13 @@ export default class Scene3DIntro extends Scene3D {
   }
 
   setAnimations() {
+    this.addFlamingoAnimations();
     // TODO: implement
   }
 
   start() {
     this.constructChildren();
+    this.setAnimations();
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
