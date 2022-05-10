@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import Animation from '../animation';
 import _ from "../timing-functions";
 import ModelsLoader from './models-loader';
@@ -408,7 +407,7 @@ export default class Scene3DIntro extends Scene3D {
     this.addSaturn();
   }
 
-  setAnimations() {
+  addAnimations() {
     this.addQuestionAnimations();
     this.addFlamingoAnimations();
     this.addSnowflakeAnimations();
@@ -419,9 +418,7 @@ export default class Scene3DIntro extends Scene3D {
 
   start() {
     this.constructChildren();
-    this.setAnimations();
-
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
+    this.addAnimations();
 
     super.start();
   }

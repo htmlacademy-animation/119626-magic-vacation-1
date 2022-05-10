@@ -1,7 +1,13 @@
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import * as THREE from 'three';
 import Stats from 'stats.js';
 import vertexShader from '../../shaders/vertex-shader-base.glsl';
 import fragmentShader from '../../shaders/fragment-shader-scene-2.glsl';
+
+// TODO: remove. for devs only
+const stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
 export default class Scene3D {
   constructor(options) {
@@ -111,10 +117,7 @@ export default class Scene3D {
 
     this.scene.add(this.getLights());
 
-    // TODO: remove. for devs only
-    const stats = new Stats();
-    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
   }
 
   renderScene() {
@@ -125,6 +128,7 @@ export default class Scene3D {
     this.renderScene();
 
     this.animationId = requestAnimationFrame(this.tick);
+    stats.update();
   }
 
   stopAnimation() {
@@ -136,8 +140,6 @@ export default class Scene3D {
   }
 
   startAnimation() {
-    this.stopAnimation();
-
     if (this.animations && this.animations.length) {
       this.animations.forEach((animation) => {
         animation.start();
