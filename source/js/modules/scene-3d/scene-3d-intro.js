@@ -28,17 +28,47 @@ export default class Scene3DIntro extends Scene3D {
     this.modelsLoader = new ModelsLoader();
   }
 
+  addQuestionAnimations() {
+    const scale = 1;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.question.position.set(100 * t, -250 * t, Z_POS);
+          this.objects.question.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const ampY = 0.35;
+          const period = 3500;
+
+          this.objects.question.position.y = this.objects.question.position.y + ampY * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+        },
+        delay: ANIMATION_DELAY + 1500,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
+  }
+
   async addQuestion() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`question`);
     const model = new ModelQuestion({shape});
 
-    model.position.set(100, -250, Z_POS);
-
     model.rotateX(THREE.MathUtils.degToRad(140));
     model.rotateZ(THREE.MathUtils.degToRad(-20));
 
     this.scene.add(model);
+    this.objects.question = model;
   }
 
   addFlamingoAnimations() {
@@ -227,8 +257,8 @@ export default class Scene3DIntro extends Scene3D {
   }
 
   setAnimations() {
+    this.addQuestionAnimations();
     this.addFlamingoAnimations();
-    // TODO: implement
   }
 
   start() {
