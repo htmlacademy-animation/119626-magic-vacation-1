@@ -71260,21 +71260,18 @@ class ModelStreetLamp extends _model__WEBPACK_IMPORTED_MODULE_1__["default"] {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene3DIntro; });
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animation */ "./source/js/modules/animation.js");
-/* harmony import */ var _timing_functions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../timing-functions */ "./source/js/modules/timing-functions.js");
-/* harmony import */ var _models_loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./models-loader */ "./source/js/modules/scene-3d/models-loader.js");
-/* harmony import */ var _models_keyhole__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./models/keyhole */ "./source/js/modules/scene-3d/models/keyhole.js");
-/* harmony import */ var _models_flamingo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./models/flamingo */ "./source/js/modules/scene-3d/models/flamingo.js");
-/* harmony import */ var _models_snowflake__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./models/snowflake */ "./source/js/modules/scene-3d/models/snowflake.js");
-/* harmony import */ var _models_question__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/question */ "./source/js/modules/scene-3d/models/question.js");
-/* harmony import */ var _models_saturn__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./models/saturn */ "./source/js/modules/scene-3d/models/saturn.js");
-/* harmony import */ var _models_leaf_1__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./models/leaf-1 */ "./source/js/modules/scene-3d/models/leaf-1.js");
-/* harmony import */ var _models_model__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./models/model */ "./source/js/modules/scene-3d/models/model.js");
-/* harmony import */ var _shapes_loader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shapes-loader */ "./source/js/modules/scene-3d/shapes-loader.js");
-/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
-
- // TODO: remove. for devs only
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animation */ "./source/js/modules/animation.js");
+/* harmony import */ var _timing_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../timing-functions */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _models_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./models-loader */ "./source/js/modules/scene-3d/models-loader.js");
+/* harmony import */ var _models_keyhole__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./models/keyhole */ "./source/js/modules/scene-3d/models/keyhole.js");
+/* harmony import */ var _models_flamingo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./models/flamingo */ "./source/js/modules/scene-3d/models/flamingo.js");
+/* harmony import */ var _models_snowflake__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./models/snowflake */ "./source/js/modules/scene-3d/models/snowflake.js");
+/* harmony import */ var _models_question__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./models/question */ "./source/js/modules/scene-3d/models/question.js");
+/* harmony import */ var _models_saturn__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/saturn */ "./source/js/modules/scene-3d/models/saturn.js");
+/* harmony import */ var _models_leaf_1__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./models/leaf-1 */ "./source/js/modules/scene-3d/models/leaf-1.js");
+/* harmony import */ var _models_model__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./models/model */ "./source/js/modules/scene-3d/models/model.js");
+/* harmony import */ var _shapes_loader__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shapes-loader */ "./source/js/modules/scene-3d/shapes-loader.js");
+/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
 
 
 
@@ -71288,13 +71285,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
+
+class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_12__["default"] {
   constructor() {
     const canvas = document.getElementById(`intro-scene`);
 
     super({canvas});
 
-    this.modelsLoader = new _models_loader__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.modelsLoader = new _models_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
 
     this.objectZPosition = 200;
 
@@ -71311,16 +71309,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 1;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.question.position.set(100 * t, -250 * t, this.objectZPosition);
           this.objects.question.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.25;
           const period = 3500;
@@ -71335,7 +71333,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71345,9 +71343,9 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   async addQuestion() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
     const shape = await loader.getShape(`question`);
-    const model = new _models_question__WEBPACK_IMPORTED_MODULE_8__["default"]({shape});
+    const model = new _models_question__WEBPACK_IMPORTED_MODULE_7__["default"]({shape});
 
     model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
     model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
@@ -71360,16 +71358,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 2;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.flamingo.position.set(-400 * t, 300 * t, this.objectZPosition);
           this.objects.flamingo.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.2;
           const period = 5000;
@@ -71384,7 +71382,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71394,9 +71392,9 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   async addFlamingo() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
     const shape = await loader.getShape(`flamingo`);
-    const model = new _models_flamingo__WEBPACK_IMPORTED_MODULE_6__["default"]({shape});
+    const model = new _models_flamingo__WEBPACK_IMPORTED_MODULE_5__["default"]({shape});
 
     model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
     model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(160));
@@ -71410,16 +71408,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 0.85;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.snowflake.position.set(-350 * t, 0, this.objectZPosition);
           this.objects.snowflake.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.2;
           const period = 4000;
@@ -71434,7 +71432,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71444,9 +71442,9 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   async addSnowflake() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
     const shape = await loader.getShape(`snowflake`);
-    const model = new _models_snowflake__WEBPACK_IMPORTED_MODULE_7__["default"]({shape});
+    const model = new _models_snowflake__WEBPACK_IMPORTED_MODULE_6__["default"]({shape});
 
     model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
     model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(35));
@@ -71459,16 +71457,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 1.5;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.leaf.position.set(500 * t, 300 * t, this.objectZPosition);
           this.objects.leaf.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.15;
           const period = 4500;
@@ -71483,7 +71481,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71493,9 +71491,9 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   async addLeaf() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
     const shape = await loader.getShape(`leaf1`);
-    const model = new _models_leaf_1__WEBPACK_IMPORTED_MODULE_10__["default"]({shape});
+    const model = new _models_leaf_1__WEBPACK_IMPORTED_MODULE_9__["default"]({shape});
 
     model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
     model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(55));
@@ -71506,9 +71504,9 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   async addKeyhole() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
     const shape = await loader.getShape(`keyhole`);
-    const model = new _models_keyhole__WEBPACK_IMPORTED_MODULE_5__["default"]({shape});
+    const model = new _models_keyhole__WEBPACK_IMPORTED_MODULE_4__["default"]({shape});
 
     model.position.set(-1000, 1000, 0);
     model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
@@ -71544,16 +71542,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 1.5;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.watermelon.position.set(-600 * t, -250 * t, this.objectZPosition);
           this.objects.watermelon.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.27;
           const period = 3500;
@@ -71568,7 +71566,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71599,7 +71597,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   async addAirplane() {
     const scale = 1;
     const modelName = `airplane`;
-    const model = new _models_model__WEBPACK_IMPORTED_MODULE_11__["default"]();
+    const model = new _models_model__WEBPACK_IMPORTED_MODULE_10__["default"]();
     const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
 
     const callback = (mesh) => {
@@ -71625,16 +71623,16 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     const scale = 0.5;
 
     const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t) => {
           this.objects.saturn.position.set(350 * t, -100 * t, this.objectZPosition);
           this.objects.saturn.scale.set(scale * t, scale * t, scale * t);
         },
         delay: this.animationDelay,
         duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
-      new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
         func: (t, details) => {
           const amplitude = 0.19;
           const period = 5500;
@@ -71649,7 +71647,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
         },
         delay: this.animationDelayInfinite,
         duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_3__["default"].easeOutCubic,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
       }),
     ];
 
@@ -71659,7 +71657,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
   }
 
   addSaturn() {
-    const model = new _models_saturn__WEBPACK_IMPORTED_MODULE_9__["default"]({
+    const model = new _models_saturn__WEBPACK_IMPORTED_MODULE_8__["default"]({
       colorBase: `dominantRed`,
       colorAdditional: `brightPurple`,
       shouldRenderSattelite: false,
@@ -71683,7 +71681,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
     this.addSaturn();
   }
 
-  setAnimations() {
+  addAnimations() {
     this.addQuestionAnimations();
     this.addFlamingoAnimations();
     this.addSnowflakeAnimations();
@@ -71694,9 +71692,7 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
 
   start() {
     this.constructChildren();
-    this.setAnimations();
-
-    this.controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__["OrbitControls"](this.camera, this.renderer.domElement); // TODO: remove. for devs only
+    this.addAnimations();
 
     super.start();
   }
@@ -71716,16 +71712,14 @@ class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_13__["default"] {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene3DStory; });
 /* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../animation */ "./source/js/modules/animation.js");
-/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
-/* harmony import */ var _scenes_story_scene_1__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/story-scene-1 */ "./source/js/modules/scene-3d/scenes/story-scene-1.js");
-/* harmony import */ var _scenes_story_scene_2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scenes/story-scene-2 */ "./source/js/modules/scene-3d/scenes/story-scene-2.js");
-/* harmony import */ var _scenes_story_scene_3__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scenes/story-scene-3 */ "./source/js/modules/scene-3d/scenes/story-scene-3.js");
-/* harmony import */ var _scenes_story_scene_4__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scenes/story-scene-4 */ "./source/js/modules/scene-3d/scenes/story-scene-4.js");
-/* harmony import */ var _scenes_story_suitcase__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./scenes/story-suitcase */ "./source/js/modules/scene-3d/scenes/story-suitcase.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animation */ "./source/js/modules/animation.js");
+/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
+/* harmony import */ var _scenes_story_scene_1__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scenes/story-scene-1 */ "./source/js/modules/scene-3d/scenes/story-scene-1.js");
+/* harmony import */ var _scenes_story_scene_2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scenes/story-scene-2 */ "./source/js/modules/scene-3d/scenes/story-scene-2.js");
+/* harmony import */ var _scenes_story_scene_3__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scenes/story-scene-3 */ "./source/js/modules/scene-3d/scenes/story-scene-3.js");
+/* harmony import */ var _scenes_story_scene_4__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./scenes/story-scene-4 */ "./source/js/modules/scene-3d/scenes/story-scene-4.js");
+/* harmony import */ var _scenes_story_suitcase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scenes/story-suitcase */ "./source/js/modules/scene-3d/scenes/story-suitcase.js");
 
- // TODO: remove. for devs only
 
 
 
@@ -71756,7 +71750,7 @@ const SCENE_BGS = [
   },
 ];
 
-class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
+class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_2__["default"] {
   constructor() {
     const canvas = document.getElementById(`story-scene`);
 
@@ -71768,7 +71762,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
   }
 
   setAnimations() {
-    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
       func: (progress) => {
         if (this.material) {
           this.material.uniforms.uProgressHue = {value: progress};
@@ -71777,7 +71771,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
       duration: 2000,
     }));
 
-    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
       func: (progress) => {
         if (this.material) {
           this.material.uniforms.uProgressBubble1 = {value: progress};
@@ -71786,7 +71780,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
       duration: 1300,
     }));
 
-    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
       func: (progress) => {
         if (this.material) {
           this.material.uniforms.uProgressBubble2 = {value: progress};
@@ -71796,7 +71790,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
       delay: 700,
     }));
 
-    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    this.animations.push(new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
       func: (progress) => {
         if (this.material) {
           this.material.uniforms.uProgressBubble3 = {value: progress};
@@ -71815,8 +71809,6 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
     this.scene.add(this.getScene2());
     this.scene.add(this.getScene3());
     this.scene.add(this.getScene4());
-
-    this.controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_1__["OrbitControls"](this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
     super.start();
   }
@@ -71846,7 +71838,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
   }
 
   getScene1() {
-    const group = new _scenes_story_scene_1__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    const group = new _scenes_story_scene_1__WEBPACK_IMPORTED_MODULE_3__["default"]();
 
     group.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(this.sceneYAngle));
 
@@ -71854,7 +71846,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
   }
 
   getScene2() {
-    const group = new _scenes_story_scene_2__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    const group = new _scenes_story_scene_2__WEBPACK_IMPORTED_MODULE_4__["default"]();
 
     group.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(this.sceneYAngle + 90));
 
@@ -71862,7 +71854,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
   }
 
   getScene3() {
-    const group = new _scenes_story_scene_3__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    const group = new _scenes_story_scene_3__WEBPACK_IMPORTED_MODULE_5__["default"]();
 
     group.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(this.sceneYAngle + 180));
 
@@ -71870,7 +71862,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
   }
 
   getScene4() {
-    const group = new _scenes_story_scene_4__WEBPACK_IMPORTED_MODULE_7__["default"]();
+    const group = new _scenes_story_scene_4__WEBPACK_IMPORTED_MODULE_6__["default"]();
 
     group.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(this.sceneYAngle + 270));
 
@@ -71879,7 +71871,7 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
 
   getSuitcase() {
     const scale = 0.8;
-    const group = new _scenes_story_suitcase__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    const group = new _scenes_story_suitcase__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
     group.position.set(580, 0, 580);
     group.scale.set(scale, scale, scale);
@@ -71902,17 +71894,24 @@ class Scene3DStory extends _scene_3d__WEBPACK_IMPORTED_MODULE_3__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene3D; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! stats.js */ "./node_modules/stats.js/build/stats.min.js");
-/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(stats_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shaders/vertex-shader-base.glsl */ "./source/js/shaders/vertex-shader-base.glsl");
-/* harmony import */ var _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shaders/fragment-shader-scene-2.glsl */ "./source/js/shaders/fragment-shader-scene-2.glsl");
-/* harmony import */ var _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three/examples/jsm/controls/OrbitControls */ "./node_modules/three/examples/jsm/controls/OrbitControls.js");
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! stats.js */ "./node_modules/stats.js/build/stats.min.js");
+/* harmony import */ var stats_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(stats_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shaders/vertex-shader-base.glsl */ "./source/js/shaders/vertex-shader-base.glsl");
+/* harmony import */ var _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shaders/fragment-shader-scene-2.glsl */ "./source/js/shaders/fragment-shader-scene-2.glsl");
+/* harmony import */ var _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_4__);
+ // TODO: remove. for devs only
 
 
 
 
+
+// TODO: remove. for devs only
+const stats = new stats_js__WEBPACK_IMPORTED_MODULE_2___default.a();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
 class Scene3D {
   constructor(options) {
@@ -71956,7 +71955,7 @@ class Scene3D {
   }
 
   setMaterial(scene) {
-    this.material = new three__WEBPACK_IMPORTED_MODULE_0__["RawShaderMaterial"]({
+    this.material = new three__WEBPACK_IMPORTED_MODULE_1__["RawShaderMaterial"]({
       uniforms: {
         uMap: {
           value: scene.texture,
@@ -71983,8 +71982,8 @@ class Scene3D {
           value: 0,
         }
       },
-      vertexShader: _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_2___default.a.sourceCode,
-      fragmentShader: _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_3___default.a.sourceCode,
+      vertexShader: _shaders_vertex_shader_base_glsl__WEBPACK_IMPORTED_MODULE_3___default.a.sourceCode,
+      fragmentShader: _shaders_fragment_shader_scene_2_glsl__WEBPACK_IMPORTED_MODULE_4___default.a.sourceCode,
     });
   }
 
@@ -71993,8 +71992,8 @@ class Scene3D {
   }
 
   init() {
-    this.scene = new three__WEBPACK_IMPORTED_MODULE_0__["Scene"]();
-    this.camera = new three__WEBPACK_IMPORTED_MODULE_0__["PerspectiveCamera"](
+    this.scene = new three__WEBPACK_IMPORTED_MODULE_1__["Scene"]();
+    this.camera = new three__WEBPACK_IMPORTED_MODULE_1__["PerspectiveCamera"](
         this.perspectiveAngle,
         this.aspectRatio,
         this.cameraZCoordinateMin,
@@ -72004,16 +72003,16 @@ class Scene3D {
     this.camera.position.y = 800;
     this.camera.position.z = 2550;
 
-    this.textureLoader = new three__WEBPACK_IMPORTED_MODULE_0__["TextureLoader"]();
+    this.textureLoader = new three__WEBPACK_IMPORTED_MODULE_1__["TextureLoader"]();
 
-    this.renderer = new three__WEBPACK_IMPORTED_MODULE_0__["WebGLRenderer"]({
+    this.renderer = new three__WEBPACK_IMPORTED_MODULE_1__["WebGLRenderer"]({
       canvas: this.canvas
     });
 
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_0__["PCFSoftShadowMap"];
+    this.renderer.shadowMap.type = three__WEBPACK_IMPORTED_MODULE_1__["PCFSoftShadowMap"];
 
-    const color = new three__WEBPACK_IMPORTED_MODULE_0__["Color"](`#5f458c`);
+    const color = new three__WEBPACK_IMPORTED_MODULE_1__["Color"](`#5f458c`);
     const alpha = 1;
 
     this.renderer.setClearColor(color, alpha);
@@ -72022,10 +72021,7 @@ class Scene3D {
 
     this.scene.add(this.getLights());
 
-    // TODO: remove. for devs only
-    const stats = new stats_js__WEBPACK_IMPORTED_MODULE_1___default.a();
-    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
+    this.controls = new three_examples_jsm_controls_OrbitControls__WEBPACK_IMPORTED_MODULE_0__["OrbitControls"](this.camera, this.renderer.domElement); // TODO: remove. for devs only
   }
 
   renderScene() {
@@ -72036,6 +72032,7 @@ class Scene3D {
     this.renderScene();
 
     this.animationId = requestAnimationFrame(this.tick);
+    stats.update();
   }
 
   stopAnimation() {
@@ -72047,8 +72044,6 @@ class Scene3D {
   }
 
   startAnimation() {
-    this.stopAnimation();
-
     if (this.animations && this.animations.length) {
       this.animations.forEach((animation) => {
         animation.start();
@@ -72071,17 +72066,17 @@ class Scene3D {
   }
 
   getLights() {
-    const light = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+    const light = new three__WEBPACK_IMPORTED_MODULE_1__["Group"]();
 
     // Light 1
-    const lightUnit1 = new three__WEBPACK_IMPORTED_MODULE_0__["DirectionalLight"](new three__WEBPACK_IMPORTED_MODULE_0__["Color"](`rgb(255,255,255)`), 0.84);
+    const lightUnit1 = new three__WEBPACK_IMPORTED_MODULE_1__["DirectionalLight"](new three__WEBPACK_IMPORTED_MODULE_1__["Color"](`rgb(255,255,255)`), 0.84);
 
-    lightUnit1.position.set(0, this.camera.position.z * Math.tan(15 * three__WEBPACK_IMPORTED_MODULE_0__["Math"].DEG2RAD), 0);
+    lightUnit1.position.set(0, this.camera.position.z * Math.tan(15 * three__WEBPACK_IMPORTED_MODULE_1__["Math"].DEG2RAD), 0);
 
     light.add(lightUnit1);
 
     // Light 2
-    const lightUnit2 = new three__WEBPACK_IMPORTED_MODULE_0__["PointLight"](new three__WEBPACK_IMPORTED_MODULE_0__["Color"](`rgb(246,242,255)`), 0.6, 0, 2);
+    const lightUnit2 = new three__WEBPACK_IMPORTED_MODULE_1__["PointLight"](new three__WEBPACK_IMPORTED_MODULE_1__["Color"](`rgb(246,242,255)`), 0.6, 0, 2);
 
     lightUnit2.position.set(-800, -350, 710);
 
@@ -72093,7 +72088,7 @@ class Scene3D {
     light.add(lightUnit2);
 
     // Light 3
-    const lightUnit3 = new three__WEBPACK_IMPORTED_MODULE_0__["PointLight"](new three__WEBPACK_IMPORTED_MODULE_0__["Color"](`rgb(245,254,255)`), 0.95, 0, 2);
+    const lightUnit3 = new three__WEBPACK_IMPORTED_MODULE_1__["PointLight"](new three__WEBPACK_IMPORTED_MODULE_1__["Color"](`rgb(245,254,255)`), 0.95, 0, 2);
 
     lightUnit3.position.set(730, 800, 985);
 
