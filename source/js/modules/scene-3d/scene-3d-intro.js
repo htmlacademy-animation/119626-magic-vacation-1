@@ -13,10 +13,9 @@ import Model from './models/model';
 import ShapesLoader from "./shapes-loader";
 import Scene3D from "./scene-3d";
 
-// import IntroScene from "./scenes/intro-scene";
-
 const Z_POS = 200;
-const ANIMATION_DELAY = 1500;
+const ANIMATION_DELAY = 1500; // duration of css animations
+const ANIMATION_DELAY_INFINITE = ANIMATION_DELAY + 1500;
 const ANIMATION_DURATION = 1500;
 
 export default class Scene3DIntro extends Scene3D {
@@ -26,6 +25,10 @@ export default class Scene3DIntro extends Scene3D {
     super({canvas});
 
     this.modelsLoader = new ModelsLoader();
+  }
+
+  getUpdatedYPositionFormInfiniteAnimation(position, amplutide, current, start, period) {
+    return position + amplutide * Math.sin(2 * Math.PI * (current - start) / period);
   }
 
   addQuestionAnimations() {
@@ -43,12 +46,18 @@ export default class Scene3DIntro extends Scene3D {
       }),
       new Animation({
         func: (t, details) => {
-          const ampY = 0.35;
+          const amplitude = 0.25;
           const period = 3500;
 
-          this.objects.question.position.y = this.objects.question.position.y + ampY * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+          this.objects.question.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.question.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
         },
-        delay: ANIMATION_DELAY + 1500,
+        delay: ANIMATION_DELAY_INFINITE,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -86,12 +95,18 @@ export default class Scene3DIntro extends Scene3D {
       }),
       new Animation({
         func: (t, details) => {
-          const ampY = 0.3;
-          const period = 4000;
+          const amplitude = 0.2;
+          const period = 5000;
 
-          this.objects.flamingo.position.y = this.objects.flamingo.position.y + ampY * Math.sin(2 * Math.PI * (details.currentTime - details.startTime) / period);
+          this.objects.flamingo.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.flamingo.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
         },
-        delay: ANIMATION_DELAY + 1500,
+        delay: ANIMATION_DELAY_INFINITE,
         duration: `infinite`,
         easing: _.easeOutCubic,
       }),
@@ -115,35 +130,103 @@ export default class Scene3DIntro extends Scene3D {
     this.objects.flamingo = model;
   }
 
-  async addSnowflake() {
+  addSnowflakeAnimations() {
     const scale = 0.85;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.snowflake.position.set(-350 * t, 0, Z_POS);
+          this.objects.snowflake.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const amplitude = 0.2;
+          const period = 4000;
+
+          this.objects.snowflake.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.snowflake.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: ANIMATION_DELAY_INFINITE,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
+  }
+
+  async addSnowflake() {
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`snowflake`);
     const model = new ModelSnowflake({shape});
-
-    model.position.set(-350, 0, Z_POS);
-    model.scale.set(scale, scale, scale);
 
     model.rotateX(THREE.MathUtils.degToRad(-20));
     model.rotateY(THREE.MathUtils.degToRad(35));
 
     this.scene.add(model);
+    this.objects.snowflake = model;
+  }
+
+  addLeafAnimations() {
+    const scale = 1.5;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.leaf.position.set(500 * t, 300 * t, Z_POS);
+          this.objects.leaf.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const amplitude = 0.15;
+          const period = 4500;
+
+          this.objects.leaf.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.leaf.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: ANIMATION_DELAY_INFINITE,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
   }
 
   async addLeaf() {
-    const scale = 1.5;
     const loader = new ShapesLoader();
     const shape = await loader.getShape(`leaf1`);
     const model = new ModelLeaf1({shape});
-
-    model.position.set(500, 300, Z_POS);
-    model.scale.set(scale, scale, scale);
 
     model.rotateX(THREE.MathUtils.degToRad(180));
     model.rotateY(THREE.MathUtils.degToRad(55));
     model.rotateZ(THREE.MathUtils.degToRad(85));
 
     this.scene.add(model);
+    this.objects.leaf = model;
   }
 
   async addKeyhole() {
@@ -181,19 +264,53 @@ export default class Scene3DIntro extends Scene3D {
     });
   }
 
-  async addWatermelon() {
+  addWatermelonAnimations() {
     const scale = 1.5;
+
+    const animations = [
+      new Animation({
+        func: (t) => {
+          this.objects.watermelon.position.set(-600 * t, -250 * t, Z_POS);
+          this.objects.watermelon.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: ANIMATION_DELAY,
+        duration: ANIMATION_DURATION,
+        easing: _.easeOutCubic,
+      }),
+      new Animation({
+        func: (t, details) => {
+          const amplitude = 0.25;
+          const period = 4000;
+
+          this.objects.watermelon.position.y = this.getUpdatedYPositionFormInfiniteAnimation(
+              this.objects.watermelon.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: ANIMATION_DELAY_INFINITE,
+        duration: `infinite`,
+        easing: _.easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animations.push(animation);
+    });
+  }
+
+  async addWatermelon() {
     const modelName = `watermelon`;
 
     const callback = (mesh) => {
       mesh.name = modelName;
 
-      mesh.position.set(-600, -250, Z_POS);
-      mesh.scale.set(scale, scale, scale);
-
       mesh.rotateZ(THREE.MathUtils.degToRad(140));
 
       this.scene.add(mesh);
+      this.objects.watermelon = mesh;
     };
 
     await this.modelsLoader.getModel({
@@ -259,6 +376,9 @@ export default class Scene3DIntro extends Scene3D {
   setAnimations() {
     this.addQuestionAnimations();
     this.addFlamingoAnimations();
+    this.addSnowflakeAnimations();
+    this.addLeafAnimations();
+    this.addWatermelonAnimations();
   }
 
   start() {
