@@ -35,12 +35,10 @@ export default class Scene3DStory extends Scene3D {
 
     super({canvas});
 
-    this.sceneYAngle = 45;
-
-    this.setAnimations();
+    this.sceneYAngle = -45;
   }
 
-  setAnimations() {
+  addBubblesAnimations() {
     this.animations.push(new Animation({
       func: (progress) => {
         if (this.material) {
@@ -80,10 +78,15 @@ export default class Scene3DStory extends Scene3D {
     }));
   }
 
+  addAnimations() {
+    this.addBubblesAnimations();
+  }
+
   start() {
+    this.addAnimations();
     this.setSceneBackground(0);
 
-    this.scene.add(this.getSuitcase());
+    this.addSuitcase();
     this.scene.add(this.getScene1());
     this.scene.add(this.getScene2());
     this.scene.add(this.getScene3());
@@ -148,14 +151,12 @@ export default class Scene3DStory extends Scene3D {
     return group;
   }
 
-  getSuitcase() {
-    const scale = 0.8;
-    const group = new StorySuitcase();
+  addSuitcase() {
+    const group = new StorySuitcase(this);
 
-    group.position.set(580, 0, 580);
-    group.scale.set(scale, scale, scale);
+    group.addAnimations(this.animations);
     group.rotateY(THREE.MathUtils.degToRad(this.sceneYAngle));
 
-    return group;
+    this.scene.add(group);
   }
 }
