@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import Animation from '../animation';
 import Scene3D from "./scene-3d";
 import StoryScene1 from "./scenes/story-scene-1";
@@ -89,8 +88,6 @@ export default class Scene3DStory extends Scene3D {
     this.scene.add(this.getScene2());
     this.scene.add(this.getScene3());
     this.scene.add(this.getScene4());
-
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
 
     super.start();
   }

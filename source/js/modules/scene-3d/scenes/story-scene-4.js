@@ -27,6 +27,7 @@ export default class StoryScene4 extends THREE.Group {
     const model = new ModelSaturn({
       colorBase: `shadowedDominantRed`,
       colorAdditional: `shadowedBrightPurple`,
+      castShadow: true,
     });
     model.position.set(300, 500, 200);
 
@@ -62,6 +63,8 @@ export default class StoryScene4 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material: null,
+      castShadow: true,
+      receiveShadow: true,
       callback,
     });
   }
@@ -80,6 +83,7 @@ export default class StoryScene4 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material,
+      receiveShadow: true,
       callback,
     });
   }
@@ -96,6 +100,7 @@ export default class StoryScene4 extends THREE.Group {
     await this.modelsLoader.getModel({
       key: modelName,
       material: null,
+      castShadow: true,
       callback,
     });
   }

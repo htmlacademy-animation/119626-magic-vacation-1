@@ -1,7 +1,13 @@
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'; // TODO: remove. for devs only
 import * as THREE from 'three';
 import Stats from 'stats.js';
 import vertexShader from '../../shaders/vertex-shader-base.glsl';
 import fragmentShader from '../../shaders/fragment-shader-scene-2.glsl';
+
+// TODO: remove. for devs only
+const stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
 export default class Scene3D {
   constructor(options) {
@@ -14,9 +20,14 @@ export default class Scene3D {
     this.cameraZCoordinateMin = 0.1;
     this.cameraZCoordinateMax = 3000; // TODO: change
 
+    this.shadowMapSizeWidth = 512;
+    this.shadowMapSizeHeight = 512;
+    this.shadowCameraFar = 3000;
+
     this.animationId = null;
     this.material = null;
     this.animations = [];
+    this.objects = {};
 
     this.tick = this.tick.bind(this);
 
@@ -74,12 +85,6 @@ export default class Scene3D {
 
   updateBackground(texture) {
     this.setMaterial(texture);
-
-    // TODO: rm
-    // const geometry = new THREE.PlaneGeometry(this.width, this.height);
-    // const mesh = new THREE.Mesh(geometry, this.material);
-
-    // this.scene.add(mesh);
   }
 
   init() {
@@ -112,10 +117,7 @@ export default class Scene3D {
 
     this.scene.add(this.getLights());
 
-    // TODO: remove. for devs only
-    const stats = new Stats();
-    stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
-    document.body.appendChild(stats.dom);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement); // TODO: remove. for devs only
   }
 
   renderScene() {
@@ -126,6 +128,7 @@ export default class Scene3D {
     this.renderScene();
 
     this.animationId = requestAnimationFrame(this.tick);
+    stats.update();
   }
 
   stopAnimation() {
@@ -137,8 +140,6 @@ export default class Scene3D {
   }
 
   startAnimation() {
-    this.stopAnimation();
-
     if (this.animations && this.animations.length) {
       this.animations.forEach((animation) => {
         animation.start();
@@ -174,7 +175,11 @@ export default class Scene3D {
     const lightUnit2 = new THREE.PointLight(new THREE.Color(`rgb(246,242,255)`), 0.6, 0, 2);
 
     lightUnit2.position.set(-800, -350, 710);
+
     lightUnit2.castShadow = true;
+    lightUnit2.shadow.mapSize.width = this.shadowMapSizeWidth;
+    lightUnit2.shadow.mapSize.height = this.shadowMapSizeHeight;
+    lightUnit2.shadow.camera.far = this.shadowCameraFar;
 
     light.add(lightUnit2);
 
@@ -182,7 +187,11 @@ export default class Scene3D {
     const lightUnit3 = new THREE.PointLight(new THREE.Color(`rgb(245,254,255)`), 0.95, 0, 2);
 
     lightUnit3.position.set(730, 800, 985);
+
     lightUnit3.castShadow = true;
+    lightUnit3.shadow.mapSize.width = this.shadowMapSizeWidth;
+    lightUnit3.shadow.mapSize.height = this.shadowMapSizeHeight;
+    lightUnit3.shadow.camera.far = this.shadowCameraFar;
 
     light.add(lightUnit3);
 
