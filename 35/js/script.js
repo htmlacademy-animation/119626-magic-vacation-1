@@ -71259,442 +71259,31 @@ class ModelStreetLamp extends _model__WEBPACK_IMPORTED_MODULE_1__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Scene3DIntro; });
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
-/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../animation */ "./source/js/modules/animation.js");
-/* harmony import */ var _timing_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../timing-functions */ "./source/js/modules/timing-functions.js");
-/* harmony import */ var _models_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./models-loader */ "./source/js/modules/scene-3d/models-loader.js");
-/* harmony import */ var _models_keyhole__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./models/keyhole */ "./source/js/modules/scene-3d/models/keyhole.js");
-/* harmony import */ var _models_flamingo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./models/flamingo */ "./source/js/modules/scene-3d/models/flamingo.js");
-/* harmony import */ var _models_snowflake__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./models/snowflake */ "./source/js/modules/scene-3d/models/snowflake.js");
-/* harmony import */ var _models_question__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./models/question */ "./source/js/modules/scene-3d/models/question.js");
-/* harmony import */ var _models_saturn__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./models/saturn */ "./source/js/modules/scene-3d/models/saturn.js");
-/* harmony import */ var _models_leaf_1__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./models/leaf-1 */ "./source/js/modules/scene-3d/models/leaf-1.js");
-/* harmony import */ var _models_model__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./models/model */ "./source/js/modules/scene-3d/models/model.js");
-/* harmony import */ var _shapes_loader__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shapes-loader */ "./source/js/modules/scene-3d/shapes-loader.js");
-/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
+/* harmony import */ var _scene_3d__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scene-3d */ "./source/js/modules/scene-3d/scene-3d.js");
+/* harmony import */ var _scenes_intro_scene__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scenes/intro-scene */ "./source/js/modules/scene-3d/scenes/intro-scene.js");
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_12__["default"] {
+class Scene3DIntro extends _scene_3d__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor() {
     const canvas = document.getElementById(`intro-scene`);
 
     super({canvas});
 
-    this.modelsLoader = new _models_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
-
-    this.objectZPosition = 200;
-
-    this.animationDelay = 1500; // duration of css animations
-    this.animationDelayInfinite = this.animationDelay + 1500;
-    this.animationDuration = 1500;
-  }
-
-  getUpdatedYPositionForInfiniteAnimation(position, amplutide, current, start, period) {
-    return position + amplutide * Math.sin(2 * Math.PI * (current - start) / period);
-  }
-
-  addQuestionAnimations() {
-    const scale = 1;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.question.position.set(100 * t, -250 * t, this.objectZPosition);
-          this.objects.question.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.25;
-          const period = 3500;
-
-          this.objects.question.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.question.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  async addQuestion() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    const shape = await loader.getShape(`question`);
-    const model = new _models_question__WEBPACK_IMPORTED_MODULE_7__["default"]({shape});
-
-    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
-    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
-
-    this.scene.add(model);
-    this.objects.question = model;
-  }
-
-  addFlamingoAnimations() {
-    const scale = 2;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.flamingo.position.set(-400 * t, 300 * t, this.objectZPosition);
-          this.objects.flamingo.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.2;
-          const period = 5000;
-
-          this.objects.flamingo.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.flamingo.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  async addFlamingo() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    const shape = await loader.getShape(`flamingo`);
-    const model = new _models_flamingo__WEBPACK_IMPORTED_MODULE_5__["default"]({shape});
-
-    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
-    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(160));
-    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(15));
-
-    this.scene.add(model);
-    this.objects.flamingo = model;
-  }
-
-  addSnowflakeAnimations() {
-    const scale = 0.85;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.snowflake.position.set(-350 * t, 0, this.objectZPosition);
-          this.objects.snowflake.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.2;
-          const period = 4000;
-
-          this.objects.snowflake.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.snowflake.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  async addSnowflake() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    const shape = await loader.getShape(`snowflake`);
-    const model = new _models_snowflake__WEBPACK_IMPORTED_MODULE_6__["default"]({shape});
-
-    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
-    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(35));
-
-    this.scene.add(model);
-    this.objects.snowflake = model;
-  }
-
-  addLeafAnimations() {
-    const scale = 1.5;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.leaf.position.set(500 * t, 300 * t, this.objectZPosition);
-          this.objects.leaf.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.15;
-          const period = 4500;
-
-          this.objects.leaf.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.leaf.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  async addLeaf() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    const shape = await loader.getShape(`leaf1`);
-    const model = new _models_leaf_1__WEBPACK_IMPORTED_MODULE_9__["default"]({shape});
-
-    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
-    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(55));
-    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(85));
-
-    this.scene.add(model);
-    this.objects.leaf = model;
-  }
-
-  async addKeyhole() {
-    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    const shape = await loader.getShape(`keyhole`);
-    const model = new _models_keyhole__WEBPACK_IMPORTED_MODULE_4__["default"]({shape});
-
-    model.position.set(-1000, 1000, 0);
-    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
-
-    this.scene.add(model);
-  }
-
-  async addSuitcase() {
-    const scale = 0.4;
-    const modelName = `suitcase`;
-
-    const callback = (mesh) => {
-      mesh.name = modelName;
-
-      mesh.position.set(-50, -125, this.objectZPosition);
-      mesh.scale.set(scale, scale, scale);
-
-      mesh.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(35));
-      mesh.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-140));
-      mesh.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(15));
-
-      this.scene.add(mesh);
-    };
-
-    await this.modelsLoader.getModel({
-      key: modelName,
-      material: null,
-      callback,
-    });
-  }
-
-  addWatermelonAnimations() {
-    const scale = 1.5;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.watermelon.position.set(-600 * t, -250 * t, this.objectZPosition);
-          this.objects.watermelon.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.27;
-          const period = 3500;
-
-          this.objects.watermelon.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.watermelon.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  async addWatermelon() {
-    const modelName = `watermelon`;
-
-    const callback = (mesh) => {
-      mesh.name = modelName;
-
-      mesh.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
-
-      this.scene.add(mesh);
-      this.objects.watermelon = mesh;
-    };
-
-    await this.modelsLoader.getModel({
-      key: modelName,
-      material: null,
-      callback,
-    });
-  }
-
-  async addAirplane() {
-    const scale = 1;
-    const modelName = `airplane`;
-    const model = new _models_model__WEBPACK_IMPORTED_MODULE_10__["default"]();
-    const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
-
-    const callback = (mesh) => {
-      mesh.name = modelName;
-
-      mesh.position.set(200, 100, this.objectZPosition);
-      mesh.scale.set(scale, scale, scale);
-
-      mesh.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(55));
-      mesh.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
-
-      this.scene.add(mesh);
-    };
-
-    await this.modelsLoader.getModel({
-      key: modelName,
-      material,
-      callback,
-    });
-  }
-
-  addSaturnAnimations() {
-    const scale = 0.5;
-
-    const animations = [
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t) => {
-          this.objects.saturn.position.set(350 * t, -100 * t, this.objectZPosition);
-          this.objects.saturn.scale.set(scale * t, scale * t, scale * t);
-        },
-        delay: this.animationDelay,
-        duration: this.animationDuration,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        func: (t, details) => {
-          const amplitude = 0.19;
-          const period = 5500;
-
-          this.objects.saturn.position.y = this.getUpdatedYPositionForInfiniteAnimation(
-              this.objects.saturn.position.y,
-              amplitude,
-              details.currentTime,
-              details.startTime,
-              period
-          );
-        },
-        delay: this.animationDelayInfinite,
-        duration: `infinite`,
-        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
-      }),
-    ];
-
-    animations.forEach((animation) => {
-      this.animations.push(animation);
-    });
-  }
-
-  addSaturn() {
-    const model = new _models_saturn__WEBPACK_IMPORTED_MODULE_8__["default"]({
-      colorBase: `dominantRed`,
-      colorAdditional: `brightPurple`,
-      shouldRenderSattelite: false,
-    });
-
-    this.scene.add(model);
-    this.objects.saturn = model;
-  }
-
-  constructChildren() {
-    this.addKeyhole();
-    this.addQuestion();
-    this.addFlamingo();
-    this.addSnowflake();
-    this.addLeaf();
-
-    this.addSuitcase();
-    this.addWatermelon();
-    this.addAirplane();
-
-    this.addSaturn();
-  }
-
-  addAnimations() {
-    this.addQuestionAnimations();
-    this.addFlamingoAnimations();
-    this.addSnowflakeAnimations();
-    this.addLeafAnimations();
-    this.addWatermelonAnimations();
-    this.addSaturnAnimations();
   }
 
   start() {
-    this.constructChildren();
-    this.addAnimations();
+    this.addScene();
 
     super.start();
+  }
+
+  addScene() {
+    const group = new _scenes_intro_scene__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
+    group.addAnimations(this.animations);
+
+    this.scene.add(group);
   }
 }
 
@@ -72100,6 +71689,485 @@ class Scene3D {
     light.add(lightUnit3);
 
     return light;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./source/js/modules/scene-3d/scenes/intro-scene.js":
+/*!**********************************************************!*\
+  !*** ./source/js/modules/scene-3d/scenes/intro-scene.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return IntroScene; });
+/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var _animation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../animation */ "./source/js/modules/animation.js");
+/* harmony import */ var _timing_functions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../timing-functions */ "./source/js/modules/timing-functions.js");
+/* harmony import */ var _shapes_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shapes-loader */ "./source/js/modules/scene-3d/shapes-loader.js");
+/* harmony import */ var _models_loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models-loader */ "./source/js/modules/scene-3d/models-loader.js");
+/* harmony import */ var _models_keyhole__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/keyhole */ "./source/js/modules/scene-3d/models/keyhole.js");
+/* harmony import */ var _models_flamingo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../models/flamingo */ "./source/js/modules/scene-3d/models/flamingo.js");
+/* harmony import */ var _models_snowflake__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/snowflake */ "./source/js/modules/scene-3d/models/snowflake.js");
+/* harmony import */ var _models_question__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../models/question */ "./source/js/modules/scene-3d/models/question.js");
+/* harmony import */ var _models_saturn__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/saturn */ "./source/js/modules/scene-3d/models/saturn.js");
+/* harmony import */ var _models_leaf_1__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../models/leaf-1 */ "./source/js/modules/scene-3d/models/leaf-1.js");
+/* harmony import */ var _models_model__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../models/model */ "./source/js/modules/scene-3d/models/model.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+class IntroScene extends three__WEBPACK_IMPORTED_MODULE_0__["Group"] {
+  constructor() {
+    super();
+
+    this.modelsLoader = new _models_loader__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.objects = {};
+    this.animationClip = [];
+
+
+    this.objectZPosition = 200;
+
+    this.animationDelay = 1500; // duration of css animations
+    this.animationDelayInfinite = this.animationDelay + 1500;
+    this.animationDuration = 1500;
+
+    this.constructChildren();
+    this.setAnimations();
+  }
+
+  getUpdatedYPositionForInfiniteAnimation(position, amplutide, current, start, period) {
+    return position + amplutide * Math.sin(2 * Math.PI * (current - start) / period);
+  }
+
+  addQuestionAnimations() {
+    const scale = 1;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.question.position.set(100 * t, -250 * t, this.objectZPosition);
+          this.objects.question.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.25;
+          const period = 3500;
+
+          this.objects.question.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.question.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  async addQuestion() {
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    const shape = await loader.getShape(`question`);
+    const model = new _models_question__WEBPACK_IMPORTED_MODULE_8__["default"]({shape});
+
+    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
+    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
+
+    group.add(model);
+
+    this.objects.question = group;
+
+    this.add(group);
+  }
+
+  addFlamingoAnimations() {
+    const scale = 2;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.flamingo.position.set(-400 * t, 300 * t, this.objectZPosition);
+          this.objects.flamingo.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.2;
+          const period = 5000;
+
+          this.objects.flamingo.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.flamingo.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  async addFlamingo() {
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    const shape = await loader.getShape(`flamingo`);
+    const model = new _models_flamingo__WEBPACK_IMPORTED_MODULE_6__["default"]({shape});
+
+    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
+    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(160));
+    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(15));
+
+    group.add(model);
+
+    this.objects.flamingo = group;
+
+    this.add(group);
+  }
+
+  addSnowflakeAnimations() {
+    const scale = 0.85;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.snowflake.position.set(-350 * t, 0, this.objectZPosition);
+          this.objects.snowflake.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.2;
+          const period = 4000;
+
+          this.objects.snowflake.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.snowflake.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  async addSnowflake() {
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    const shape = await loader.getShape(`snowflake`);
+    const model = new _models_snowflake__WEBPACK_IMPORTED_MODULE_7__["default"]({shape});
+
+    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-20));
+    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(35));
+
+    group.add(model);
+
+    this.objects.snowflake = group;
+
+    this.add(group);
+  }
+
+  addLeafAnimations() {
+    const scale = 1.5;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.leaf.position.set(500 * t, 300 * t, this.objectZPosition);
+          this.objects.leaf.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.15;
+          const period = 4500;
+
+          this.objects.leaf.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.leaf.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  async addLeaf() {
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    const shape = await loader.getShape(`leaf1`);
+    const model = new _models_leaf_1__WEBPACK_IMPORTED_MODULE_10__["default"]({shape});
+
+    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
+    model.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(55));
+    model.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(85));
+
+    group.add(model);
+
+    this.objects.leaf = group;
+
+    this.add(group);
+  }
+
+  async addKeyhole() {
+    const loader = new _shapes_loader__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    const shape = await loader.getShape(`keyhole`);
+    const model = new _models_keyhole__WEBPACK_IMPORTED_MODULE_5__["default"]({shape});
+
+    model.position.set(-1000, 1000, 0);
+    model.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(180));
+
+    this.add(model);
+  }
+
+  async addSuitcase() {
+    const scale = 0.4;
+    const modelName = `suitcase`;
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+
+      mesh.position.set(-50, -125, this.objectZPosition);
+      mesh.scale.set(scale, scale, scale);
+
+      mesh.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(35));
+      mesh.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(-140));
+      mesh.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(15));
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
+  }
+
+  addWatermelonAnimations() {
+    const scale = 1.5;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.watermelon.position.set(-600 * t, -250 * t, this.objectZPosition);
+          this.objects.watermelon.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.27;
+          const period = 3500;
+
+          this.objects.watermelon.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.watermelon.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  async addWatermelon() {
+    const modelName = `watermelon`;
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+
+    group.rotateZ(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
+
+    this.objects.watermelon = group;
+
+    this.add(group);
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+
+      group.add(mesh);
+    };
+
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material: null,
+      callback,
+    });
+  }
+
+  async addAirplane() {
+    const scale = 1;
+    const modelName = `airplane`;
+    const model = new _models_model__WEBPACK_IMPORTED_MODULE_11__["default"]();
+    const material = model.getMaterial(`soft`, {color: model.getColor(`white`)});
+
+    const callback = (mesh) => {
+      mesh.name = modelName;
+
+      mesh.position.set(200, 100, this.objectZPosition);
+      mesh.scale.set(scale, scale, scale);
+
+      mesh.rotateX(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(55));
+      mesh.rotateY(three__WEBPACK_IMPORTED_MODULE_0__["MathUtils"].degToRad(140));
+
+      this.add(mesh);
+    };
+
+    await this.modelsLoader.getModel({
+      key: modelName,
+      material,
+      callback,
+    });
+  }
+
+  addSaturnAnimations() {
+    const scale = 0.5;
+
+    const animations = [
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t) => {
+          this.objects.saturn.position.set(350 * t, -100 * t, this.objectZPosition);
+          this.objects.saturn.scale.set(scale * t, scale * t, scale * t);
+        },
+        delay: this.animationDelay,
+        duration: this.animationDuration,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+      new _animation__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        func: (t, details) => {
+          const amplitude = 0.19;
+          const period = 5500;
+
+          this.objects.saturn.position.y = this.getUpdatedYPositionForInfiniteAnimation(
+              this.objects.saturn.position.y,
+              amplitude,
+              details.currentTime,
+              details.startTime,
+              period
+          );
+        },
+        delay: this.animationDelayInfinite,
+        duration: `infinite`,
+        easing: _timing_functions__WEBPACK_IMPORTED_MODULE_2__["default"].easeOutCubic,
+      }),
+    ];
+
+    animations.forEach((animation) => {
+      this.animationClip.push(animation);
+    });
+  }
+
+  addSaturn() {
+    const group = new three__WEBPACK_IMPORTED_MODULE_0__["Group"]();
+
+    const model = new _models_saturn__WEBPACK_IMPORTED_MODULE_9__["default"]({
+      colorBase: `dominantRed`,
+      colorAdditional: `brightPurple`,
+      shouldRenderSattelite: false,
+    });
+
+    group.add(model);
+
+    this.add(group);
+
+    this.objects.saturn = group;
+  }
+
+
+  constructChildren() {
+    this.addKeyhole();
+    this.addQuestion();
+    this.addFlamingo();
+    this.addSnowflake();
+    this.addLeaf();
+
+    this.addSuitcase();
+    this.addWatermelon();
+    this.addAirplane();
+
+    this.addSaturn();
+  }
+
+  setAnimations() {
+    this.addQuestionAnimations();
+    this.addFlamingoAnimations();
+    this.addSnowflakeAnimations();
+    this.addLeafAnimations();
+    this.addWatermelonAnimations();
+    this.addSaturnAnimations();
+  }
+
+  addAnimations(mixer) {
+    this.animationClip.forEach((track) => {
+      mixer.push(track);
+    });
   }
 }
 
