@@ -27,7 +27,6 @@ export default class Scene3D {
     this.animationId = null;
     this.material = null;
     this.animations = [];
-    this.objects = {};
 
     this.tick = this.tick.bind(this);
 
